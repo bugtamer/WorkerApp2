@@ -1,0 +1,63 @@
+http://www.mocky.io/v2/5adf64f63300005200e4d985
+
+{
+    "busqueda":   "Entrenador Personal",
+    "resultados": [
+        {
+            "nombre":    "Manolo",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.3,
+            "valoracion": 4,
+            "imagen":     "./imgs/Manolo-entrenador-personal.jpg"
+        },
+        {
+            "nombre":    "Alexandra",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.35,
+            "valoracion": 3,
+            "imagen":     "./imgs/Alexandra-entrenadora-personal.jpg"
+        },
+        {
+            "nombre":    "Western",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.4,
+            "valoracion": 4,
+            "imagen":     "./imgs/Western-entrenador-personal.jpg"
+        },
+        {
+            "nombre":    "Jose",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.6,
+            "valoracion": 3,
+            "imagen":     "./imgs/Jose-entrenadora-personal.jpg"
+        },
+        {
+            "nombre":    "Carmina",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.75,
+            "valoracion": 4,
+            "imagen":     "./imgs/Carmina-entrenadora-personal.jpg"
+        },
+        {
+            "nombre":    "Fina",
+            "actividad": "Entrenador Personal",
+            "distancia":  0.8,
+            "valoracion": 4,
+            "imagen":     "./imgs/Fina-entrenadora-personal.jpg"
+        },
+        {
+            "nombre":    "Loli",
+            "actividad": "Entrenador Personal",
+            "distancia":  1.3,
+            "valoracion": 5,
+            "imagen":     "./imgs/Loli-entrenadora-personal.jpg"
+        },
+        {
+            "nombre":    "Rubén",
+            "actividad": "Entrenador Personal",
+            "distancia":  2.0,
+            "valoracion": 0,
+            "imagen":     "./imgs/Ruben-entrenadora-personal.jpg"
+        }
+    ]
+}

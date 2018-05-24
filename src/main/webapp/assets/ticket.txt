@@ -1,0 +1,34 @@
+http://www.mocky.io/v2/5ae0f2f03200006d00510da2
+
+{
+    "ticketNum":   "17/160",
+    "fecha":       "06/04/2018",
+    "vencimiento": "06/05/2018",
+    "conceptos": [
+        {
+            "descripcion": "Sesiones/Semana",
+            "cantidad":    2,
+            "precio":      30.50
+        },
+        {
+            "descripcion": "Incluye cuota gimnasio",
+            "cantidad":    2,
+            "precio":      0.00
+        },
+        {
+            "descripcion": "Rutina entrenamiento personalizada",
+            "cantidad":    1,
+            "precio":      40.15
+        },
+        {
+            "descripcion": "Plan Nutricional personalizado",
+            "cantidad":    1,
+            "precio":      90.95
+        },
+        {
+            "descripcion": "Control y seguimiento",
+            "cantidad":    1,
+            "precio":      75.90
+        }
+    ]
+}

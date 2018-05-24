@@ -1,0 +1,60 @@
+http://www.mocky.io/v2/5ae039093200005e00510a5d
+
+[
+    {
+        "autor":   "self",
+        "nombre":  null,
+        "mensaje": "Hola Fina!<br>¿Podrías entrenarme para hacer running los fines de semana?<br>También necesito asesoramiento para elegir zapatillas",
+        "imagen":  null,
+        "hora":    "20:18"
+    },
+    {
+        "autor":   "self",
+        "nombre":  null,
+        "mensaje": null,
+        "imagen":  "./imgs/foto-chat-01.jpg",
+        "hora":    "20:19"
+    },
+    {
+        "autor":   "other",
+        "nombre":  "Fina",
+        "mensaje": "Lo siento, los tengo ya ocupados<br>Pero te puedo recomendar otro coach, si te parece bien?",
+        "imagen":  null,
+        "hora":    "20:25"
+    },
+    {
+        "autor":   "self",
+        "nombre":  null,
+        "mensaje": "Ok!",
+        "imagen":  null,
+        "hora":    "20:26"
+    },
+    {
+        "autor":   "notification",
+        "nombre":  null,
+        "mensaje": "Fina añadió Alexandra al grupo",
+        "imagen":  null,
+        "hora":    "20:27"
+    },
+    {
+        "autor":   "other",
+        "nombre":  "Alexandra",
+        "mensaje": "Fina me ha comentado tu caso, y puedo ayudarte a elegir equipamiento y entrenarte los fines de semana.<br>Te mantedria el precio de Fina. ¿Te parece bien?",
+        "imagen":  null,
+        "hora":    "20:41"
+    },
+    {
+        "autor":   "self",
+        "nombre":  null,
+        "mensaje": "Sí perfecto. !Alexandra comenzamos este finde!",
+        "imagen":  null,
+        "hora":    "18:19"
+    },
+    {
+        "autor":   "notification",
+        "nombre":  null,
+        "mensaje": "Fina salió del grupo",
+        "imagen":  null,
+        "hora":    "18:19"
+    }
+]
