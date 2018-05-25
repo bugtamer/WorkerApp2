@@ -8,12 +8,27 @@
   <name>WorkerApp2 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+  
+  	<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+	</dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.3</version>
+	</dependency>
+    
+    
   </dependencies>
   <build>
     <finalName>WorkerApp2</finalName>
