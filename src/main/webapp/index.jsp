@@ -29,7 +29,7 @@
 
     <nav class="orange darken-4" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="./index.html" class="brand-logo">WorkerAPP</a>
+        <a id="logo-container" href="./index.jsp" class="brand-logo">WorkerAPP</a> 
         <ul class="right user_header">
           <li>
             <a href="#">
@@ -63,7 +63,7 @@
         <ul id="nav-mobile" class="sidenav" aria-label="Menú Mobile">
 
           <li>
-            <a href="./index.html">Inicio</a>
+            <a href="./index.jsp">Inicio</a> 
           </li>
           <li>
             <a class="conmutadorLog" href="./login.html">Login</a>
