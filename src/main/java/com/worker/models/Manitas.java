@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.worker.models.Usuario;
 
-public class manitas {
+public class Manitas {
 	private String profesion;
 	private List<String> experiencia = new ArrayList <String>();
 	private List<String> educacion = new ArrayList <String>();
 	private List<String> valoraciones = new ArrayList <String>();
-	public manitas(String profesion) {
+	public Manitas(String profesion) {
 		this.profesion = profesion;
 	}
 	public String getProfesion() {
@@ -18,6 +18,6 @@ public class manitas {
 	public void setProfesion(String profesion) {
 		this.profesion = profesion;
 	}
-	
-	
+
+
 }
