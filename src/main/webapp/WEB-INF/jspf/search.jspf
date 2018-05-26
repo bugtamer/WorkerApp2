@@ -1,0 +1,19 @@
+<!--Barra de búsqueda (INI) -->
+
+    <div class="row search" role="search">
+      <form class="col s12" id="search_form">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="icon_prefix2" type="search" required autofocus>
+            <label for="icon_prefix2">Buscar</label>
+            <a href="#" id="search_button">
+              <i class="material-icons prefix">search</i>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div id="sugerencias"></div>
+
+<!-- Barra de búsqueda (FIN) -->

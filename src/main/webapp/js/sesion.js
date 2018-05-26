@@ -32,7 +32,7 @@ function conmutarLogInOut() {
     if ( getSessionToken() ) {
         log = document.getElementsByClassName('conmutadorLog');
         for(i=0;   i < log.length;   i++) {
-            log[i].href      = './index.html';
+            log[i].href      = './index.jsp';
             log[i].innerText = 'Logout';
             log[i].addEventListener('click', function(){
                 sessionStorage.removeItem('usuarioAutenticado');
@@ -41,7 +41,7 @@ function conmutarLogInOut() {
     } else {
         log = document.getElementsByClassName('conmutadorLog');
         for (let i=0;   i < log.length;   i++) {
-            log[i].href      = './login.html';
+            log[i].href      = './login.jsp';
             log[i].innerText = 'Login';
         }
     }
@@ -68,11 +68,11 @@ function paginaActual() {
     conmutarLogInOut();
 
     switch ( paginaActual() ) {
-        case 'login.html':
-        case 'registro.html':
+        case 'login.jsp':
+        case 'registro.jsp':
             // entro directamente sin otra visita previa
             if ( ! sessionStorage.getItem('ultimaPaginaVisitada') ) { // no hay ultima visita
-                sessionStorage.setItem('ultimaPaginaVisitada', '/index.html');
+                sessionStorage.setItem('ultimaPaginaVisitada', '/index.jsp');
             }
             break;
         
@@ -83,10 +83,10 @@ function paginaActual() {
     // prohibir el acceso a las areas privadas sin autenticarse
     if ( ! getSessionToken() ) {
         switch ( paginaActual() ) {
-            case 'ficha.html':
-            case 'ticket.html':
-            case 'chat.html':
-                window.location.href = './login.html';
+            case 'ficha.jsp':
+            case 'ticket.jsp':
+            case 'chat.jsp':
+                window.location.href = './login.jsp';
         }
     }
 })();

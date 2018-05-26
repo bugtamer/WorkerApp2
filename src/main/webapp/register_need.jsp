@@ -27,7 +27,7 @@
 
     <h5 class="center-align white-text">Para poder acceder a ciertas funcionalidades de
       <br> WorkerAPP</h5>
-      <h6 class="center-align"><a  class="white-text" href="./registro.html">Registro de usuarios</a></h6>
+      <h6 class="center-align"><a  class="white-text" href="./registro.jsp">Registro de usuarios</a></h6>
 
   </section>
 

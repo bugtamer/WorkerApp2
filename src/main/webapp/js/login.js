@@ -54,7 +54,7 @@ $('#submitBtn').click(function (event) {
         }).done(function (datoRecibido) {
             if (datoRecibido.result) {
                 sessionStorage.setItem('usuarioAutenticado', JSON.stringify(datoRecibido.usuario));
-                location.href = './login_confirm.html';
+                location.href = './login_confirm.jsp';
             } else {
                 $('#pass_error').html('<p class="error">usuario y Contraseña errónea!</p>')
             }

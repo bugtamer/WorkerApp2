@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="wa"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,9 @@
 </head>
 
 <body class="ficha">
-  <header>
+
+  <wa:header mostrarBarraBusqueda="false" mostrarVideoBienvenida="false"></wa:header>
+
     <div id="modal1" class="modal">
       <div class="modal-content">
         <div id="map"></div>
@@ -23,70 +26,6 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
       </div>
     </div>
-
-    <nav class="orange darken-4" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="./index.html" class="brand-logo">WorkerAPP</a>
-        <ul class="right user_header">
-          <li>
-            <a href="#">
-              <img src="./imgs/no_user.png" alt="User" class="circle">
-            </a>
-          </li>
-        </ul>
-
-        <ul class="right hide-on-med-and-down" aria-label="Menú Desktop">
-
-          <li>
-            <a href="./index.html">Inicio</a>
-          </li>
-          <li>
-            <a class="conmutadorLog" href="./login.html">Login</a>
-          </li>
-          <li>
-            <a href="./registro.html">Registro</a>
-          </li>
-          <li>
-            <a href="./ticket.html">Último Ticket</a>
-          </li>
-          <li>
-            <a href="#">Histórico Tickets</a>
-          </li>
-          <li>
-            <a href="#">Mis Favoritos</a>
-          </li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav" aria-label="Menú Mobile">
-
-          <li>
-            <a href="./index.html">Inicio</a>
-          </li>
-          <li>
-            <a class="conmutadorLog" href="./login.html">Login</a>
-          </li>
-          <li>
-            <a href="./registro.html">Registro</a>
-          </li>
-          <li>
-            <a href="./ticket.html">Último Ticket</a>
-          </li>
-          <li>
-            <a href="#">Histórico Tickets</a>
-          </li>
-          <li>
-            <a href="#">Mis Favoritos</a>
-          </li>
-
-        </ul>
-
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
-      </div>
-    </nav>
-
-  </header>
 
   <section>
     <div class="col s12 m7">
@@ -101,7 +40,7 @@
                 <i class="material-icons">location_on</i>
               </h5>
             </a>
-            <h4>Fina Martínez</h4>
+            <h4>Fina Mart��nez</h4>
             <p>Entrenador Personal</p>
             <a href="#" class="secondary-content points">
               <i class="material-icons">grade</i>
@@ -150,10 +89,12 @@
     </ul>
   </section>
 
+  <!-- FOOTER PERSONALIZADO -->
+  
   <footer>
     <div class="row">
       <div class="input-field col s12">
-        <a href="./chat.html" class="waves-effect waves-light amber darken-2 btn-large">Contactar</a>
+        <a href="./chat.jsp" class="waves-effect waves-light amber darken-2 btn-large">Contactar</a>
       </div>
     </div>
   </footer>

@@ -23,9 +23,9 @@
       <i class="large material-icons white-text">verified_user</i>
     </p>
 
-    <h4 class="center-align white-text">AutenticaciÃ³n Exitosa</h4>
+    <h4 class="center-align white-text">Autenticación Exitosa</h4>
 
-    <h5 class="center-align white-text">Te has autenticado con Ã©xito en
+    <h5 class="center-align white-text">Te has autenticado con éxito en
       <br> WorkerAPP</h5>
 
   </section>

@@ -1,0 +1,22 @@
+  <!-- CHAT: inicio -->
+  <!-- source: https://codepen.io/Varo/pen/YPmwpQ -->
+
+  <section class="row">
+    <div class="col s12">
+      <ol id="chat" class="chat"></ol>
+
+        <div class="typezone">
+          <form aria-label="Envia mensajes o adjuntos">
+            <label class="fake" for="texto">texto a enviar</label>
+            <input aria-label="texto a enviar" role="textbox" type="text" class="escribir" name="Mensaje a enviar" placeholder="Dime que necesitas..." value="" id="texto" autofocus />
+            <label class="fake" for="btn_enviar">Enviar</label>
+            <input aria-label="Enviar" type="submit" class="send" value="" name="Enviar" id="btn_enviar" />
+            <label class="fake" for="btn_adjunto">Adjuntar</label>
+            <input type="file" id="btn_adjunto" name="Adjuntar" multiple />
+            <div aria-label="Adjuntar" role="button" class="emojis" id="icono_btn_adjunto" aria-required="true"></div>
+          </form>
+        </div>
+    </div>
+  </section>
+
+  <!-- CHAT: final -->

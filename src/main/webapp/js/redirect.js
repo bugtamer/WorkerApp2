@@ -4,6 +4,6 @@ setInterval(function(){
     document.getElementById('timecount');
     if (count == 0) {
         url = sessionStorage.getItem('ultimaPaginaVisitada');
-        window.location = url ? url : './index.html'; // por si el usuario visita directamente login.html sin otra página previa
+        window.location = url ? url : './index.jsp'; // por si el usuario visita directamente login.jsp sin otra página previa
     }
 },1000);

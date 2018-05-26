@@ -82,7 +82,7 @@ $('#register').click(function (evnt) {
                 console.log('datoRecibido:', datoRecibido);
                 if (datoRecibido.result) {
                     sessionStorage.setItem('usuarioAutenticado', JSON.stringify(datoRecibido.usuario));
-                    location.href= './register_confirm.html'
+                    location.href= './register_confirm.jsp'
                 } else {
                     $('#pass_error').html('<p class="error">usuario ya existente!</p>')
                 }

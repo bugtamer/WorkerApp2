@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="wa"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,71 +15,7 @@
 
 <body class="login">
 
-  <header>
-
-    <nav class="orange darken-4" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="./index.html" class="brand-logo">WorkerAPP</a>
-        <ul class="right user_header">
-          <li>
-            <a href="#">
-              <img src="./imgs/no_user.png" alt="User" class="circle">
-            </a>
-          </li>
-        </ul>
-
-        <ul class="right hide-on-med-and-down" aria-label="Menú Desktop">
-
-          <li>
-            <a href="./index.html">Inicio</a>
-          </li>
-          <li>
-            <a class="conmutadorLog" href="./login.html">Login</a>
-          </li>
-          <li>
-            <a href="./registro.html">Registro</a>
-          </li>
-          <li>
-            <a href="./ticket.html">Último Ticket</a>
-          </li>
-          <li>
-            <a href="#">Histórico Tickets</a>
-          </li>
-          <li>
-            <a href="#">Mis Favoritos</a>
-          </li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav"  aria-label="Menú Mobile">
-
-          <li>
-            <a href="./index.html">Inicio</a>
-          </li>
-          <li>
-            <a class="conmutadorLog" href="./login.html">Login</a>
-          </li>
-          <li>
-            <a href="./registro.html">Registro</a>
-          </li>
-          <li>
-            <a href="./ticket.html">Último Ticket</a>
-          </li>
-          <li>
-            <a href="#">Histórico Tickets</a>
-          </li>
-          <li>
-            <a href="#">Mis Favoritos</a>
-          </li>
-
-        </ul>
-
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
-      </div>
-    </nav>
-
-  </header>
+  <wa:header mostrarBarraBusqueda="false" mostrarVideoBienvenida="false"></wa:header>
 
   <section>
     <div class="container">
@@ -133,14 +70,7 @@
     </div>
   </section>
 
-  <footer class="page-footer orange darken-4">
-    <div class="footer-copyright">
-      <div class="container">
-        Made by
-        <a class="white-text text-lighten-3" href="#">BIG BANG Team</a>
-      </div>
-    </div>
-  </footer>
+  <wa:footer></wa:footer>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

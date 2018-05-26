@@ -32,7 +32,7 @@ document.getElementById('search_button').onclick = function (evnt) {
     if ($('#icon_prefix2').val() == "") {
         $('#sugerencias').html('<p class="error">El campo de búsqueda no puede estar vacío</p>');
     } else {
-        location.href = './search_result.html';
+        location.href = './search_result.jsp';
     }
 };
 

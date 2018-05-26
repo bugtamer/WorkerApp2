@@ -25,7 +25,7 @@
 
     <h4 class="center-align white-text">Registro Exitoso</h4>
 
-    <h5 class="center-align white-text">Te has registrado con Ã©xito en
+    <h5 class="center-align white-text">Te has registrado con éxito en
       <br> WorkerAPP</h5>
 
   </section>

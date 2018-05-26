@@ -1,4 +1,4 @@
-http://www.mocky.io/v2/5ae0e3113200002a00510d5b
+http://www.mocky.io/v2/5b0942543500007900126279
 
 {
     "busqueda":   "Entrenador Personal",
@@ -8,7 +8,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.3,
             "valoracion": 4,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Manolo-entrenador-personal.jpg"
         },
         {
@@ -16,7 +16,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.35,
             "valoracion": 3,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Alexandra-entrenadora-personal.jpg"
         },
         {
@@ -24,7 +24,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.4,
             "valoracion": 4,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Western-entrenador-personal.jpg"
         },
         {
@@ -32,7 +32,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.6,
             "valoracion": 3,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Jose-entrenadora-personal.jpg"
         },
         {
@@ -40,7 +40,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.75,
             "valoracion": 4,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Carmina-entrenadora-personal.jpg"
         },
         {
@@ -48,7 +48,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  0.8,
             "valoracion": 4,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Fina-entrenadora-personal.jpg"
         },
         {
@@ -56,7 +56,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  1.3,
             "valoracion": 5,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Loli-entrenadora-personal.jpg"
         },
         {
@@ -64,7 +64,7 @@ http://www.mocky.io/v2/5ae0e3113200002a00510d5b
             "actividad": "Entrenador Personal",
             "distancia":  2.0,
             "valoracion": 0,
-            "detalle":    "./ficha.html",
+            "detalle":    "./ficha.jsp",
             "imagen":     "./imgs/Ruben-entrenadora-personal.jpg"
         }
     ]
