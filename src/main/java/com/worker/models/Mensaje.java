@@ -16,7 +16,7 @@ public class Mensaje {
 	private Usuario receptor;
 	private String  texto;
 	private String  urlImagen;
-	private final Date timestamp;
+	private Date    timestamp;
 
 
 	// INSTANCIACIÓN
@@ -87,6 +87,11 @@ public class Mensaje {
 	 */
 	public void setImagen(String urlImagen) {
 		this.urlImagen = urlImagen;
+	}
+
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }
