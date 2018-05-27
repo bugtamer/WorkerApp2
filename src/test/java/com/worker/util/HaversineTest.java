@@ -1,8 +1,10 @@
-package com.worker.domain;
+package com.worker.util;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.worker.util.Haversine;
 
 public class HaversineTest {
 	

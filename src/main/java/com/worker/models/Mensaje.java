@@ -93,5 +93,12 @@ public class Mensaje {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-
+	
+	
+	@Override
+	public String toString() {
+		String time = (timestamp == null) ? "" : timestamp.toString();
+		return String.format("{t=%s, i=%s, t=%s e=%s, r=%s}",
+				texto, urlImagen, time, emisor, receptor);
+	}
 }

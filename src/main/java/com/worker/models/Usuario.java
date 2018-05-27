@@ -8,8 +8,8 @@ public class Usuario {
 	private String avatar;
 	private Ubicacion ubicacion;
 	private int id;
-	
-	
+
+
 	public Usuario(String nombre, String apellidos, String email, String password) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -73,5 +73,10 @@ public class Usuario {
 		this.id = id;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("{id=%d, n=%s, ap=%s, e=%s, p=%s, av=%s, u=%s}",
+				id, nombre, apellidos, email, password, avatar, ubicacion);
+	}
 
 }

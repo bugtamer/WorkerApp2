@@ -1,4 +1,4 @@
-package com.worker.db;
+package com.worker.util.database;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,16 +6,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-/**
- * 
- * @author Bugtamer
- *
- */
-public class DataRetriever {
+public class JsonRetriever {
 	
 	// INSTANCIACION
 	
-	private DataRetriever() { }
+	private JsonRetriever() { }
 	
 	// SERVICIOS
 	

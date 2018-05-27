@@ -1,0 +1,115 @@
+http://www.mocky.io/v2/5b0af08c2f00009200ec4c6b
+
+Coordenadas: https://maps.pixelis.es/
+
+
+[
+    {
+      "nombre":    "Manolo",
+      "apellidos": "del Bombo",
+      "email":     "manolo@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Manolo-entrenador-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.39906491397483,
+        "longitud": 2.19027578830719
+      },
+      "id": 1
+    },
+    {
+      "nombre":    "Alexandra",
+      "apellidos": "Lorem ipsum",
+      "email":     "alexandra@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Alexandra-entrenadora-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.40784461738553,
+        "longitud": 2.1700572967529297
+      },
+      "id": 2
+    },
+    {
+      "nombre":    "Lorem",
+      "apellidos": "ipsum dolor",
+      "email":     "lorem@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Manolo-entrenador-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.392199663301255,
+        "longitud": 2.1836185455322266
+      },
+      "id": 3
+    },
+    {
+      "nombre":    "Western",
+      "apellidos": "amet consectetur",
+      "email":     "western@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Western-entrenador-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.39831645175792,
+        "longitud": 2.1915149688720703
+      },
+      "id": 4
+    },
+    {
+      "nombre":    "Jose",
+      "apellidos": "adipiscing elit",
+      "email":     "jose@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Jose-entrenador-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.41344498164187,
+        "longitud": 2.2075653076171875
+      },
+      "id": 5
+    },
+    {
+      "nombre":    "Carmina",
+      "apellidos": "Burana",
+      "email":     "carmina@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Carmina-entrenadora-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.43403986879929,
+        "longitud": 2.159414291381836
+      },
+      "id": 6
+    },
+    {
+      "nombre":    "Fina",
+      "apellidos": "eiusmod tempor",
+      "email":     "fina@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Fina-entrenadora-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.40366012210204,
+        "longitud": 2.174348831176758
+      },
+      "id": 7
+    },
+    {
+      "nombre":    "Loli",
+      "apellidos": "incididunt ut",
+      "email":     "loli@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Loli-entrenadora-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.394903998658826,
+        "longitud": 2.180614471435547
+      },
+      "id": 8
+    },
+    {
+      "nombre":    "Rubén",
+      "apellidos": "incididunt ut",
+      "email":     "ruben@workerapp.com",
+      "password":  "123456",
+      "avatar":    "./imgs/Ruben-entrenadora-personal.jpg",
+      "ubicacion": {
+        "latitud": 41.38904446318836,
+        "longitud": 2.1770095825195312
+      },
+      "id": 9
+    }
+]

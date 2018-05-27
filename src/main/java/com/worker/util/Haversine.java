@@ -1,4 +1,4 @@
-package com.worker.domain;
+package com.worker.util;
 
 /**
  * Source:

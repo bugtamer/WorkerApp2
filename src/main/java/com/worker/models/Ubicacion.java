@@ -1,6 +1,6 @@
 package com.worker.models;
 
-import com.worker.domain.Haversine;
+import com.worker.util.Haversine;
 
 public class Ubicacion {
 	private double longitud;
@@ -39,6 +39,12 @@ public class Ubicacion {
 		double lat2 = otra.getLatitud();
 		double lon2 = otra.getLongitud();
 		return Haversine.calcDistantKm(lat1, lon1, lat2, lon2);
+	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("{lat=%.3f, lon=%.3f}", latitud, longitud);
 	}
 	
 }

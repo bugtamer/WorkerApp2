@@ -1,6 +1,6 @@
-package com.worker.db;
+package com.worker.util.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class DataRetrieverTest {
 
 	@Test
 	public void testDataRetriever() throws Exception {
-		String sut = DataRetriever.getDataFrom(DataSource.testOK);
+		String sut = JsonRetriever.getDataFrom(DataSource.testOK);
 		
 		assertEquals(sut, "{\"test\":\"OK\"}");
 	}
