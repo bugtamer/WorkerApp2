@@ -1,37 +1,46 @@
 package com.worker.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Valoracion {
 	private Usuario autor;
 	private String comentario;
 	private int puntuacion;
 	private Date timestamp;
-	public Valoracion(Usuario autor, String comentario, int puntuacion, Date timestamp) {
-		super();
+	
+	
+	public Valoracion(Usuario autor, String comentario, int puntuacion) {
 		this.autor = autor;
 		this.comentario = comentario;
 		this.puntuacion = puntuacion;
-		this.timestamp = timestamp;
+		this.timestamp = new Date();
 	}
+	
+	
 	public Usuario getAutor() {
 		return autor;
 	}
 	public void setAutor(Usuario autor) {
 		this.autor = autor;
 	}
+	
+	
 	public String getComentario() {
 		return comentario;
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+	
+	
 	public int getPuntuacion() {
 		return puntuacion;
 	}
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
+	
+	
 	public Date getTimestamp() {
 		return timestamp;
 	}
