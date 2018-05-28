@@ -1,4 +1,4 @@
-<%@ attribute name="manitas" required="true" type="com.worker.models.Manitas" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
   <section>
     <div class="col s12 m7">
       <div class="card horizontal">
@@ -8,7 +8,7 @@
         <div class="card-stacked">
           <div class="card-content">
             <a href="#modal1" class="secondary-content location modal-trigger">
-              <h5>${manitas.mediaValoraciones}Km
+              <h5>${distancia}Km
                 <i class="material-icons">location_on</i>
               </h5>
             </a>
@@ -27,34 +27,31 @@
     <ul class="collapsible">
       <li>
         <div class="collapsible-header">
-          <i class="material-icons">directions_run</i>Actual</div>
+          <i class="material-icons">history</i>Valoraciones</div>
         <div class="collapsible-body">
-          <span>Entrenadora personal, estudiante y emprendedora en Uno mismo, Emprendedora en Proyecto nuevo, Entrenador personal
-            de fitness en Entrenadora...</span>
+        <c:forEach items="${manitas.valoraciones}" var="val">
+          <span>${val.comentario}</span><br>
+        </c:forEach>
         </div>
       </li>
+
       <li>
         <div class="collapsible-header">
-          <i class="material-icons">history</i>Anterior</div>
+          <i class="material-icons">library_books</i>Experiencia</div>
         <div class="collapsible-body">
-          <span>Monitora de sala, monitora de clases colectivas, recepcionista en Holidaygym, Staff en Virgin Active, Invitada
-            en BNI® Business Network...</span>
+        <c:forEach items="${manitas.experiencia}" var="exp">
+          <span>${exp}</span><br>
+        </c:forEach>
         </div>
       </li>
+
       <li>
         <div class="collapsible-header">
           <i class="material-icons">school</i>Educación</div>
         <div class="collapsible-body">
-          <span>APECED, AGENCIA LAIN ENTRALGO, APECED, APECED, APECED, APECED, APECED, Cruz Roja, APECED, FORMATIK, FORMATIK, IES
-            infanta Elena, Euroinnova...</span>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">library_books</i>Extracto</div>
-        <div class="collapsible-body">
-          <span>Actualmente me dedico por las mañanas en el proyecto de TUSECTORES y por las tardes y los fines de semana doy SESIONES
-            DE ENTRENAMIENTO a...</span>
+        <c:forEach items="${manitas.educacion}" var="edu">
+          <span>${edu}</span><br>
+        </c:forEach>
         </div>
       </li>
     </ul>
