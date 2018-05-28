@@ -7,9 +7,9 @@ public class Manitas extends Usuario {
 	private List<String> experiencia = new ArrayList <String>();
 	private List<String> educacion = new ArrayList <String>();
 	private List<Valoracion> valoraciones = new ArrayList <>();
-	
-	
-	
+
+
+
 	public Manitas(Usuario usuario, String profesion) {
 		super(usuario.getNombre(), usuario.getApellidos(), usuario.getEmail(), usuario.getPassword());
 		setId( usuario.getId() );
@@ -35,7 +35,7 @@ public class Manitas extends Usuario {
 	public List<Valoracion> getValoraciones() {
 		return valoraciones;
 	}
-	
+
 	public int getMediaValoraciones() {
 		int avg = 0;
 		List<Valoracion> valoraciones = getValoraciones();
@@ -49,22 +49,22 @@ public class Manitas extends Usuario {
 		}
 		return avg;
 	}
-	
-	
-	
+
+
+
 	public boolean addExperiencia(String experiencia) {
 		return this.experiencia.add(experiencia);
 	}
-	
+
 	public boolean addEducacion(String educacion) {
 		return this.educacion.add(educacion);
 	}
-	
+
 	public boolean addValoracion(Valoracion valoracion) {
 		return this.valoraciones.add(valoracion);
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		StringBuilder edu = new StringBuilder();
@@ -79,7 +79,7 @@ public class Manitas extends Usuario {
 				exp.append(item).append('/');
 			}
 		}
-		
+
 		return super.toString() + String.format("+{p=%s, ed=%s, ex=%s, v=%d}",
 				profesion, edu.toString(), exp.toString(), getMediaValoraciones());
 	}
