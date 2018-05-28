@@ -106,6 +106,7 @@ function recibir(event) {
         // establecer WebSocket
         // XXX http://websocketstest.com
         const URL = 'ws://echo.websocket.org/'; // devuelve como respuesta el mensaje que reciba
+        //const URL = 'ws://localhost:8080/WorkerApp2/mensaje';//+ window.location.host + '/TomcatWebSocketTest/testWebSocketServlet';
         let chatSocket = new WebSocket(URL); // PROTOCOLO: atributo opcional
         
         // captura de eventos

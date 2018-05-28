@@ -34,7 +34,44 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.8.5</version>
 	</dependency>
-    
+
+	<!-- para chat -->
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+	<dependency>
+	    <groupId>org.apache.tomcat</groupId>
+	    <artifactId>tomcat-catalina</artifactId>
+	    <version>7.0.29</version>
+	    <!--<version>9.0.8</version>-->
+	    <!--<scope>provided</scope>-->
+	</dependency>
+	
+	<!-- para chat -->
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-coyote -->
+	<dependency>
+	    <groupId>org.apache.tomcat</groupId>
+	    <artifactId>tomcat-coyote</artifactId>
+	    <version>7.0.29</version>
+	    <!--<version>9.0.8</version>-->
+	    <!--<scope>provided</scope>-->
+	</dependency>
+	
+	<!-- para chat -->
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <!--<version>4.0.1</version>-->
+	    <!--<scope>provided</scope>-->
+	</dependency>
+	
+	<!-- para chat -->
+	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>1.7.25</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>WorkerApp2</finalName>
