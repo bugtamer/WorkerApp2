@@ -22,12 +22,12 @@
       <div class="row">
         <div class="col s12 m12 l12">
           <div id="form-login">
-            <form id="milogin" class="col s12" method="post">
+            <form id="milogin" class="col s12" method="POST" action="./login">
 
               <div class="row">
                 <div class="input-field col s12">
                   <label for="email">Correo</label>
-                  <input type="email" name="email" value="sunshine88@gmail.com" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  <input type="email" name="email" value="alexandra@workerapp.com" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                     required>
                   <div id="mail_error"></div>
 
@@ -57,7 +57,7 @@
                 <a href="./registro.jsp">Registrarse</a>
               </div>
               <div class="col s7">
-                <a href="#">¿Has perdido tu contraseña?</a>
+                <a href="#">�Has perdido tu contrase&ntilde;a?</a>
               </div>
             </div>
           </div>
