@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.worker.models.Usuario;
 import com.worker.util.SessionHelper;
 
-// https://www.adictosaltrabajo.com/tutoriales/web-sockets-java-tomcat/
-
-@WebServlet("/chat")
-public class ChatServlet extends HttpServlet {
+@WebServlet("/ticket")
+public class TicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
@@ -25,7 +23,7 @@ public class ChatServlet extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect("login");
 		} else {
-			request.getRequestDispatcher("chat.jsp").forward(request, response);
+			request.getRequestDispatcher("ticket.jsp").forward(request, response);
 		}
 	}
 
