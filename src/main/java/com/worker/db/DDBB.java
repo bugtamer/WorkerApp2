@@ -25,7 +25,7 @@ public class DDBB {
 	private DDBB () {
 		usuarios = DataRetriever.getUsuarios();
 		manitas  = DataRetriever.getManitas();
-		mensajes = DataRetriever.getMensajes();
+		mensajes = new ArrayList<>(); // FIX verificar JSON: DataRetriever.getMensajes();
 	}
 	
 	
