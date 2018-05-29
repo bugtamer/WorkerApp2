@@ -11,7 +11,7 @@
     <nav  class="orange darken-4" role="navigation">
       <div class="nav-wrapper container">
       
-        <a id="logo-container" href="./index.jsp" class="brand-logo">WorkerAPP</a>
+        <a id="logo-container" href="./buscar" class="brand-logo">WorkerAPP</a>
         <ul class="right user_header">
           <li>
             <a href="#">
@@ -21,7 +21,7 @@
         </ul>
         <ul class="right hide-on-med-and-down" aria-label="Menú Desktop">
           <li>
-            <a href="./index.jsp">Inicio</a>
+            <a href="./buscar">Inicio</a>
           </li>
           <li>
             <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
@@ -30,7 +30,7 @@
             <a href="./registro.jsp">Registro</a>
           </li>
           <li>
-            <a href="./ticket.jsp">Último Ticket</a>
+            <a href="./ticket">Último Ticket</a>
           </li>
           <li>
             <a href="#">Histórico Tickets</a>
@@ -42,7 +42,7 @@
 
         <ul id="nav-mobile" class="sidenav" aria-label="Menú Mobile">
           <li>
-            <a href="./index.jsp">Inicio</a>
+            <a href="./buscar">Inicio</a>
           </li>
           <li>
             <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
@@ -51,7 +51,7 @@
             <a href="./registro.jsp">Registro</a>
           </li>
           <li>
-            <a href="./ticket.jsp">Último Ticket</a>
+            <a href="./ticket">Último Ticket</a>
           </li>
           <li>
             <a href="#">Histórico Tickets</a>
