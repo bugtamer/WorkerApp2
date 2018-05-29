@@ -12,21 +12,19 @@
       <div class="nav-wrapper container">
       
         <a id="logo-container" href="./index.jsp" class="brand-logo">WorkerAPP</a>
-        
         <ul class="right user_header">
           <li>
             <a href="#">
-              <img src="./imgs/no_user.png" alt="user" class="circle">
+              <img src="${usuario == null ? "./imgs/no_user.png" : "./imgs/Alexandra-entrenadora-personal.jpg"}" alt="user" class="circle">
             </a>
           </li>
         </ul>
-
         <ul class="right hide-on-med-and-down" aria-label="Menú Desktop">
           <li>
             <a href="./index.jsp">Inicio</a>
           </li>
           <li>
-            <a class="conmutadorLog" href="./login.jsp">Login</a>
+            <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
           </li>
           <li>
             <a href="./registro.jsp">Registro</a>
@@ -47,7 +45,7 @@
             <a href="./index.jsp">Inicio</a>
           </li>
           <li>
-            <a class="conmutadorLog" href="./login.jsp">Login</a>
+            <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
           </li>
           <li>
             <a href="./registro.jsp">Registro</a>

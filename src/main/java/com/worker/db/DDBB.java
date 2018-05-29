@@ -25,7 +25,7 @@ public class DDBB {
 	private DDBB () {
 		usuarios = DataRetriever.getUsuarios();
 		manitas  = DataRetriever.getManitas();
-		mensajes = DataRetriever.getMensajes();
+		mensajes = new ArrayList<>(); // FIX verificar JSON: DataRetriever.getMensajes();
 	}
 	
 	
@@ -63,6 +63,20 @@ public class DDBB {
 		return encontrado;
 	}
 	
+	public Usuario getUsuarios(String email, String pass) {
+		Usuario unUsuario = null;
+		for (Usuario user : usuarios) {
+			if (user.getEmail().equals(email) && user.getPassword().equals(pass)) {
+				unUsuario = user;
+				break;
+			}
+		}
+		System.out.println("getUsuarios(String '"+email+"', String '"+pass+"')=" + unUsuario);
+		return unUsuario;
+	}
+	
+	
+
 	
 	public Manitas getManitas(int id) {
 		Manitas encontrado = null;
@@ -103,6 +117,7 @@ public class DDBB {
 	}
 	
 	public boolean addMensaje(Mensaje nuevoMensaje) {
+		System.out.println("DDBB.addMensaje()=" + nuevoMensaje);
 		return mensajes.add(nuevoMensaje);
 	}
 	
