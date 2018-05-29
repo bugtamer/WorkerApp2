@@ -40,6 +40,18 @@ public class DDBB {
 	
 	// GETTERS
 	
+	public List<Manitas> getResultadosBusqueda(String query) {
+		List<Manitas> resultados = new ArrayList<>();
+		if (query != null  &&  !query.equals("")) {
+			for(Manitas u : manitas ) {
+				if (u.getProfesion().toUpperCase().contains(query.toUpperCase())) {
+					resultados.add(u);
+				}
+			}
+		}
+		return resultados;
+	}
+	
 	public Usuario getUsuario(int id) {
 		Usuario encontrado = null;
 		for (Usuario u : usuarios) {
@@ -81,6 +93,14 @@ public class DDBB {
 	
 	
 	// ADDERS
+	
+	public boolean addManitas(Manitas nuevoManitas) {
+		boolean outcome = false;
+		if (nuevoManitas != null) {
+			manitas.add(nuevoManitas);
+		}
+		return outcome;
+	}
 	
 	public boolean addMensaje(Mensaje nuevoMensaje) {
 		return mensajes.add(nuevoMensaje);

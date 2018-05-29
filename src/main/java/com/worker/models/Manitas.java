@@ -83,4 +83,8 @@ public class Manitas extends Usuario {
 		return super.toString() + String.format("+{p=%s, ed=%s, ex=%s, v=%d}",
 				profesion, edu.toString(), exp.toString(), getMediaValoraciones());
 	}
+
+
+
+	
 }
