@@ -49,10 +49,10 @@ function conmutarLogInOut() {
 
 
 
-function conmutarAvatar() {
-    let avatar = document.querySelector('ul.right.user_header > li > a > img');
-    avatar.src = getSessionAvatar();
-}
+//function conmutarAvatar() {
+//    let avatar = document.querySelector('ul.right.user_header > li > a > img');
+//    avatar.src = getSessionAvatar();
+//}
 
 
 

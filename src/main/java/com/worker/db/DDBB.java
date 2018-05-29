@@ -62,6 +62,8 @@ public class DDBB {
 		System.out.println("getUsuarios(String '"+email+"', String '"+pass+"')=" + unUsuario);
 		return unUsuario;
 	}
+	
+	
 
 	
 	public Manitas getManitas(int id) {

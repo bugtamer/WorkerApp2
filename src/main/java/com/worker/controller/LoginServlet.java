@@ -21,14 +21,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session=request.getSession();
-//		if(session.getAttribute("email")!=null) {
-//			response.sendRedirect("login_confirm");
-//		}else {
-			
+		if(session.getAttribute("email")!=null) {
+			response.sendRedirect("login_confirm");
+		}else {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
-//		}
-//	
-////		
+		}	
 	}
 
 
