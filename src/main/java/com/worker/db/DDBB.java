@@ -95,6 +95,7 @@ public class DDBB {
 	// ADDERS
 	
 	public boolean addMensaje(Mensaje nuevoMensaje) {
+		System.out.println("DDBB.addMensaje()=" + nuevoMensaje);
 		return mensajes.add(nuevoMensaje);
 	}
 	

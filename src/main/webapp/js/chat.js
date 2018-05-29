@@ -65,16 +65,21 @@ function getAdjunto(event) {
 // event opcional
 function enviar(socket, event) {
     let adjunto = event ? getAdjunto(event) : null;
-    let texto   = document.getElementById('texto').value;
+    let usuarioId = document.getElementById('usuarioId').value;
+    let manitasId = document.getElementById('manitasId').value;
+    console.log(`usuarioId=${usuarioId}, manitasId=${manitasId}`);
+    let texto     = document.getElementById('texto').value;
     if (texto || adjunto) {
         document.getElementById('texto').value = '';
         let ahora   = new Date();
         let objetoMensaje = {
-            autor:   "self",
-            nombre:  getSessionNombre(),
-            mensaje: texto,
-            imagen:  adjunto,
-            hora:    `${ahora.getHours()}:${ahora.getMinutes()}:${ahora.getSeconds()}`
+           	usuarioId: usuarioId,
+           	manitasId: manitasId,
+        	autor:     "self",
+            nombre:    getSessionNombre(),
+            mensaje:   texto,
+            imagen:    adjunto,
+            hora:     `${ahora.getHours()}:${ahora.getMinutes()}:${ahora.getSeconds()}`
         };
         almacenar(objetoMensaje);
         mostrar(objetoMensaje);
@@ -104,9 +109,7 @@ function recibir(event) {
         alert('Su dispositivo no soporta la tecnología WebSocket necesaria para hacer funcionar el chat.');
     } else {
         // establecer WebSocket
-        // XXX http://websocketstest.com
-        const URL = 'ws://echo.websocket.org/'; // devuelve como respuesta el mensaje que reciba
-        //const URL = 'ws://localhost:8080/WorkerApp2/mensaje';//+ window.location.host + '/TomcatWebSocketTest/testWebSocketServlet';
+        const URL = `ws://${window.location.host}/WorkerApp2/mensaje`;
         let chatSocket = new WebSocket(URL); // PROTOCOLO: atributo opcional
         
         // captura de eventos

@@ -7,6 +7,8 @@
 
         <div class="typezone">
           <form aria-label="Envia mensajes o adjuntos">
+          	<input type="hidden" id="usuarioId" name="usuarioId" value="${usuarioId}" />
+          	<input type="hidden" id="manitasId" name="manitasId" value="${manitasId}" />
             <label class="fake" for="texto">texto a enviar</label>
             <input aria-label="texto a enviar" role="textbox" type="text" class="escribir" name="Mensaje a enviar" placeholder="Dime que necesitas..." value="" id="texto" autofocus />
             <label class="fake" for="btn_enviar">Enviar</label>
