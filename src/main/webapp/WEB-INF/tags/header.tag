@@ -15,7 +15,7 @@
         <ul class="right user_header">
           <li>
             <a href="#">
-              <img src="${usuario == null ? "./imgs/no_user.png" : "./imgs/Alexandra-entrenadora-personal.jpg"}" alt="user" class="circle">
+              <img src="${usuario == null ? "./imgs/no_user.png" : usuario.avatar}" alt="${usuario == null ? "user" : usuario.nombre}" class="circle">
             </a>
           </li>
         </ul>

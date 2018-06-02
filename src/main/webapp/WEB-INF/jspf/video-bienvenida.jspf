@@ -1,3 +1,12 @@
     <video autoplay loop id="video-background" muted plays-inline>
       <source src="./multimedia/Chess_Street.mp4" type="video/mp4">
     </video>
+
+    <div class="title">
+      <img src="./imgs/hand_logo.svg" alt="WorkerAPP">
+      <h1>Worker APP</h1>
+      <p>(Made by
+        <a href="#" target="_blank">Big Bang Team</a>,
+        <br> para hacerte la vida más fácil)</p>
+    </div>
+    

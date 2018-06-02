@@ -23,16 +23,17 @@
 
 <body class="home">
 	<!-- Mostrar el vidéo -->
-	<% if(sonResultados == false){ %>
-		<wa:header mostrarBarraBusqueda="true" mostrarVideoBienvenida="true"></wa:header>
-	<% } %>
+	<wa:header mostrarBarraBusqueda="true" mostrarVideoBienvenida="${!sonResultados}"></wa:header>
 
 	<!-- mostrar la búsqueda -->
 	<% if(sonResultados == true){ %>
-	Hola mundo ${listaManitas.size()}
 	<section>
 		<div>
-			<p id="resumenResultado" class="result"></p>
+			<p id="resumenResultado" class="result">
+			Se ${listaManitas.size() > 1 ? "han" : "ha"} encontrado 
+            ${listaManitas.size()} ${listaManitas.size() > 1 ? "resultados": "resultado"} sobre
+            <br><span>"${terminoBusqueda}"</span>
+			</p>
 		</div>
 		<ul id="listaResultados" class="collection">
 		<c:forEach var="manitas" items="${listaManitas}">

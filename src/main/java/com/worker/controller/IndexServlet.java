@@ -39,6 +39,7 @@ public class IndexServlet extends HttpServlet {
 		List<Manitas> resultado = db.getResultadosBusqueda(busqueda);
 		request.setAttribute("sonResultados", true);
 		request.setAttribute("listaManitas", resultado);
+		request.setAttribute("terminoBusqueda", busqueda);
 		doGet(request, response);
 		
 	
