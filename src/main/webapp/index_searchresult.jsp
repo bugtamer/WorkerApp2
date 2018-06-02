@@ -7,18 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-<title>Bienvanida</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>${sonResultados ? "WorkerApp - Resultados" : "WorkerApp - Home"}</title>
 <!-- CSS -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link href="./css/materialize.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
-<link href="./css/style.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
-<link href="./css/search.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="./css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+<link href="./css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+<c:if test="sonResultados"><link href="./css/search_result.css" type="text/css" rel="stylesheet" media="screen,projection" /></c:if>
+<link href="./css/search.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body class="home">
@@ -59,14 +55,16 @@
 	<section></section>
 	<%} %>
 	<wa:footer></wa:footer>
-	  <!--  Scripts-->
+	
+	
+  <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
   <!--
   <script src="./js/search.js"></script>
   -->
-  <script src="./js/search_result.js"></script>
+  <c:if test="sonResultados"><script src="./js/search_result.js"></script></c:if>
   <!-- <script src="./js/sugerencias.js"></script> -->
 </body>
 </html>
