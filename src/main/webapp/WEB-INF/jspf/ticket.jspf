@@ -1,0 +1,102 @@
+    <!-- TICKET: inicio -->
+
+    <section>
+        <!-- fila 1: datos de identificación de ticket -->
+        <div class="col s12 m7">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="./imgs/Fina-entrenadora-personal.jpg" alt="Entrenadora Personal Fina">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h4>Fina Martínez</h4>
+                        <p>Entrenador Personal</p>
+                        <div class="secondary-content">
+                            <h6 id="ticket"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- fila 2: detalle de servicio realizado -->
+        <div class="row fila_ticket">
+            <div id="conceptos" class="col s8 column_izq"></div>
+
+            <div class="col s4 col-derecha">
+                <p>
+                    <b>Fecha</b>
+                    <br>
+                    <span id="fecha"></span>
+                    <br>
+                    <b>Vencimiento</b>
+                    <br>
+                    <span id="vencimiento"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- fila 3: totales -->
+        <div class="row">
+            <div class="col s9">
+                <p>
+                    <b>Sub TotaL</b>
+                    <br>
+                    <b>Iva
+                        <span id="iva"></span>%</b>
+                    <br>
+                    <b>Total</b>
+                </p>
+            </div>
+            <div class="col s3 col-derecha">
+                <p>
+                    <span id="subtotal"></span> €
+                    <br>
+                    <span id="subtotalIVA"></span> €
+                    <br>
+                    <span id="total"></span> €</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- fila 4: método de pago -->
+
+        <div class="row">
+            <div class="col s12">
+                <div class="operator">
+                    <ul id="dropdown2" class="dropdown-content">
+                        <li>
+                            <a href="#!">Tarjeta
+                                <span class="badge"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!">Pay Pal
+                                <span class="badge"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!">Transferencia</a>
+                        </li>
+                    </ul>
+                    <a class="btn dropdown-trigger orange darken-4" href="#!" data-target="dropdown2">Método de Pago
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- fila 5: pagar -->
+        <div class="row">
+            <div class="input-field col s12">
+                <a href="#" class="waves-effect waves-light amber darken-2 btn-large">Pagar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKET: final -->
