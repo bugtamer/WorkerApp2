@@ -44,8 +44,15 @@ public class DataRetriever {
 		Valoracion val;
 		Usuario autor;
 		Manitas profesional;
+		String profesiones[] = {
+				"Coach personal",
+				"Fisioterapeuta deportivo",
+				"Entrenador deportivo y coach personal",
+				"Nutricionista deportivo",
+				"Dietista personal y deportivo",
+				"Consejero y coach personal y deportivo"};
 		for (int i=3;   i < usuarios.size();   i++) {
-			profesional = new Manitas(usuarios.get(i), "Coach");
+			profesional = new Manitas(usuarios.get(i), profesiones[i-3]);
 			// educacion
 			for (int j=0, nEdu=rnd.nextInt(3);   j < nEdu;   j++) {
 				profesional.addEducacion("Educacion " + j);

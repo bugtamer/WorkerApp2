@@ -61,10 +61,8 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
-  <!--
   <script src="./js/search.js"></script>
-  -->
   <c:if test="sonResultados"><script src="./js/search_result.js"></script></c:if>
-  <!-- <script src="./js/sugerencias.js"></script> -->
+  <script src="./js/sugerencias.js"></script>
 </body>
 </html>
