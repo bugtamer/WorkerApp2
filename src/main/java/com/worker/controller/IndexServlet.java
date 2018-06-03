@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
 
-@WebServlet("/buscar")
+@WebServlet({"/buscar", ""})
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -1,30 +1,3 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-
-  <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<display-name>LoginServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.worker.controller.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>SugerenciaServlet</display-name>
-  	<servlet-name>SugerenciaServlet</servlet-name>
-  	<servlet-class>com.worker.controller.SugerenciaServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>SugerenciaServlet</servlet-name>
-  	<url-pattern>/sugerencias</url-pattern>
-  </servlet-mapping>
-
-  <welcome-file-list>
-  	<welcome-file>./buscar</welcome-file>
-  </welcome-file-list>
 </web-app>
