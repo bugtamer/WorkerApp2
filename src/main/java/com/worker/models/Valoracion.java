@@ -2,11 +2,33 @@ package com.worker.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="valoracion")
 public class Valoracion {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "val_id")
 	private Usuario autor;
+	@Column(name="comentario")
 	private String comentario;
+	@Column(name="puntuacion")
 	private int puntuacion;
+	@Column(name="timestamp")
 	private Date timestamp;
+	
+	//@ManyToMany(cascade = { CascadeType.ALL })
+	//@JoinTable(name = "usuario", joinColumns = { @JoinColumn(name = "usu_id") }, inverseJoinColumns = {
+	//@JoinColumn(name = "val_id") })
 	
 	
 	public Valoracion(Usuario autor, String comentario, int puntuacion) {
