@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS WorkerApp2;
+CREATE DATABASE WorkerApp2;
+
+USE WorkerApp2;
+
+DROP TABLE IF EXISTS ubicacion;
+DROP TABLE IF EXISTS educacion;
+DROP TABLE IF EXISTS experiencia;
+DROP TABLE IF EXISTS manitas;
+DROP TABLE IF EXISTS valoracion;
+DROP TABLE IF EXISTS usuario_valoracion;
+DROP TABLE IF EXISTS mensaje;
+DROP TABLE IF EXISTS usuario_mensaje;
+DROP TABLE IF EXISTS usuario;
