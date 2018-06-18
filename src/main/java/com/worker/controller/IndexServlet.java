@@ -10,24 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
+import com.worker.persistence.MensajeEM;
 
-@WebServlet({"/buscar", ""})
+@WebServlet("/buscar")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    
+
+
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet()");
-		
+
+		MensajeEM.getInstance();
 		if (request.getAttribute("sonResultados") == null) {
 			request.setAttribute("sonResultados", false);
 		}
 		request.getRequestDispatcher("index_searchresult.jsp").forward(request, response);
-		
-		
+
+
 	}
 
 
@@ -41,8 +43,8 @@ public class IndexServlet extends HttpServlet {
 		request.setAttribute("listaManitas", resultado);
 		request.setAttribute("terminoBusqueda", busqueda);
 		doGet(request, response);
-		
-	
+
+
 //		String json = String.format("{\"busqueda\": \"%s\",", busqueda);
 //		json += "\"resultados\": [\n";
 //		for(int i=0;   i < resultado.size();   i++) {

@@ -12,57 +12,64 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-@Entity
-@Table(name="valoracion")
+//@Entity
+//@Table(name="valoracion")
 public class Valoracion {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "val_id")
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "val_id")
+	private int id;
+
+
+//	@Column
 	private Usuario autor;
-	@Column(name="comentario")
+
+//	@Column
 	private String comentario;
-	@Column(name="puntuacion")
+
+//	@Column
 	private int puntuacion;
-	@Column(name="timestamp")
+
+//	@Column
 	private Date timestamp;
-	
+
 	//@ManyToMany(cascade = { CascadeType.ALL })
 	//@JoinTable(name = "usuario", joinColumns = { @JoinColumn(name = "usu_id") }, inverseJoinColumns = {
 	//@JoinColumn(name = "val_id") })
-	
-	
+
+
 	public Valoracion(Usuario autor, String comentario, int puntuacion) {
 		this.autor = autor;
 		this.comentario = comentario;
 		this.puntuacion = puntuacion;
 		this.timestamp = new Date();
 	}
-	
-	
+
+
 	public Usuario getAutor() {
 		return autor;
 	}
 	public void setAutor(Usuario autor) {
 		this.autor = autor;
 	}
-	
-	
+
+
 	public String getComentario() {
 		return comentario;
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-	
-	
+
+
 	public int getPuntuacion() {
 		return puntuacion;
 	}
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-	
-	
+
+
 	public Date getTimestamp() {
 		return timestamp;
 	}
