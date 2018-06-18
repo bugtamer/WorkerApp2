@@ -1,0 +1,20 @@
+-- USE workerapp2;
+
+DELIMITER $$
+DROP FUNCTION IF EXISTS calcDistanciaEnKm$$
+
+CREATE FUNCTION calcDistanciaEnKm (lat1 DOUBLE, lon1 DOUBLE, lat2 DOUBLE, lon2 DOUBLE) RETURNS DOUBLE
+NO SQL DETERMINISTIC
+
+BEGIN
+	RETURN 6372.795477598 * ACOS(
+		SIN( RADIANS(lat1) ) *
+		SIN( RADIANS(lat2) ) +
+		COS( RADIANS(lat1) ) *
+		COS( RADIANS(lat2) ) *
+		COS( RADIANS(lat1) - RADIANS(lat2) )
+	);
+END$$
+DELIMITER ;
+
+-- SELECT calcDistanciaEnKm(43.5291675, -5.6391020, 43.5292752, -5.6390161) AS distancia FROM ubicacion 
