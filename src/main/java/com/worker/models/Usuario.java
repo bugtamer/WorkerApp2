@@ -1,5 +1,14 @@
 package com.worker.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
 	private String nombre;
 	private String apellidos;
@@ -7,6 +16,9 @@ public class Usuario {
 	private String password;
 	private String avatar;
 	private Ubicacion ubicacion;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usu_id")
 	private int id;
 
 
