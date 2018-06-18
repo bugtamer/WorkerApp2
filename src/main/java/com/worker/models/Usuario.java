@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="usuario")
 public class Usuario {
+
+	public static final int USUARIO = 1;
+	public static final int MANITAS = 2;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usu_id")
@@ -38,12 +42,16 @@ public class Usuario {
 	@JoinColumn(name="fk_ubi")
 	private Ubicacion ubicacion;
 
+	@Column
+	private int tipo;
+
 
 	public Usuario(String nombre, String apellidos, String email, String password) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.password = password;
+		this.tipo = USUARIO;
 	}
 
 
@@ -102,10 +110,19 @@ public class Usuario {
 		this.id = id;
 	}
 
+
+	public int getTipo() {
+		return tipo;
+	}
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+
 	@Override
 	public String toString() {
-		return String.format("{id=%d, n=%s, ap=%s, e=%s, p=%s, av=%s, u=%s}",
-				id, nombre, apellidos, email, password, avatar, ubicacion);
+		return String.format("{id=%d, n=%s, ap=%s, e=%s, p=%s, av=%s, u=%s, t=%d}",
+				id, nombre, apellidos, email, password, avatar, ubicacion, tipo);
 	}
 
 }
