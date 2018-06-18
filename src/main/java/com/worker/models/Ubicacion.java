@@ -1,13 +1,10 @@
 package com.worker.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.worker.util.Haversine;
@@ -26,9 +23,6 @@ public class Ubicacion {
 
 	@Column
 	private double latitud;
-
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="ubicacion")
-	private Usuario usuario;
 
 
 
