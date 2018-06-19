@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
-import com.worker.persistence.MensajeEM;
+import com.worker.persistence.ManitasEM;
+
 
 @WebServlet("/buscar")
 public class IndexServlet extends HttpServlet {
@@ -23,12 +24,14 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet()");
 
-		MensajeEM.getInstance();
+		//MensajeEM.getInstance();
+		ManitasEM.getInstance().getListaByProfession("d");
+		
 		if (request.getAttribute("sonResultados") == null) {
 			request.setAttribute("sonResultados", false);
 		}
 		request.getRequestDispatcher("index_searchresult.jsp").forward(request, response);
-
+		
 
 	}
 
