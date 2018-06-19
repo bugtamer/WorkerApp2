@@ -40,10 +40,10 @@ public class DataRetriever {
 	public static List<Manitas> getManitas() {
 		Random rnd = new Random();
 		List<Usuario> usuarios = getUsuarios();
-		List<Manitas> manitas = new ArrayList<>();
+		List<Manitas> listaManitas = new ArrayList<>();
 		Valoracion val;
 		Usuario autor;
-		Manitas profesional;
+		Manitas manitas;
 		String profesiones[] = {
 				"Coach personal",
 				"Fisioterapeuta deportivo",
@@ -52,24 +52,24 @@ public class DataRetriever {
 				"Dietista personal y deportivo",
 				"Consejero y coach personal y deportivo"};
 		for (int i=3;   i < usuarios.size();   i++) {
-			profesional = new Manitas(usuarios.get(i), profesiones[i-3]);
+			manitas = new Manitas(usuarios.get(i), profesiones[i-3]);
 			// educacion
 			for (int j=0, nEdu=rnd.nextInt(3);   j < nEdu;   j++) {
-				profesional.addEducacion("Educacion " + j);
+				manitas.addEducacion("Educacion " + j);
 			}
 			// experiencias
 			for (int j=0, nExp=rnd.nextInt(5);   j < nExp;   j++) {
-				profesional.addExperiencia("Experiencia " + j);
+				manitas.addExperiencia("Experiencia " + j);
 			}
 			// valoraciones
 			for (int j=0, nVal=rnd.nextInt(10);   j < nVal;   j++) {
 				autor = usuarios.get(rnd.nextInt(3));
-				val = new Valoracion(autor, "Lorem ipsum " + j, 1 + rnd.nextInt(5));
-				profesional.addValoracion(val);
+				val = new Valoracion(autor, manitas, "Lorem ipsum " + j, 1 + rnd.nextInt(5));
+				manitas.addValoracion(val);
 			}
-			manitas.add(profesional);
+			listaManitas.add(manitas);
 		}
-		return manitas;
+		return listaManitas;
 	}
 	
 	

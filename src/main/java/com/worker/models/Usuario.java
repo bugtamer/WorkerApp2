@@ -1,5 +1,8 @@
 package com.worker.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,51 +10,55 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
-
-	public static final int USUARIO = 1;
-	public static final int MANITAS = 2;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usu_id")
-	private int id;
+	protected int id;
 
-	@Column
-	private String nombre;
+	@Column(nullable = false)
+	protected String nombre;
 
-	@Column
-	private String apellidos;
+	@Column(nullable = false)
+	protected String apellidos;
 
-	@Column
-	private String email;
+	@Column(nullable = false)
+	protected String email;
 
-	@Column
-	private String password;
+	@Column(nullable = false)
+	protected String password;
 
-	@Column(name = "url_avatar")
-	private String avatar;
+	@Column(name = "url_avatar",   nullable = true)
+	protected String avatar;
 
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, optional=false)
 	@JoinColumn(name="fk_ubi")
-	private Ubicacion ubicacion;
+	protected Ubicacion ubicacion;
+	
+	@OneToMany(mappedBy = "autor")
+	protected List<Valoracion> valoracionesHechas;
 
-	@Column
-	private int tipo;
 
-
+	public Usuario() { }
+	
+	
 	public Usuario(String nombre, String apellidos, String email, String password) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.password = password;
-		this.tipo = USUARIO;
+		this.valoracionesHechas = new ArrayList<>();
 	}
 
 
@@ -111,18 +118,18 @@ public class Usuario {
 	}
 
 
-	public int getTipo() {
-		return tipo;
+	public List<Valoracion> getValoracionesHechas() {
+		return valoracionesHechas;
 	}
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void addValoracionesHechas(Valoracion valoracion) {
+		this.valoracionesHechas.add(valoracion);
 	}
 
 
 	@Override
 	public String toString() {
-		return String.format("{id=%d, n=%s, ap=%s, e=%s, p=%s, av=%s, u=%s, t=%d}",
-				id, nombre, apellidos, email, password, avatar, ubicacion, tipo);
+		return String.format("{id=%d, n=%s, ap=%s, e=%s, p=%s, av=%s, u=%s}",
+				id, nombre, apellidos, email, password, avatar, ubicacion);
 	}
 
 }

@@ -2,14 +2,43 @@ package com.worker.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="manitas")
+@DiscriminatorValue("Manitas")
+@PrimaryKeyJoinColumn(name="fk_usu") // id heredado de Usuario, pero mapeado como indica la anotación
 public class Manitas extends Usuario {
+	
+	@Column(nullable = false)
 	private String profesion;
+	
+	@ElementCollection
+	@CollectionTable(name = "experiencia",   joinColumns = @JoinColumn(name="exp_id"))
+	@Column(nullable=false)
 	private List<String> experiencia = new ArrayList <String>();
+	
+	@ElementCollection
+	@CollectionTable(name = "educacion",   joinColumns = @JoinColumn(name="edu_id"))
+	@Column(nullable=false)
 	private List<String> educacion = new ArrayList <String>();
+	
+	@OneToMany(mappedBy = "receptor")
 	private List<Valoracion> valoraciones = new ArrayList <>();
 
 
 
+	public Manitas() { }
+	
+	
 	public Manitas(Usuario usuario, String profesion) {
 		super(usuario.getNombre(), usuario.getApellidos(), usuario.getEmail(), usuario.getPassword());
 		setId( usuario.getId() );
@@ -18,6 +47,11 @@ public class Manitas extends Usuario {
 		this.profesion = profesion;
 	}
 
+
+
+	public int getId() {
+		return id;
+	}
 
 
 	public String getProfesion() {
@@ -52,6 +86,10 @@ public class Manitas extends Usuario {
 
 
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public boolean addExperiencia(String experiencia) {
 		return this.experiencia.add(experiencia);
 	}

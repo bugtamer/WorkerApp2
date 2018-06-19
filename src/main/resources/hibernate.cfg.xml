@@ -14,11 +14,11 @@
         <property name="hibernate.current_session_context_class">thread</property>
 
 
-    	<!-- <mapping class="com.worker.models.Manitas"/> -->
-    	<!-- <mapping class="com.worker.models.Mensaje"/> -->
+    	<mapping class="com.worker.models.Manitas"/>
+    	<mapping class="com.worker.models.Mensaje"/>
     	<mapping class="com.worker.models.Ubicacion"/>
     	<mapping class="com.worker.models.Usuario"/>
-    	<!-- <mapping class="com.worker.models.Valoracion"/> -->
+    	<mapping class="com.worker.models.Valoracion"/>
 
     </session-factory>
 

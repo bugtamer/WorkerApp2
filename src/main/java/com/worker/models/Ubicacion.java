@@ -18,19 +18,30 @@ public class Ubicacion {
 	@Column(name = "ubi_id")
 	private int id;
 
-	@Column
+	@Column(nullable = false)
 	private double longitud;
 
-	@Column
+	@Column(nullable = false)
 	private double latitud;
 
 
 
+	public Ubicacion() { }
+	
+	
 	public Ubicacion(double longitud, double latitud) {
 		this.longitud = longitud;
 		this.latitud = latitud;
 	}
 
+
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 
 
 	public double getLongitud() {

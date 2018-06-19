@@ -2,26 +2,56 @@ package com.worker.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 /**
  *
  * @author bugtamer
  *
  */
+@Entity
+@Table(name="mensaje")
 public class Mensaje {
 
 	// ATRIBUTOS
 
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "men_id")
+	private int id;
+	
+	@ManyToOne(optional=false)
+	@PrimaryKeyJoinColumn//(name = "fk_usu_emisor")
 	private Usuario emisor;
+	
+	@ManyToOne(optional=false)
+	@PrimaryKeyJoinColumn//(name = "fk_usu_receptor")
 	private Usuario receptor;
+	
+	@Column(nullable = true)
 	private String  texto;
+	
+	@Column(nullable = true)
 	private String  urlImagen;
+	
+	@Column(nullable = false)
 	private Date    timestamp;
 
 
 	// INSTANCIACIÓN
 
 
+	public Mensaje() { }
+	
+	
 	public Mensaje(Usuario emisor, Usuario receptor) {
 		this.emisor = emisor;
 		this.receptor = receptor;
@@ -30,6 +60,11 @@ public class Mensaje {
 
 
 	// GETTERS
+
+
+	public int getId() {
+		return id;
+	}
 
 
 	public Usuario getEmisor() {
@@ -65,6 +100,11 @@ public class Mensaje {
 	// SETTERS
 
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	public void setEmisor(Usuario emisor) {
 		this.emisor = emisor;
 	}
