@@ -22,3 +22,14 @@ INSERT INTO usuario (usu_id, nombre, apellidos, `password`, email, url_avatar, f
  ('7', 'Fina', 'eiusmod tempor', '123456', 'fina@workerapp.com', './imgs/Fina-entrenadora-personal.jpg', '7'),
  ('8', 'Loli', 'incididunt ut', '123456', 'loli@workerapp.com', './imgs/Loli-entrenadora-personal.jpg', '8'),
  ('9', 'Rubén', 'incididunt ut', '123456', 'ruben@workerapp.com', './imgs/Ruben-entrenadora-personal.jpg', '9');
+ 
+ -- MANITAS
+ 
+ INSERT INTO manitas (profesion, fk_usu) VALUES
+	('Entrenador Personal', 2),
+	('Entrenador Personal', 3),
+	('Entrenador Personal', 4),
+	('Entrenador Personal', 5),
+	('Entrenador Personal', 6),
+	('Entrenador Personal', 7),
+	('Entrenador Personal', 8);
