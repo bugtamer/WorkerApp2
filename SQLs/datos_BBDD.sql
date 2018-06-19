@@ -10,7 +10,7 @@ INSERT INTO `ubicacion` VALUES ('7', '41.40366012210204', '2.174348831176758');
 INSERT INTO `ubicacion` VALUES ('8', '41.394903998658826', '2.180614471435547');
 INSERT INTO `ubicacion` VALUES ('9', '41.38904446318836', '41.38904446318836');
 
--- USUARIOS
+-- USUARIO (id=1) + MANITAS (id > 1)
 
 INSERT INTO usuario (usu_id, nombre, apellidos, `password`, email, url_avatar, fk_ubi) VALUES
  ('1', 'Manolo', 'del Bombo', '123456', 'manolo@workerapp.com', './imgs/Manolo-entrenador-personal.jpg', '1'),
@@ -33,3 +33,59 @@ INSERT INTO usuario (usu_id, nombre, apellidos, `password`, email, url_avatar, f
 	('Entrenador Personal', 6),
 	('Entrenador Personal', 7),
 	('Entrenador Personal', 8);
+	
+-- MANITAS: educacion
+
+INSERT INTO educacion (edu_id, educacion) VALUES
+	(2, 'Educación 1'),
+	(3, 'Educación 1'),
+	(4, 'Educación 1'),
+	(4, 'Educación 2'),
+	(4, 'Educación 3'),
+	(5, 'Educación 1'),
+	(6, 'Educación 1'),
+	(6, 'Educación 2'),
+	(7, 'Educación 1'),
+	(8, 'Educación 1'),
+	(8, 'Educación 2');
+
+-- MANITAS: expereincia
+
+INSERT INTO experiencia (exp_id, experiencia) VALUES
+	(2, 'Experiencia 1'),
+	(2, 'Experiencia 2'),
+	(2, 'Experiencia 3'),
+	(3, 'Experiencia 1'),
+	(4, 'Experiencia 1'),
+	(4, 'Experiencia 2'),
+	(5, 'Experiencia 1'),
+	(6, 'Experiencia 1'),
+	(6, 'Experiencia 2'),
+	(7, 'Experiencia 1'),
+	(8, 'Experiencia 1'),
+	(8, 'Experiencia 2'),
+	(8, 'Experiencia 3');
+
+-- VALORACIONES
+
+INSERT INTO valoracion (val_id, comentario, puntuacion, `timestamp`, autor_usu_id, receptor_fk_usu) VALUES
+	(1, "Excepcional", 5, '2018-06-10 16:54:36', 1, 2),
+	(2, "Excepcional", 4, '2018-06-11 15:54:36', 1, 2),
+	(3, "Mediocre", 1, '2018-06-12 16:54:36', 1, 2),
+	(4, "Mediocre", 1, '2018-06-13 16:54:36', 1, 3),
+	(5, "Bueno", 3, '2018-06-14 16:54:36', 1, 4),
+	(6, "Bueno", 3, '2018-06-15 16:54:36', 1, 4),
+	(7, "Mediocre", 1, '2018-06-16 16:54:36', 1, 5),
+	(8, "regular", 2, '2018-06-17 16:54:36', 1, 6),
+	(9, "Muy bueno", 4, '2018-06-18 16:54:36', 1, 7),
+	(10, "Muy bueno", 4, '2018-06-19 16:54:36', 1, 8),
+	(11, "Excepcional", 5, '2018-06-20 16:54:36', 1, 8);
+
+-- MENSAJES
+
+INSERT INTO mensaje (men_id, texto, `timestamp`, urlImagen, emisor_usu_id, receptor_usu_id) VALUES
+	(1, "Hola Fina!<br>¿Podrías entrenarme para hacer running los fines de semana?<br>También necesito asesoramiento para elegir zapatillas", '2018-06-20 20:18:36', null, 1, 2),
+	(2, null, '2018-06-20 20:18:36', "./imgs/foto-chat-01.jpg", 2, 1),
+	(3, "Lo siento, los tengo ya ocupados<br>Pero te puedo recomendar otro coach, si te parece bien?", '2018-06-20 20:18:36', null, 1, 2),
+	(4, "Ok!", '2018-06-20 20:26:36', null, 2, 1),
+	(5, "Fina me ha comentado tu caso, y puedo ayudarte a elegir equipamiento y entrenarte los fines de semana.<br>Te mantedria el precio de Fina. ¿Te parece bien?", '2018-06-20 20:41:36', null, 1, 2);
