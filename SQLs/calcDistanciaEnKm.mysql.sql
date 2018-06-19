@@ -1,4 +1,4 @@
--- USE workerapp2;
+USE workerapp2;
 
 DELIMITER $$
 DROP FUNCTION IF EXISTS calcDistanciaEnKm$$
