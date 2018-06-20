@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import com.worker.models.Manitas;
+import com.worker.models.Usuario;
 
 public class ManitasEM extends EntityManager{
 	
@@ -70,5 +71,16 @@ public class ManitasEM extends EntityManager{
 		return M;
 			
 	}
+	
+	public boolean save(Manitas emp) {
+		Session session =factory.openSession();
+		Transaction trans = session.beginTransaction();
+		session.save(emp);
+		trans.commit();
+		session.close();
+		return true;
+		
+	}
+	
 
 }

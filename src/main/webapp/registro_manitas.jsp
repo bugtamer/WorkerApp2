@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col s12 m12 l12">
           <div id="form-register">
-            <form class="col s12" method="Post">
+            <form class="col s12" method="">
 
               <div class="row">
                 <div class="input-field	col s6">
@@ -58,6 +58,28 @@
                 </div>
               </div>
               <div class="row">
+                <div class="input-field col s12">
+                  <label for="profetion">Profesion</label>
+                  <input type="text" name="profetion" id="profetion" value="" required>
+                  <div id="resultado6"></div>
+                </div>
+              </div>
+          <div class="row">
+                <div class="input-field col s12">
+                  <label for="experience">Años de experiencia</label>
+                  <input type="text" name="experience" id="experience" value="" required>
+                  <div id="resultado7"></div>
+                </div>
+             </div>
+          <div class="row">
+                <div class="input-field col s12">
+                  <label for="education">Educación</label>
+                  <input type="text" name="education" id="education" value="" required>
+                  <div id="resultado8
+                  "></div>
+                </div>
+              </div>     
+              <div class="row">
                 <div class="col s12" id="register">
                   <input type="submit" class="btn orange darken-4 waves-effect waves-light" value="Registro">
                 </div>
@@ -72,12 +94,12 @@
 
   <wa:footer></wa:footer>
 
-<!--   <!--  Scripts-->
+  <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
   <script src="./js/sesion.js"></script>
- <!--  <script src="./js/register.js"></script> --> -->
+  <script src="./js/register.js"></script>
 </body>
 
 </html>

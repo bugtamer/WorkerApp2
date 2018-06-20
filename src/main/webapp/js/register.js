@@ -68,27 +68,27 @@ let validar_Registro = function () {
 }
 
 
-$('#register').click(function (evnt) {
-    evnt.preventDefault();
-    let objeto = validar_Registro();
-    console.log('objeto a enviar:', objeto);
-    if (objeto.valid) {
-        $.ajax({
-            url: 'http://www.mocky.io/v2/5ae1741c2d000057009d7c06',
-            method: 'POST',
-            data: objeto
-        })
-            .done(function (datoRecibido) {
-                console.log('datoRecibido:', datoRecibido);
-                if (datoRecibido.result) {
-                    sessionStorage.setItem('usuarioAutenticado', JSON.stringify(datoRecibido.usuario));
-                    location.href= './register_confirm.jsp'
-                } else {
-                    $('#pass_error').html('<p class="error">usuario ya existente!</p>')
-                }
-
-            });
-    }
+//$('#register').click(function (evnt) {
+//    evnt.preventDefault();
+//    let objeto = validar_Registro();
+//    console.log('objeto a enviar:', objeto);
+//    if (objeto.valid) {
+//        $.ajax({
+//            url: 'http://www.mocky.io/v2/5ae1741c2d000057009d7c06',
+//            method: 'POST',
+//            data: objeto
+//        })
+//            .done(function (datoRecibido) {
+//                console.log('datoRecibido:', datoRecibido);
+//                if (datoRecibido.result) {
+//                    sessionStorage.setItem('usuarioAutenticado', JSON.stringify(datoRecibido.usuario));
+//                    location.href= './register_confirm.jsp'
+//                } else {
+//                    $('#pass_error').html('<p class="error">usuario ya existente!</p>')
+//                }
+//
+//            });
+//    }
 
 });
 

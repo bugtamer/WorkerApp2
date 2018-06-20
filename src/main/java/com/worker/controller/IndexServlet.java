@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
+import com.worker.models.Ubicacion;
+import com.worker.models.Usuario;
+import com.worker.persistence.ManitasEM;
 import com.worker.persistence.MensajeEM;
 
 
@@ -30,9 +33,17 @@ public class IndexServlet extends HttpServlet {
 		if (request.getAttribute("sonResultados") == null) {
 			request.setAttribute("sonResultados", false);
 		}
-		request.getRequestDispatcher("index_searchresult.jsp").forward(request, response);
 		
 
+//		Ubicacion ubi = new Ubicacion(41.7, 50.5);
+//		Usuario usernew = new Usuario("Pancrasio", "Gomez", "ag@.es", "123");
+//		usernew.setUbicacion(ubi);
+//		Manitas manitas = new Manitas(usernew, "plomero");
+//		ManitasEM.getInstance().save(manitas);
+	
+		
+		request.getRequestDispatcher("index_searchresult.jsp").forward(request, response);
+		
 	}
 
 

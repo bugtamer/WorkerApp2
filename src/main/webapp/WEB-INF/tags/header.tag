@@ -27,7 +27,10 @@
             <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
           </li>
           <li>
-            <a href="./registro.jsp">Registro</a>
+            <a href="./registro">Registro</a>
+          </li>
+           <li>
+            <a href="./registro_manitas">Registro Profesional</a>
           </li>
           <li>
             <a href="./ticket">Último Ticket</a>
@@ -48,7 +51,10 @@
             <a href="${usuario == null ? "./login" : "./logout"} ">${usuario == null ? "Login":"Logout"}</a>
           </li>
           <li>
-            <a href="./registro.jsp">Registro</a>
+            <a href="./registro">Registro</a>
+          </li>
+           <li>
+            <a href="./registro_manitas">Registro Profesional</a>
           </li>
           <li>
             <a href="./ticket">Último Ticket</a>
