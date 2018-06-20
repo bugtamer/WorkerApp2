@@ -23,17 +23,17 @@ public class UsuarioEMTest extends com.worker.persistence.ContextMocking {
 	}
 	@Test
 	public void testIdUsuario() {
-		logger.log(Level.INFO);//Entrando a test
-		
+		//logger.log(Level.INFO);//Entrando a test
+
 		try {
 			UsuarioEM emplEM = UsuarioEM.getInstance();
-			
-			
-			
 
-		} catch (Exception ex) {			
+
+
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
-		
+
 			fail();
 		}
 
