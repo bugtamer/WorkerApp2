@@ -27,7 +27,7 @@
               <div class="row">
                 <div class="input-field col s12">
                   <label for="email">Correo</label>
-                  <input type="email" name="email" value="alexandra@workerapp.com" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  <input type="email" name="email" value="manolo@workerapp.com" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                     required>
                   <div id="mail_error"></div>
 
