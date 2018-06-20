@@ -67,7 +67,6 @@ function enviar(socket, event) {
     let adjunto = event ? getAdjunto(event) : null;
     let usuarioId = document.getElementById('usuarioId').value;
     let manitasId = document.getElementById('manitasId').value;
-    console.log(`usuarioId=${usuarioId}, manitasId=${manitasId}`);
     let texto     = document.getElementById('texto').value;
     if (texto || adjunto) {
         document.getElementById('texto').value = '';
@@ -138,7 +137,6 @@ function recibir(event) {
             }
         } else { // carga la conversación desde la BBDD
             $.ajax(`./getMensajes?uid=${1}&mid=${7}`).done(function(respuestaServidor){
-            	console.log("respuestaServidor", respuestaServidor);
                 for (let i = 0;   i < respuestaServidor.length;   i++) {
                     mostrar   ( respuestaServidor[i] );
                     almacenar ( respuestaServidor[i] );

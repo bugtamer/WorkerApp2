@@ -64,7 +64,7 @@ function paginaActual() {
 
 
 (function(){
-    conmutarAvatar();
+    //conmutarAvatar();
     conmutarLogInOut();
 
     switch ( paginaActual() ) {
