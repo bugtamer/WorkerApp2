@@ -28,9 +28,9 @@ public class ManitasEM extends EntityManager{
 	public List<Manitas> getListaByProfession(String filter){
 		List<Manitas> listaManitas = null;
 		try {
-		Session session = factory.openSession();
+		Session session = factory.openSession(); // like %contenido%
 		Transaction tx = session.beginTransaction();
-		listaManitas = session.createQuery("FROM manitas WHERE profesion LIKE '" + filter + "'", Manitas.class).getResultList();
+		listaManitas = session.createQuery("FROM Manitas m WHERE m.profesion LIKE '%" + filter + "%'", Manitas.class).getResultList();
 		session.close();
 		}
 		catch (Exception e) {
@@ -45,7 +45,7 @@ public class ManitasEM extends EntityManager{
 		try {
 			Session session = factory.openSession();
 			Transaction tx = session.beginTransaction();
-			listaManitas = session.createQuery("FROM manitas WHERE nombre LIKE '" + filter + "'", Manitas.class).getResultList();
+			listaManitas = session.createQuery("FROM Manitas m WHERE m.nombre LIKE '%" + filter + "%'", Manitas.class).getResultList();
 			session.close();
 		}
 		catch (Exception e){
@@ -61,7 +61,7 @@ public class ManitasEM extends EntityManager{
 		try {
 			Session session = factory.openSession();
 			Transaction tx = session.beginTransaction();
-			M = (Manitas) session.createQuery("FROM manitas WHERE usu_id LIKE '" + id +"'", Manitas.class);
+			M = (Manitas) session.createQuery("FROM manitas m WHERE m.id LIKE '%" + id +"%'", Manitas.class);
 			session.close();
 		}
 		catch (Exception e) {
