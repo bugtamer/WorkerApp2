@@ -10,8 +10,7 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
-    	<property name="hibernate.connection.datasource">java:comp/env/jdbc/WorkerApp2</property>
-        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- FICHERO DE CONFIGURACION PARA TEST -->
 
     	<mapping class="com.worker.models.Manitas"/>
     	<mapping class="com.worker.models.Mensaje"/>
