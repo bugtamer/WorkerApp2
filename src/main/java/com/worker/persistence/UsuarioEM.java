@@ -46,21 +46,37 @@ public class UsuarioEM extends EntityManager {
 		
 	}
 	
+//	public Usuario getUsuarioById(String id) {
+//		Usuario Usu = null;
+//		try {
+//			Session session = factory.openSession();
+//			Transaction tx = session.beginTransaction();
+//			Usu = (Usuario) session.createQuery("FROM Usuario  WHERE id= "+id, Usuario.class).getSingleResult();
+//			session.close();
+//			tx.commit();
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return Usu;
+//			
+//	}
 	
-
 	/* TODO implementad también este método.
 	 * Ahora devuelve un mock para poder trabajar
 	 * hasta que exista la implementación real
 	 */
-	public Usuario getUsuarioById(String id) {
-		int intId = Integer.parseInt(id);
-		Ubicacion ubicacion = new Ubicacion(41.34, 2.56);
-		String url_imagen = "./imgs/Pablo-entrenador-personal.jpg";
-		Usuario implementaEsteMetodo = new Usuario("Nombre mock", "apellidos mock", "email@mock.info", "password mock");
-		implementaEsteMetodo.setId(intId);
-		implementaEsteMetodo.setAvatar(url_imagen);
-		implementaEsteMetodo.setUbicacion(ubicacion);
-		return implementaEsteMetodo;
+	
+	
+ public Usuario getUsuarioById(String id) {
+	int intId = Integer.parseInt(id);
+	Ubicacion ubicacion = new Ubicacion(41.34, 2.56);
+	String url_imagen = "./imgs/Pablo-entrenador-personal.jpg";
+	Usuario implementaEsteMetodo = new Usuario("Nombre mock", "apellidos mock", "email@mock.info", "password mock");
+	implementaEsteMetodo.setId(intId);
+	implementaEsteMetodo.setAvatar(url_imagen);
+	implementaEsteMetodo.setUbicacion(ubicacion);
+	return implementaEsteMetodo;
 	}
 	
 }
