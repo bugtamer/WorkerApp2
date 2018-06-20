@@ -1,14 +1,11 @@
 package com.worker.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,7 +17,7 @@ import com.worker.models.Usuario;
 
 public class MensajeEMTest extends com.worker.persistence.ContextMocking {
 
-	private static Logger logger = Logger.getLogger("EmployeeEMTest");
+	private static Logger logger = Logger.getLogger("MensajeEMTest");
 
 	@BeforeClass
 	public static void setUpClass() {
