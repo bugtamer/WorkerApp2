@@ -1,4 +1,4 @@
-package com.worker.controller;
+package com.worker.services;
 
 import java.io.IOException;
 import java.util.Date;
@@ -13,9 +13,11 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.worker.db.DDBB;
 import com.worker.models.Mensaje;
 import com.worker.models.Usuario;
+import com.worker.persistence.ManitasEM;
+import com.worker.persistence.MensajeEM;
+import com.worker.persistence.UsuarioEM;
 
 
 /**
@@ -28,14 +30,14 @@ public class MensajeServerEndpoint {
 	@OnOpen
 	public void onOpen(Session session) throws IOException {
 		System.out.println("onOpen()");
-		session.getBasicRemote().sendText("Connected!");
+		//session.getBasicRemote().sendText("Connected!");
 	}
 	
 	
 	@OnMessage
 	public void onMessage(String message) {
 		Mensaje nuevoMensaje = parseMensaje(message);
-		DDBB.getInstance().addMensaje(nuevoMensaje);
+		MensajeEM.getInstance().addMensaje(nuevoMensaje);
 	}
 	
 	
@@ -56,7 +58,8 @@ public class MensajeServerEndpoint {
 	
 	private Mensaje parseMensaje(String mensajeChatJSON) {
 		System.out.println("onMessage()=" + mensajeChatJSON);
-		DDBB db = DDBB.getInstance();
+		UsuarioEM usuarioEM = UsuarioEM.getInstance();
+		ManitasEM manitasEM = ManitasEM.getInstance();
 		Usuario emisor    = null;
 		Usuario receptor  = null;
 		String  texto     = "";
@@ -65,8 +68,8 @@ public class MensajeServerEndpoint {
 		Pattern p = Pattern.compile(".+\\\"usuarioId\\\":\\\"(?<usuarioId>\\d+)\\\".+\\\"manitasId\\\":\\\"(?<manitasId>\\d+)\\\".+\\\"mensaje\\\":\\\"(?<mensaje>.+)\\\",.+");
 		Matcher m = p.matcher(mensajeChatJSON);
 		if (m.find()) {
-			emisor   = db.getUsuario(Integer.parseInt(m.group("usuarioId")));
-			receptor = db.getUsuario(Integer.parseInt(m.group("manitasId")));
+			emisor   = usuarioEM.getUsuarioById(m.group("usuarioId"));
+			receptor = manitasEM.getManitasById(m.group("manitasId"));
 			texto    = m.group("mensaje");
 			System.out.println("emisor="   + emisor);
 			System.out.println("receptor=" + receptor);

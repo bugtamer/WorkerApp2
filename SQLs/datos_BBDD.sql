@@ -87,10 +87,10 @@ INSERT INTO valoracion (val_id, comentario, puntuacion, `timestamp`, autor_usu_i
 -- MENSAJES
 
 INSERT INTO mensaje (men_id, texto, `timestamp`, urlImagen, emisor_usu_id, receptor_usu_id) VALUES
-	(1, "Hola Fina!<br>¿Podrías entrenarme para hacer running los fines de semana?<br>También necesito asesoramiento para elegir zapatillas", '2018-06-20 20:18:36', null, 1, 2),
-	(2, null, '2018-06-20 20:18:36', "./imgs/foto-chat-01.jpg", 2, 1),
-	(3, "Lo siento, los tengo ya ocupados<br>Pero te puedo recomendar otro coach, si te parece bien?", '2018-06-20 20:18:36', null, 1, 2),
-	(4, "Ok!", '2018-06-20 20:26:36', null, 2, 1),
-	(5, "Fina me ha comentado tu caso, y puedo ayudarte a elegir equipamiento y entrenarte los fines de semana.<br>Te mantedria el precio de Fina. ¿Te parece bien?", '2018-06-20 20:41:36', null, 1, 2),
-	(6, "Sí perfecto. !Alexandra comenzamos este finde!", '2018-06-20 20:42:36', null, 2, 1);
+	(1, "Hola Fina!<br>¿Podrías entrenarme para hacer running los fines de semana?<br>También necesito asesoramiento para elegir zapatillas", '2018-06-20 20:18:36', null, 1, 7),
+	(2, null, '2018-06-20 20:18:36', "./imgs/foto-chat-01.jpg", 1, 7),
+	(3, "Lo siento, los tengo ya ocupados<br>Pero te puedo recomendar otro coach, si te parece bien?", '2018-06-20 20:18:36', null, 7, 1),
+	(4, "Ok!", '2018-06-20 20:26:36', null, 1, 7),
+	(5, "Fina me ha comentado tu caso, y puedo ayudarte a elegir equipamiento y entrenarte los fines de semana.<br>Te mantedria el precio de Fina. ¿Te parece bien?", '2018-06-20 20:41:36', null, 2, 1),
+	(6, "Sí perfecto. !Alexandra comenzamos este finde!", '2018-06-20 20:42:36', null, 1, 2);
     

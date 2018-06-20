@@ -95,6 +95,8 @@ function enviar(socket, event) {
 
 // evento lanzado por WebSocket cuando recibe un mensaje de su interlocutor
 function recibir(event) {
+    console.log("recibir", event);
+    
     let mensaje = JSON.parse(event.data);
     mensaje.autor = mensaje.autor === "self" ? "other" : mensaje.autor;
     almacenar(mensaje);
@@ -127,15 +129,16 @@ function recibir(event) {
             }, false);
         };
 
-        // carga / inicializacion conversaciones chat
+        // carga / inicializacion conversaciones chat o
         let chat = localStorage.getItem('chat');
         if (chat) {
             chat = JSON.parse(chat);
             for (let i = 0;   i < chat.length;   i++) {
                 mostrar( chat[i] );
             }
-        } else { // XXX BORRABLE: carga una conversación a modo de demo / exhibición
-            $.ajax('http://www.mocky.io/v2/5ae039093200005e00510a5d').done(function(respuestaServidor){
+        } else { // carga la conversación desde la BBDD
+            $.ajax(`./getMensajes?uid=${1}&mid=${7}`).done(function(respuestaServidor){
+            	console.log("respuestaServidor", respuestaServidor);
                 for (let i = 0;   i < respuestaServidor.length;   i++) {
                     mostrar   ( respuestaServidor[i] );
                     almacenar ( respuestaServidor[i] );
