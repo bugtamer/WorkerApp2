@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.worker.db.DDBB;
 import com.worker.models.Manitas;
+import com.worker.persistence.ManitasEM;
 
 @WebServlet("/sugerencias")
 public class SugerenciaServlet extends HttpServlet {
@@ -25,8 +25,8 @@ public class SugerenciaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String terminoDeBusqueda = request.getParameter("terminoDeBusqueda");
-		DDBB db = DDBB.getInstance();
-		List<Manitas> manitasSugeridos = db.getResultadosBusqueda(terminoDeBusqueda);
+		ManitasEM manitasEM = ManitasEM.getInstance();
+		List<Manitas> manitasSugeridos = manitasEM.getListaByProfession( terminoDeBusqueda );
 		StringBuilder sugerencias = new StringBuilder();
 		sugerencias.append("[");
 		Set<String> profesiones = new HashSet<>();
