@@ -10,6 +10,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
+    	<!-- CONFIGURACION PARA PRODUCCION -->
+    	<!-- para test utilizar el otro: renombra ficheros -->
     	<property name="hibernate.connection.datasource">java:comp/env/jdbc/WorkerApp2</property>
         <property name="hibernate.current_session_context_class">thread</property>
 

@@ -6,25 +6,27 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import com.worker.models.Manitas;
+import com.worker.models.Ubicacion;
+
 import com.worker.models.Usuario;
 
 public class ManitasEM extends EntityManager{
-	
+
 	//Atributos
-	
+
 	private static ManitasEM singleton = null;
-	
-	//Instanciación
+
+	//Instanciaciï¿½n
 	protected ManitasEM() {
 		super();
 	}
-	
+
 	public static final ManitasEM getInstance() {
 		return (singleton == null) ? new ManitasEM() : singleton;
-	} 
-	
+	}
+
 	//Servicios
-	
+
 	// 1-Buscar por profesion
 	public List<Manitas> getListaByProfession(String filter){
 		List<Manitas> listaManitas = null;
@@ -39,7 +41,7 @@ public class ManitasEM extends EntityManager{
 		}
 		return listaManitas;
 	}
-	
+
 	// 2-Buscar por nombre
 	public List<Manitas> getListaByName(String filter){
 		List<Manitas> listaManitas = null;
@@ -52,12 +54,13 @@ public class ManitasEM extends EntityManager{
 		catch (Exception e){
 			e.printStackTrace();
 		}
-		
+
 		return listaManitas;
 	}
-	
+
 	// 3-Obtener manitas por ID
 	public Manitas getManitasById(String id) {
+		/*
 		Manitas M = null;
 		try {
 			Session session = factory.openSession();
@@ -69,7 +72,12 @@ public class ManitasEM extends EntityManager{
 			e.printStackTrace();
 		}
 		return M;
-			
+
+		*/
+		Manitas manitas = new Manitas(new Usuario("nombre", "apellidos", "email@mock.es", "password"), "profesion");
+		manitas.setId(7);
+		manitas.setUbicacion(new Ubicacion(41.2, 2.3));
+		return manitas;
 	}
 	
 	public boolean save(Manitas emp) {
