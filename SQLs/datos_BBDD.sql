@@ -30,12 +30,12 @@ INSERT INTO usuario (usu_id, nombre, apellidos, `password`, email, url_avatar, f
  
  INSERT INTO manitas (profesion, fk_usu) VALUES
 	('Entrenador Personal', 2),
-	('Entrenador Personal', 3),
-	('Entrenador Personal', 4),
-	('Entrenador Personal', 5),
-	('Entrenador Personal', 6),
-	('Entrenador Personal', 7),
-	('Entrenador Personal', 8);
+	('Coach personal', 3),
+	('Fisioterapeuta deportivo', 4),
+	('Entrenador deportivo y coach personal', 5),
+	('Nutricionista deportivo', 6),
+	('Dietista personal y deportivo', 7),
+	('Consejero y coach personal y deportivo', 8);
 	
 -- MANITAS: educacion
 
