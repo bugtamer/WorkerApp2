@@ -19,7 +19,7 @@ INSERT INTO usuario (usu_id, nombre, apellidos, `password`, email, url_avatar, f
  ('1', 'Manolo', 'del Bombo', '123456', 'manolo@workerapp.com', './imgs/Manolo-entrenador-personal.jpg', '1'),
  ('2', 'Alexandra', 'Lorem ipsum', '123456', 'alexandra@workerapp.com', './imgs/Alexandra-entrenadora-personal.jpg', '2'),
  ('3', 'Lorem', 'ipsum dolor', '123456', 'lorem@workerapp.com', './imgs/Manolo-entrenador-personal.jpg', '3'),
- ('4', 'Western', 'amet consectetur', '123456', 'western', './imgs/Western-entrenador-personal.jpg', '4'),
+ ('4', 'Western', 'amet consectetur', '123456', 'western@workerapp.com', './imgs/Western-entrenador-personal.jpg', '4'),
  ('5', 'Jose', 'adipiscing elit', '123456', 'jose@workerapp.com', './imgs/Jose-entrenador-personal.jpg', '5'),
  ('6', 'Carmina', 'Burana', '123456', 'carmina@workerapp.com', './imgs/Carmina-entrenadora-personal.jpg', '6'),
  ('7', 'Fina', 'eiusmod tempor', '123456', 'fina@workerapp.com', './imgs/Fina-entrenadora-personal.jpg', '7'),
