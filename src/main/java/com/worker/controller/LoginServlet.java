@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		if(unUsuario!=null) {
 			HttpSession session =request.getSession();
 			session.setAttribute("usuario", unUsuario);
-			response.sendRedirect("search_result.jsp");
+			response.sendRedirect("buscar");
 			
 		}else {
 			request.setAttribute("error", "Los datos son incorrectos!!!");
