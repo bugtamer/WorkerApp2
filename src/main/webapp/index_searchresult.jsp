@@ -1,5 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="wa"%>
+<%@ page import="com.worker.models.Manitas" %>
+<%@ page import="com.worker.models.Ubicacion" %>
 <%
 	boolean sonResultados = (boolean)request.getAttribute("sonResultados");
 %>
@@ -32,23 +34,28 @@
 			</p>
 		</div>
 		<ul id="listaResultados" class="collection">
+		
+		
 		<c:forEach var="manitas" items="${listaManitas}">
             <li class="collection-item avatar itemResultado">
                 <div class="listaClickable">
                     <img src="${manitas.avatar}" alt="${manitas.nombre}, ${manitas.profesion}" class="circle">
-                    <span class="title">${manitas.nombre}</span>
+                    <!-- <span class="title">${manitas.nombre}</span> -->
+                    <p><b>${manitas.nombre}</b></p>
                     <p>${manitas.profesion}</p>
                     <a href="./ficha?id=${manitas.id}" class="secondary-content">
-                        <h5>3Km</h5>
-                        <i class="${manitas.mediaValoraciones > 4 ? "material-icons" : "material-icons no_active"}">grade</i>
-                        <i class="${manitas.mediaValoraciones > 3 ? "material-icons" : "material-icons no_active"}">grade</i>
-                        <i class="${manitas.mediaValoraciones > 2 ? "material-icons" : "material-icons no_active"}">grade</i>
-                        <i class="${manitas.mediaValoraciones > 1 ? "material-icons" : "material-icons no_active"}">grade</i>
+                        <h5>${String.format("%,.1f", 1000 * ubicacionUsuario.getDistanciaKilometrica( manitas.ubicacion ))}m</h5>
                         <i class="${manitas.mediaValoraciones > 0 ? "material-icons" : "material-icons no_active"}">grade</i>
+                        <i class="${manitas.mediaValoraciones > 1 ? "material-icons" : "material-icons no_active"}">grade</i>
+                        <i class="${manitas.mediaValoraciones > 2 ? "material-icons" : "material-icons no_active"}">grade</i>
+                        <i class="${manitas.mediaValoraciones > 3 ? "material-icons" : "material-icons no_active"}">grade</i>
+                        <i class="${manitas.mediaValoraciones > 4 ? "material-icons" : "material-icons no_active"}">grade</i>
                     </a>
-                <div>
+                </div>
             </li>
 		</c:forEach>
+		
+		
 		</ul>
 	</section>
 	<%}else{ %>

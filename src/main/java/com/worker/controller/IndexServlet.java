@@ -42,6 +42,8 @@ public class IndexServlet extends HttpServlet {
 //		ManitasEM.getInstance().save(manitas);
 	
 		
+		Ubicacion ubicacionUsuario = new Ubicacion(41.40784461738553, 2.1700572967529297);
+		request.setAttribute("ubicacionUsuario", ubicacionUsuario);
 		request.getRequestDispatcher("index_searchresult.jsp").forward(request, response);
 		
 	}
