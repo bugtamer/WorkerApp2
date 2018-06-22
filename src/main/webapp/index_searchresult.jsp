@@ -10,7 +10,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-<title>${sonResultados ? "WorkerApp - Resultados" : "WorkerApp - Home"}</title>
+<title>WorkerApp - ${sonResultados ? "Resultados" : "Home"}</title>
+<link rel="shortcut icon" type="image/x-icon" href="./imgs/WorkerApp.logo.16x16.ico">
+
 <!-- CSS -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="./css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
