@@ -27,7 +27,11 @@ public class LogoutServlet extends HttpServlet {
 			response.sendRedirect("buscar");
 		} else {
 			request.getSession().invalidate();
-			Confirmacion.configuracion(request, "Logout", "verified_user", "Se ha desconectado de forma segura", "buscar");
+			String pageTitle = "Logout";
+			String icono = "verified_user";
+			String mensaje = "Se ha desconectado de forma segura";
+			String urlDestino = "buscar";
+			Confirmacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
 			request.getRequestDispatcher( Confirmacion.JSP ).forward(request, response);
 		}
 	}
