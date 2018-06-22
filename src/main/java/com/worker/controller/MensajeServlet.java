@@ -17,6 +17,7 @@ import com.worker.models.Usuario;
 import com.worker.persistence.ManitasEM;
 import com.worker.persistence.MensajeEM;
 import com.worker.persistence.UsuarioEM;
+import com.worker.util.LoginHelper;
 
 
 @WebServlet("/getMensajes")
@@ -27,11 +28,15 @@ public class MensajeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String usuarioId = request.getParameter("uid");
-		String manitasId = request.getParameter("manitasId");
-		
-		List<Mensaje> conversacion = getConversacion(usuarioId, manitasId);
-		String json = parseJson(usuarioId, conversacion);
+		String json = "[]";
+		boolean hayUsuarioLogueado = (LoginHelper.getUsuarioEnSesion(request) != null);
+		if (hayUsuarioLogueado) {
+			String usuarioId = request.getParameter("uid");
+			String manitasId = request.getParameter("manitasId");
+			
+			List<Mensaje> conversacion = getConversacion(usuarioId, manitasId);
+			json = parseJson(usuarioId, conversacion);
+		}
 		
 		response.setContentType( "application/json" );
 		PrintWriter out = response.getWriter();

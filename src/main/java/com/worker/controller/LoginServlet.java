@@ -1,8 +1,8 @@
 package com.worker.controller;
 
 
-import com.worker.db.DDBB;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,52 +10,61 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.worker.db.DDBB;
 import com.worker.models.Usuario;
+import com.worker.util.Confirmacion;
+import com.worker.util.LoginHelper;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	
-		HttpSession session=request.getSession();
-		if(session.getAttribute("email")!=null) {
-			response.sendRedirect("login_confirm");
-		}else {
+		System.out.println("LoginServlet - doGet");
+		
+		boolean noHayUsuarioEnSesion = (LoginHelper.getUsuarioEnSesion(request) == null);
+		if (noHayUsuarioEnSesion) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}	
+		} else {
+			String urlAnteriorLogin = LoginHelper.getAttributeURL(request, response);
+			response.sendRedirect( urlAnteriorLogin );
+		}
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		System.out.println("LoginServlet - doPost");
 		
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
+		
 		System.out.println(email+":"+pass+":");
-		// nombre del input
-//		System.out.println("value=" + request.getParameter("values"));
 
-		Usuario unUsuario = DDBB.getInstance().getUsuarios(email, pass);
+		Usuario usuarioEncontrado = DDBB.getInstance().getUsuarios(email, pass);
+		System.out.println("usuarioEncontrado = " + usuarioEncontrado);
 		
-//		System.out.println(email+":"+pass+":"+unUsuario);
-		
-		
-		response.setContentType("application/json");
-		
-		if(unUsuario!=null) {
-			HttpSession session =request.getSession();
-			session.setAttribute("usuario", unUsuario);
-			response.sendRedirect("buscar");
-			
+		boolean noExisteEsaCredencial = (usuarioEncontrado == null);
+		if (noExisteEsaCredencial) {
+			request.setAttribute("error", "ATENCIÓN: email y/o password incorrectos.");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else {
-			request.setAttribute("error", "Los datos son incorrectos!!!");
-			response.getWriter().append("{\"result\":false}").flush();
+			HttpSession session = request.getSession();
+			session.setAttribute("usuario", usuarioEncontrado);
+			String pageTitle = "Login";
+			String icono = "verified_user";
+			String mensaje = "Autenticación Exitosa";
+			String urlDestino = LoginHelper.getAttributeURL(request, response);
+			urlDestino = (urlDestino == null) ? "buscar" : urlDestino;
+			urlDestino = (urlDestino.contains("login")) ? "buscar" : urlDestino;
+			Confirmacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
+			request.getRequestDispatcher( Confirmacion.JSP ).forward(request, response);
 		}
-		
 		
 	}
 

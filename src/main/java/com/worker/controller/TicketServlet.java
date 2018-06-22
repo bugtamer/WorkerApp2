@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.worker.models.Usuario;
+import com.worker.util.LoginHelper;
 import com.worker.util.SessionHelper;
 
 @WebServlet("/ticket")
@@ -21,6 +22,7 @@ public class TicketServlet extends HttpServlet {
 		
 		Usuario usuario = SessionHelper.getUsuarioIdentificado(request);
 		if (usuario == null) {
+			LoginHelper.setAttributeURL(request, response);
 			response.sendRedirect("login");
 		} else {
 			request.getRequestDispatcher("ticket.jsp").forward(request, response);

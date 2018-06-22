@@ -12,6 +12,7 @@ import com.worker.db.DDBB;
 import com.worker.models.Manitas;
 import com.worker.models.Ubicacion;
 import com.worker.models.Usuario;
+import com.worker.util.LoginHelper;
 import com.worker.util.SessionHelper;
 
 @WebServlet("/ficha")
@@ -25,6 +26,7 @@ public class FichaServlet extends HttpServlet {
 	
 		Usuario usuario = SessionHelper.getUsuarioIdentificado(request);
 		if (usuario == null) {
+			LoginHelper.setAttributeURL(request, response);
 			response.sendRedirect("login");
 		} else {
 			Manitas manitas   = getManitas(request, response);

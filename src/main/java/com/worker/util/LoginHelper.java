@@ -1,6 +1,8 @@
 package com.worker.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.worker.models.Usuario;
 
@@ -25,17 +27,18 @@ public class LoginHelper {
 	
 	
 	public static void setAttributeURL(HttpServletRequest request) {
-		String queryParams = request.getQueryString();
-		String url = request.getRequestURL().append('?').append(queryParams).toString();
-		request.setAttribute(URL_DESTINO, url);
-		System.out.println("LoginHelper - setAttributeURL() = " + url);
+		request.setAttribute(URL_DESTINO, getURL(request));
 	}
 	
 	
 	
-	public static void setAttributeCurrentUrl(HttpServletRequest request, String url) {
-		request.setAttribute(URL_DESTINO, url);
-		System.out.println("LoginHelper - setAttributeURL() = " + url);
+	public static void setAttributeURL(HttpServletRequest request, HttpServletResponse response) {
+		String url = getURL(request);
+		HttpSession sesion = request.getSession();
+		if (sesion != null) {
+			sesion.setAttribute(URL_DESTINO, url);
+		}
+		System.out.println("LoginHelper - setAttributeURL(request, response) = " + url);
 	}
 	
 	
@@ -44,6 +47,29 @@ public class LoginHelper {
 		String url = (String) request.getAttribute(URL_DESTINO);
 		url = (url == null) ? "buscar" : url;
 		System.out.println("LoginHelper - getAttributeURL() = " + url);
+		return url;
+	}
+	
+	
+	
+	public static String getAttributeURL(HttpServletRequest request, HttpServletResponse response) {
+		String url = "buscar";
+		HttpSession sesion = request.getSession();
+		if (sesion != null) {
+			url = (String) sesion.getAttribute(URL_DESTINO);
+		}
+		System.out.println("LoginHelper - getAttributeURL(request, response) = " + url);
+		return url;
+	}
+
+	
+	
+	// DETALLES DE IMPLEMENTACION MAS BAJO NIVEL
+	
+	private static String getURL(HttpServletRequest request) {
+		String queryParams = request.getQueryString();
+		String url = request.getRequestURL().append('?').append(queryParams).toString();
+		System.out.println("LoginHelper - setAttributeURL(request) = " + url);
 		return url;
 	}
 	

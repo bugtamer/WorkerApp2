@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
 import com.worker.models.Usuario;
+import com.worker.util.LoginHelper;
 import com.worker.util.SessionHelper;
 
 // https://www.adictosaltrabajo.com/tutoriales/web-sockets-java-tomcat/
@@ -25,6 +26,7 @@ public class ChatServlet extends HttpServlet {
 		
 		Usuario usuario = SessionHelper.getUsuarioIdentificado(request);
 		if (usuario == null) {
+			LoginHelper.setAttributeURL(request, response);
 			response.sendRedirect("login");
 		} else {
 			Manitas manitas = getManitas(request);
