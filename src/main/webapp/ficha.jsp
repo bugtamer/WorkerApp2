@@ -31,7 +31,6 @@
   <script src="./js/init.js"></script>
 
   <script src="./js/map.js"></script>
-  <script src="./js/script.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa4qz8zEC6ckcB9AnKDrwNZ-6mK4t2-4g&callback=initMap"></script>
 
 </body>
