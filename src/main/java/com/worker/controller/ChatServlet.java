@@ -12,6 +12,7 @@ import com.worker.db.DDBB;
 import com.worker.models.Manitas;
 import com.worker.models.Usuario;
 import com.worker.util.LoginHelper;
+import com.worker.util.Notificacion;
 import com.worker.util.SessionHelper;
 
 // https://www.adictosaltrabajo.com/tutoriales/web-sockets-java-tomcat/
@@ -27,7 +28,8 @@ public class ChatServlet extends HttpServlet {
 		Usuario usuario = SessionHelper.getUsuarioIdentificado(request);
 		if (usuario == null) {
 			LoginHelper.setAttributeURL(request, response);
-			response.sendRedirect("login");
+			Notificacion.configuracionZonaPrivada(request);
+			request.getRequestDispatcher( Notificacion.JSP ).forward(request, response);
 		} else {
 			Manitas manitas = getManitas(request);
 			request.setAttribute("usuarioId", usuario.getId());

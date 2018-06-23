@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.worker.util.Confirmacion;
+import com.worker.util.Notificacion;
+import com.worker.models.Usuario;
 import com.worker.util.LoginHelper;
 
 
@@ -23,16 +24,17 @@ public class LogoutServlet extends HttpServlet {
 		
 		System.out.println("LogoutServlet - doGet");
 		
-		if (LoginHelper.getUsuarioEnSesion(request) == null) {
+		Usuario usuarioLogueado = LoginHelper.getUsuarioEnSesion(request);
+		if (usuarioLogueado == null) {
 			response.sendRedirect("buscar");
 		} else {
 			request.getSession().invalidate();
 			String pageTitle = "Logout";
-			String icono = "verified_user";
-			String mensaje = "Se ha desconectado de forma segura";
+			String icono = "lock";
+			String mensaje = String.format("¡Adios <b>%s</b>!", usuarioLogueado.getNombre());
 			String urlDestino = "buscar";
-			Confirmacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
-			request.getRequestDispatcher( Confirmacion.JSP ).forward(request, response);
+			Notificacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
+			request.getRequestDispatcher( Notificacion.JSP ).forward(request, response);
 		}
 	}
 

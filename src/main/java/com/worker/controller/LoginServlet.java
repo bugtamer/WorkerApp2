@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.worker.db.DDBB;
 import com.worker.models.Usuario;
-import com.worker.util.Confirmacion;
+import com.worker.util.Notificacion;
 import com.worker.util.LoginHelper;
 
 @WebServlet("/login")
@@ -57,13 +57,13 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("usuario", usuarioEncontrado);
 			String pageTitle = "Login";
-			String icono = "verified_user";
-			String mensaje = "Autenticación Exitosa";
+			String icono = "how_to_reg";
+			String mensaje = String.format("¡Hola <b>%s</b>!", usuarioEncontrado.getNombre());
 			String urlDestino = LoginHelper.getAttributeURL(request, response);
 			urlDestino = (urlDestino == null) ? "buscar" : urlDestino;
 			urlDestino = (urlDestino.contains("login")) ? "buscar" : urlDestino;
-			Confirmacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
-			request.getRequestDispatcher( Confirmacion.JSP ).forward(request, response);
+			Notificacion.configuracion(request, pageTitle, icono, mensaje, urlDestino);
+			request.getRequestDispatcher( Notificacion.JSP ).forward(request, response);
 		}
 		
 	}

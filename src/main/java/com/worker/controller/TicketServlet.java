@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.models.Usuario;
 import com.worker.util.LoginHelper;
+import com.worker.util.Notificacion;
 import com.worker.util.SessionHelper;
 
 @WebServlet("/ticket")
@@ -23,7 +24,8 @@ public class TicketServlet extends HttpServlet {
 		Usuario usuario = SessionHelper.getUsuarioIdentificado(request);
 		if (usuario == null) {
 			LoginHelper.setAttributeURL(request, response);
-			response.sendRedirect("login");
+			Notificacion.configuracionZonaPrivada(request);
+			request.getRequestDispatcher( Notificacion.JSP ).forward(request, response);
 		} else {
 			request.getRequestDispatcher("ticket.jsp").forward(request, response);
 		}
