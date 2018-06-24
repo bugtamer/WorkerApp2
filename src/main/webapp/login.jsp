@@ -39,7 +39,7 @@
               <div class="row">
                 <div class="input-field col s12">
                   <label for="password">Contrase&ntilde;a</label>
-                  <input type="password" name="password" id="password" value="123456" required>
+                  <input type="password" name="password" id="password" value="@Ab12345" required>
                   <div id="pass_error"></div>
                 </div>
               </div>
