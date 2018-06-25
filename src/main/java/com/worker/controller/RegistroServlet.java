@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.models.Usuario;
 import com.worker.util.Notificacion;
+import com.worker.util.UbicacionHelper;
 import com.worker.util.forms.RegistroDataForm;
 
 @WebServlet("/registro")
@@ -35,6 +36,7 @@ public class RegistroServlet extends HttpServlet {
 		String urlRedireccion = null;
 		RegistroDataForm formRequest = new RegistroDataForm(request);
 		Usuario nuevoUsuario = formRequest.parseToUsuario();
+		UbicacionHelper.setUbicacion(request);
 		try {
 			formRequest.persist();
 			request.getSession().setAttribute("usuario", nuevoUsuario);

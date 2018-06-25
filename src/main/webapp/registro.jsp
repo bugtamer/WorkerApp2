@@ -27,6 +27,9 @@
 
 
             <form id="registroForm" class="col s12" method="Post">
+            
+              <wa:geolocation ubicacion="${geolocalizacion}"></wa:geolocation>
+              <p id="nombre_msg" class="error">${errorGeolocalizacion}</p>
 
               <div class="row">
                 <div class="input-field	col s6">
@@ -87,6 +90,7 @@
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
   <script src="./js/register.js"></script>
+  <script src="./js/geolocation.js"></script>
 </body>
 
 </html>

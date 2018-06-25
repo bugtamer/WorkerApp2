@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.worker.models.Ubicacion;
 import com.worker.models.Usuario;
 import com.worker.persistence.UsuarioEM;
+import com.worker.util.UbicacionHelper;
 
 /**
  * Helper para tratar los datos del formulario de alta
@@ -43,6 +44,7 @@ public class RegistroDataForm {
 	public static final String PASSWORD_WRONG_FORMAT = "Formato del password:<br>Entre 8 y 16 carácteres<br>Minúsculas<br>Mayúsculas<br>Números<br>Símbolos admitidos: !@#$%^&*";
 	public static final String EMAIL_WRONG_FORMAT = "Introduce un email Válido";
 	public static final String EMAIL_YA_REGISTRADO = "Ya existe un usuario registrado con el email proporcionado";
+	public static final String GEOLOCATION_ERROR = "No se pudo determinar su ubicacion geográfica";
 	
 	
 	
@@ -82,7 +84,8 @@ public class RegistroDataForm {
 	 * @return un Usuario con los datos proporcionados por el formulario
 	 */
 	public Usuario parseToUsuario() {
-		setUbicacionMock(); // FIX cuando la app pueda adquirir la ubicacion
+		Ubicacion ubicacion = UbicacionHelper.getUbicacion(request);
+		nuevoUsuario.setUbicacion( ubicacion );
 		String avatar = nuevoUsuario.getAvatar();
 		if ((avatar == null) || avatar.isEmpty()) {
 			nuevoUsuario.setAvatar(DEFAULT_AVATAR);
@@ -173,6 +176,11 @@ public class RegistroDataForm {
 		} else if (hasPattern(repass, PASSWORD_REGEX) == false) {
 			request.setAttribute(key, PASSWORD_WRONG_FORMAT);
 		}
+		// UBICACION
+		key = "errorGeolocalizacion";
+		if (nuevoUsuario.getUbicacion() == null) {
+			request.setAttribute(key, GEOLOCATION_ERROR);
+		}
 	}
 	
 	
@@ -198,12 +206,6 @@ public class RegistroDataForm {
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(input);
 		return m.find();
-	}
-	
-	
-	private void setUbicacionMock() {
-		Ubicacion ubiMock = new Ubicacion(41.3, 2.4);
-		nuevoUsuario.setUbicacion(ubiMock);
 	}
 	
 }
