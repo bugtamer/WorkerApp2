@@ -2,6 +2,8 @@ package com.worker.persistence;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -68,15 +70,22 @@ public class UsuarioEM extends EntityManager {
 	 */
 	
 	
- public Usuario getUsuarioById(String id) {
-	int intId = Integer.parseInt(id);
-	Ubicacion ubicacion = new Ubicacion(41.34, 2.56);
-	String url_imagen = "./imgs/Pablo-entrenador-personal.jpg";
-	Usuario implementaEsteMetodo = new Usuario("Nombre mock", "apellidos mock", "email@mock.info", "password mock");
-	implementaEsteMetodo.setId(intId);
-	implementaEsteMetodo.setAvatar(url_imagen);
-	implementaEsteMetodo.setUbicacion(ubicacion);
-	return implementaEsteMetodo;
+	public Usuario getUsuarioById(String id) {
+		Usuario usuario = null;
+		try {
+			int usuarioId = Integer.parseInt( id );
+			Session session = factory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createQuery("FROM Usuario WHERE id = :id", Usuario.class);
+			query.setParameter("id", usuarioId);
+			usuario = (Usuario) query.getSingleResult();
+			session.close();
+			tx.commit();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuario;
 	}
 	
 }
