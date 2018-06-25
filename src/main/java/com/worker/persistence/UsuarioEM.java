@@ -11,25 +11,29 @@ import com.worker.models.*;
 
 public class UsuarioEM extends EntityManager {
 	
+	
+	// INSTANCIACION
+	
 	private static UsuarioEM singleton = null;
 	
-
 	
-	protected UsuarioEM() {
-		
-	}
+	protected UsuarioEM() { }
+	
 	
 	public static final UsuarioEM getInstance() {
-		return(singleton == null) ? new UsuarioEM(): singleton;
+		return(singleton == null) ? new UsuarioEM() : singleton;
 	}
+	
+	
+	
+	// SERVICIOS
 	
 	public final List<Usuario>getList(){
 		List<Usuario> listaUsuarios = null;
 		try {
 			Session session = factory.openSession();
 			Transaction trans = session.beginTransaction();
-			listaUsuarios =session.createQuery("FROM Usuario",Usuario.class).getResultList();
-	
+			listaUsuarios = session.createQuery("FROM Usuario", Usuario.class).getResultList();
 			trans.commit();
 			session.close();
 		} catch (Exception e) {
@@ -38,36 +42,17 @@ public class UsuarioEM extends EntityManager {
 		return listaUsuarios;
 	}
 	
-	public boolean save(Usuario emp) {
-		Session session =factory.openSession();
+	
+	
+	public boolean save(Usuario usuario) {
+		Session session = factory.openSession();
 		Transaction trans = session.beginTransaction();
-		session.save(emp);
+		session.save(usuario);
 		trans.commit();
 		session.close();
 		return true;
-		
 	}
 	
-//	public Usuario getUsuarioById(String id) {
-//		Usuario Usu = null;
-//		try {
-//			Session session = factory.openSession();
-//			Transaction tx = session.beginTransaction();
-//			Usu = (Usuario) session.createQuery("FROM Usuario  WHERE id= "+id, Usuario.class).getSingleResult();
-//			session.close();
-//			tx.commit();
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return Usu;
-//			
-//	}
-	
-	/* TODO implementad también este método.
-	 * Ahora devuelve un mock para poder trabajar
-	 * hasta que exista la implementación real
-	 */
 	
 	
 	public Usuario getUsuarioById(String id) {
