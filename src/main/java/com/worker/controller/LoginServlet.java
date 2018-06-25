@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.worker.db.DDBB;
+import com.worker.models.Ubicacion;
 import com.worker.models.Usuario;
 import com.worker.util.Notificacion;
+import com.worker.util.UbicacionHelper;
 import com.worker.util.LoginHelper;
 
 @WebServlet("/login")
@@ -25,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 	
 		System.out.println("LoginServlet - doGet");
 		
+		UbicacionHelper.setUbicacion(request);
 		boolean noHayUsuarioEnSesion = (LoginHelper.getUsuarioEnSesion(request) == null);
 		if (noHayUsuarioEnSesion) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -43,14 +46,21 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
+		UbicacionHelper.setUbicacion(request);
+		Ubicacion ubicacion = UbicacionHelper.parseGeoDataFormIntoUbicacion(request);
 		
 		System.out.println(email+":"+pass+":");
 
 		Usuario usuarioEncontrado = DDBB.getInstance().getUsuarios(email, pass);
 		System.out.println("usuarioEncontrado = " + usuarioEncontrado);
 		
+		if ((ubicacion != null) && (usuarioEncontrado != null)) {
+			usuarioEncontrado.setUbicacion(ubicacion);
+		}
+		
 		boolean noExisteEsaCredencial = (usuarioEncontrado == null);
 		if (noExisteEsaCredencial) {
+			UbicacionHelper.setUbicacion(request);
 			request.setAttribute("error", "ATENCIÓN: email y/o password incorrectos.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else {

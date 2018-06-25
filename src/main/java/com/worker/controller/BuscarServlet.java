@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.worker.db.DDBB;
 import com.worker.models.Manitas;
-import com.worker.models.Ubicacion;
+import com.worker.util.UbicacionHelper;
 
 
 @WebServlet("/buscar")
@@ -25,8 +25,7 @@ public class BuscarServlet extends HttpServlet {
 		if (request.getAttribute("sonResultados") == null) {
 			request.setAttribute("sonResultados", false);
 		}
-		Ubicacion ubicacionUsuario = new Ubicacion(41.40784461738553, 2.1700572967529297);
-		request.setAttribute("ubicacionUsuario", ubicacionUsuario);
+		UbicacionHelper.setUbicacion(request);
 		request.getRequestDispatcher("buscar.jsp").forward(request, response);
 	}
 
@@ -36,6 +35,7 @@ public class BuscarServlet extends HttpServlet {
 		
 		System.out.println("BuscarServlet - doPost()");
 		
+		UbicacionHelper.setUbicacion(request);
 		String busqueda= request.getParameter("terminosDeBusqueda");
 		DDBB db = DDBB.getInstance();
 		List<Manitas> resultado = db.getResultadosBusqueda(busqueda);

@@ -46,7 +46,7 @@
                     <p><b>${manitas.nombre}</b></p>
                     <p>${manitas.profesion}</p>
                     <a href="./ficha?id=${manitas.id}" class="secondary-content">
-                        <h5>${String.format("%,.1f", 1000 * ubicacionUsuario.getDistanciaKilometrica( manitas.ubicacion ))}m</h5>
+                        <wa:distancia ubicacion2="${geolocalizacion}" ubicacion1="${manitas.ubicacion}" /> <!-- UbicacionHelper: geolocalizacion -->
                         <i class="${manitas.mediaValoraciones > 0 ? "material-icons" : "material-icons no_active"}">grade</i>
                         <i class="${manitas.mediaValoraciones > 1 ? "material-icons" : "material-icons no_active"}">grade</i>
                         <i class="${manitas.mediaValoraciones > 2 ? "material-icons" : "material-icons no_active"}">grade</i>
@@ -73,5 +73,6 @@
   <script src="./js/search.js"></script>
   <c:if test="sonResultados"><script src="./js/search_result.js"></script></c:if>
   <script src="./js/sugerencias.js"></script>
+  <script src="./js/geolocation.js"></script>
 </body>
 </html>

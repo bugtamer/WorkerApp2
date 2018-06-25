@@ -26,6 +26,7 @@
           
           <div id="form-login">
             <form id="milogin" class="col s12" method="POST" action="./login">
+              <wa:geolocation ubicacion="${geolocalizacion}" /> <!-- UbicacionHelper: geolocalizacion -->
 
               <div class="row">
                 <div class="input-field col s12">
@@ -39,7 +40,7 @@
               <div class="row">
                 <div class="input-field col s12">
                   <label for="password">Contrase&ntilde;a</label>
-                  <input type="password" name="password" id="password" value="@Ab12345" required>
+                  <input type="password" name="password" id="password" value="123456" required>
                   <div id="pass_error"></div>
                 </div>
               </div>
@@ -74,6 +75,7 @@
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
   <script src="./js/login.js"></script>
+  <script src="./js/geolocation.js"></script>
 </body>
 
 </html>
