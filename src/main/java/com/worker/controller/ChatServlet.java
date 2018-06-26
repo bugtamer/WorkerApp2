@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.worker.db.DDBB;
 import com.worker.models.Manitas;
 import com.worker.models.Usuario;
+import com.worker.persistence.ManitasEM;
 import com.worker.util.LoginHelper;
 import com.worker.util.Notificacion;
 import com.worker.util.SessionHelper;
@@ -60,7 +60,8 @@ public class ChatServlet extends HttpServlet {
 		} catch (Exception e) {
 			id = MANITAS_NO_ENCONTRADO;
 		}
-		return DDBB.getInstance().getManitas(id);
+		//return DDBB.getInstance().getManitas(id);
+		return ManitasEM.getInstance().getManitasById( idSolicitado );
 	}
 
 }

@@ -136,7 +136,7 @@ function recibir(event) {
                 mostrar( chat[i] );
             }
         } else { // carga la conversación desde la BBDD
-            $.ajax(`./getMensajes?uid=${1}&mid=${7}`).done(function(respuestaServidor){
+            $.ajax(`./getMensajes?uid=${1}&manitasId=${7}`).done(function(respuestaServidor){
                 for (let i = 0;   i < respuestaServidor.length;   i++) {
                     mostrar   ( respuestaServidor[i] );
                     almacenar ( respuestaServidor[i] );

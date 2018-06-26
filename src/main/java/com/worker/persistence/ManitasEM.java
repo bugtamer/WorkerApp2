@@ -2,13 +2,14 @@ package com.worker.persistence;
 
 import java.util.List;
 
-import org.hibernate.Transaction;
+import javax.persistence.Query;
+
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.worker.models.Manitas;
-import com.worker.models.Ubicacion;
-
 import com.worker.models.Usuario;
+import com.worker.models.Valoracion;
 
 public class ManitasEM extends EntityManager{
 
@@ -58,27 +59,47 @@ public class ManitasEM extends EntityManager{
 		return listaManitas;
 	}
 
+	
+	
 	// 3-Obtener manitas por ID
 	public Manitas getManitasById(String id) {
-		/*
-		Manitas M = null;
+		System.out.println(String.format("ManitasEM.getManitasById(%s)", id));
+		Manitas manitas = null;
+		Session session = null;
+		String profesion = null;
+		int manitasId;
 		try {
-			Session session = factory.openSession();
+			manitasId = Integer.parseInt( id );
+			session = factory.openSession();
 			Transaction tx = session.beginTransaction();
-			M = (Manitas) session.createQuery("FROM manitas m WHERE m.id LIKE '%" + id +"%'", Manitas.class);
-			session.close();
+			Query query = session.createQuery("SELECT profesion FROM Manitas WHERE id = :id", String.class);
+			query.setParameter("id", manitasId);
+			profesion = (String) query.getSingleResult();
+			tx.commit();
+			Usuario usuarioBase = UsuarioEM.getInstance().getUsuarioById(id);
+			if ((usuarioBase != null) && (profesion != null)) {
+				manitas = new Manitas(usuarioBase, profesion);
+				List<Valoracion> listaValoraciones = ValoracionEM.getInstance().getValorecionesDelManitas(id);
+				for (Valoracion valoracion : listaValoraciones) {
+					manitas.addValoracion(valoracion);
+				}
+				// TODO educacion + experiencia
+			}
+			System.out.println(String.format("ManitasEM.getManitasById(%s) >>> manitasAttributes = %s", id, profesion));
+			System.out.println(String.format("ManitasEM.getManitasById(%s) >>> usuarioBase = %s", id, usuarioBase));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-		return M;
-
-		*/
-		Manitas manitas = new Manitas(new Usuario("nombre", "apellidos", "email@mock.es", "password"), "profesion");
-		manitas.setId(7);
-		manitas.setUbicacion(new Ubicacion(41.2, 2.3));
+		System.out.println(String.format("ManitasEM.getManitasById(%s) = %s", id, manitas));
 		return manitas;
 	}
+	
+	
 	
 	public boolean save(Manitas emp) {
 		Session session =factory.openSession();
