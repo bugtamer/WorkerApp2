@@ -57,18 +57,22 @@ public class UsuarioEM extends EntityManager {
 	
 	public Usuario getUsuarioById(String id) {
 		Usuario usuario = null;
+		Session session = null;
 		try {
 			int usuarioId = Integer.parseInt( id );
-			Session session = factory.openSession();
+			session = factory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createQuery("FROM Usuario WHERE id = :id", Usuario.class);
 			query.setParameter("id", usuarioId);
 			usuario = (Usuario) query.getSingleResult();
-			session.close();
 			tx.commit();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
 		return usuario;
 	}
