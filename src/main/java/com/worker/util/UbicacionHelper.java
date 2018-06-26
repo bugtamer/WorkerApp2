@@ -48,12 +48,17 @@ public class UbicacionHelper {
 	 */
 	public static Ubicacion parseGeoDataFormIntoUbicacion(HttpServletRequest request) {
 		Ubicacion ubicacion = null;
-		try {
-			double lat = Double.parseDouble( request.getParameter("latitud") );
-			double lon = Double.parseDouble( request.getParameter("longitud") );
-			ubicacion = new Ubicacion(lat, lon);
-		} catch(Exception e) {
-			e.printStackTrace();
+		String latitud = request.getParameter("latitud");
+		String longitud = request.getParameter("longitud");
+		if ((latitud != null) && (longitud != null)) {
+			try {
+				double lat = Double.parseDouble( latitud );
+				double lon = Double.parseDouble( longitud );
+				ubicacion = new Ubicacion(lat, lon);
+			} catch(Exception e) {
+				System.out.println("ERROR: parseGeoDataFormIntoUbicacion(request)");
+				//e.printStackTrace();
+			}
 		}
 		return ubicacion;
 	}
