@@ -8,9 +8,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="manitas")
@@ -20,19 +26,24 @@ public class Manitas extends Usuario {
 	
 	@Column(nullable = false)
 	private String profesion;
+	//@LazyCollection(LazyCollectionOption.FALSE)
+	//@ElementCollection(fetch=FetchType.EAGER)
 	
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "experiencia",   joinColumns = @JoinColumn(name="exp_id"))
 	@Column(nullable=false)
-	private List<String> experiencia = new ArrayList <String>();
+	private List<String> experiencia;
 	
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "educacion",   joinColumns = @JoinColumn(name="edu_id"))
 	@Column(nullable=false)
-	private List<String> educacion = new ArrayList <String>();
+	private List<String> educacion;
 	
-	@OneToMany(mappedBy = "receptor")
-	private List<Valoracion> valoraciones = new ArrayList <>();
+	@OneToMany(mappedBy = "receptor", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	private List<Valoracion> valoraciones;
 
 
 

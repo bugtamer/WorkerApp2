@@ -146,6 +146,14 @@ public class ManitasEM extends EntityManager{
 		return true;
 		
 	}
+	public Manitas getProfesionalByID(int id) {
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		Manitas man = session.createQuery("FROM Manitas WHERE id = :id", Manitas.class).setParameter("id", id).getSingleResult();
+		tx.commit();
+		session.close();
+		return man;
+	}
 	
 
 }

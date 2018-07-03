@@ -17,6 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -46,7 +50,9 @@ public class Usuario {
 	@JoinColumn(name="fk_ubi")
 	protected Ubicacion ubicacion;
 	
+	
 	@OneToMany(mappedBy = "autor")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	protected List<Valoracion> valoracionesHechas;
 
 
