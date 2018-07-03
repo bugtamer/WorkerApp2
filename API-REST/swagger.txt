@@ -21,6 +21,84 @@ schemes:
 - "https"
 - "http"
 paths:
+	/profesional/{id}:
+    get:
+      tags:
+      - "profesional"
+      summary: "Get profesional by id"
+      description: ""
+      operationId: "GetProfesionalById"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be fetched. Use user1 for testing. "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: '#/definitions/Profesional' # ESTA PUESTO USUARIO SOLO PARA QUE NO DE ERROR
+        403:
+          description: "No tienes permiso"
+        404:
+          description: "Especifica el usuario"
+        500:
+          description: "Error interno"
+    put:
+      tags:
+      - "profesional"
+      summary: "Updated user"
+      description: "This can only be done by the logged in user."
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "body"
+        description: "Updated profesional object"
+        required: true
+        schema:
+          $ref: '#/definitions/Profesional' # ESTA PUESTO USUARIO SOLO PARA QUE NO DE ERROR
+      responses:
+        400:
+          description: "Invalid profesional supplied"
+        404:
+          description: "Profesional not found"
+    delete:
+      tags:
+      - "store"
+      summary: "Delete purchase order by ID"
+      description: ""
+      operationId: "deleteProfesional"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the profesional that needs to be deleted"
+        required: true
+        type: "integer"
+        minimum: 1.0
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Order not found"
   /profesional/geoservice:
     get:
       tags:
