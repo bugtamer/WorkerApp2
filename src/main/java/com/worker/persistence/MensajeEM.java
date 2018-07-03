@@ -33,7 +33,7 @@ public class MensajeEM extends EntityManager {
 	// SERVICES
 
 	public final boolean addMensaje(Mensaje mensaje) {
-		boolean isAdded = true; 
+		boolean isAdded = true;
 		try {
 			Session session = factory.openSession();
 			session.save(mensaje);
@@ -44,21 +44,28 @@ public class MensajeEM extends EntityManager {
 			isAdded = false;
 			e.printStackTrace();
 		}
-		return isAdded; // FIX devuelve boolean por simplificación 
+		return isAdded; // FIX devuelve boolean por simplificación
 	}
 
-	
+
+
+	public final boolean removeMensaje(int id) {
+		return deleteById(Mensaje.class, id);
+	}
+
+
+
 	public final List<Mensaje> getConversacionEntre(Usuario usuario, Manitas manitas) {
 		List<Mensaje> listaMensajes = null;
-		
+
 		String fromUsuarioToManitas = String.format(
 				"(M.emisor.id = %d and M.receptor.id = %d)",
 				usuario.getId(), manitas.getId());
-		
+
 		String fromManitasToUsuario = String.format(
 				"(M.emisor.id = %d and M.receptor.id = %d)",
 				manitas.getId(), usuario.getId());
-		
+
 		StringBuilder hql = new StringBuilder();
 		hql.append("FROM com.worker.models.Mensaje AS M WHERE ");
 		hql.append(fromUsuarioToManitas);
@@ -77,5 +84,5 @@ public class MensajeEM extends EntityManager {
 		System.out.println("MensajeEM-size=" + listaMensajes.size());
 		return listaMensajes;
 	}
-	
+
 }
