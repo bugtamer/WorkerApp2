@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 
 @Entity
 @Table(name="valoracion")
@@ -27,6 +29,7 @@ public class Valoracion {
 	
 	@ManyToOne(optional=false)
 	@PrimaryKeyJoinColumn//(name = "fk_man")
+	@JsonBackReference
 	private Manitas receptor;
 
 	@Column(nullable = false)
