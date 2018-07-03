@@ -10,24 +10,24 @@ import org.hibernate.Transaction;
 import com.worker.models.*;
 
 public class UsuarioEM extends EntityManager {
-	
-	
+
+
 	// INSTANCIACION
-	
+
 	private static UsuarioEM singleton = null;
-	
-	
+
+
 	protected UsuarioEM() { }
-	
-	
+
+
 	public static final UsuarioEM getInstance() {
 		return(singleton == null) ? new UsuarioEM() : singleton;
 	}
-	
-	
-	
+
+
+
 	// SERVICIOS
-	
+
 	public final List<Usuario>getList(){
 		List<Usuario> listaUsuarios = null;
 		try {
@@ -41,9 +41,38 @@ public class UsuarioEM extends EntityManager {
 		}
 		return listaUsuarios;
 	}
-	
-	
-	
+
+
+
+	public Usuario getUsuario(String email, String password) {
+		Usuario usuario = null;
+		Session session = null;
+		try {
+			session = factory.openSession();
+			Transaction tx = session.beginTransaction();
+			String hql = "FROM Usuario WHERE (email = :email) AND (password = :psswd)";
+			Query query = session.createQuery(hql, Usuario.class);
+			query.setParameter("email", email);
+			query.setParameter("psswd", password);
+			usuario = (Usuario) query.getSingleResult();
+			tx.commit();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+		System.out.println(String.format("UsuarioEM.getUsuario(%s, %s) = %s",
+				email, password, usuario));
+
+		return usuario;
+	}
+
+
+
 	public boolean save(Usuario usuario) {
 		Session session = factory.openSession();
 		Transaction trans = session.beginTransaction();
@@ -52,9 +81,9 @@ public class UsuarioEM extends EntityManager {
 		session.close();
 		return true;
 	}
-	
-	
-	
+
+
+
 	public Usuario getUsuarioById(String id) {
 		Usuario usuario = null;
 		Session session = null;
@@ -76,5 +105,5 @@ public class UsuarioEM extends EntityManager {
 		}
 		return usuario;
 	}
-	
+
 }
