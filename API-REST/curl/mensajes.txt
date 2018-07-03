@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl http://localhost:8080/WorkerApp2/api/test
+
+curl -v -X DELETE http://localhost:8080/WorkerApp2/api/mensajes/7
