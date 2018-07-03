@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# TEST
 curl http://localhost:8080/WorkerApp2/api/test
 
+
+# sin token
 curl -v -X DELETE http://localhost:8080/WorkerApp2/api/mensajes/7
+
+
+#AUTENTICACIÓN
+curl -H "Content-Type: application/json" -H "email: manolo@workerapp.com" -H "password: 123456" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate
+
+# alexandra@workerapp.com
+# manolo@workerapp.com
