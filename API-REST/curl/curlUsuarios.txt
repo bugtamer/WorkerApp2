@@ -1,0 +1,17 @@
+
+
+
+#GET
+$ curl GET http://localhost:8080/WorkerApp2/api/usuario/22
+
+$ curl GET http://localhost:8080/WorkerApp2/api/usuarios/listausuarios
+
+#DELETE
+$ curl -X  DELETE http://localhost:8080/WorkerApp2/api/usuario/22
+
+#PUT
+$ curl -X  PUT http://localhost:8080/WorkerApp2/api/usuario/22
+
+#POST
+curl -X POST -H "Content-Type: application/json" -d "{\"nombre\":\"Cesar\",\"apellidos\":\"Valero\",\"email\":\"rv45@gmail.com\",\"password\":\"123456\"}" http://localhost:8080/WorkerApp2/api/usuarios
+
