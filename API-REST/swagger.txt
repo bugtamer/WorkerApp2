@@ -21,7 +21,7 @@ schemes:
 - "https"
 - "http"
 paths:
-	/profesional/{id}:
+  /profesional/{id}:
     get:
       tags:
       - "profesional"
