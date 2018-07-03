@@ -1,5 +1,6 @@
 package com.worker.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -8,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.worker.models.Manitas;
+import com.worker.models.Ubicacion;
 import com.worker.models.Usuario;
 import com.worker.models.Valoracion;
 
@@ -42,6 +44,40 @@ public class ManitasEM extends EntityManager{
 		}
 		return listaManitas;
 	}
+
+
+
+	public List<Manitas> getManitas(String terminoBusqueda, double distancia,
+			Ubicacion ubicacion) {
+
+		final char space = ' ';
+		StringBuilder sqlQuery = new StringBuilder();
+		sqlQuery.append("SELECT m.fk_usu").append(space);
+		sqlQuery.append("FROM manitas m").append(space);
+		sqlQuery.append("LEFT JOIN ubicacion u ON (m.fk_usu = u.ubi_id)").append(space);
+		sqlQuery.append("WHERE (m.profesion LIKE '%").append(terminoBusqueda).append("%')").append(space);
+		sqlQuery.append(String.format("AND calcDistanciaEnKm(%f, %f, u.latitud, u.longitud) < %f",
+				ubicacion.getLatitud(), ubicacion.getLongitud(), distancia));
+		System.out.println("SQL=" + sqlQuery.toString());
+
+		List<Manitas> listaManitas = new ArrayList<>();
+		try {
+			Session session = factory.openSession();
+			Query query = session.createNativeQuery( sqlQuery.toString() );
+			List<?> listaManitasId = query.getResultList();
+			for (Object manitasId : listaManitasId) {
+				Manitas manitas = getManitasById( manitasId.toString() );
+				listaManitas.add( manitas );
+			}
+			session.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaManitas;
+	}
+
+
 
 	// 2-Buscar por nombre
 	public List<Manitas> getListaByName(String filter){

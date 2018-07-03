@@ -98,6 +98,18 @@ public class Manitas extends Usuario {
 		this.id = id;
 	}
 	
+	public void setExperiencia(List<String> experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public void setEducacion(List<String> educacion) {
+		this.educacion = educacion;
+	}
+
+	public void setValoracion(List<Valoracion> valoraciones) {
+		this.valoraciones = valoraciones;
+	}
+	
 	public boolean addExperiencia(String experiencia) {
 		return this.experiencia.add(experiencia);
 	}
