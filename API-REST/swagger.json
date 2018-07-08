@@ -33,6 +33,14 @@
       }
     },
     {
+      "name": "geolocalizacion",
+      "description": "datos geolocalizados",
+      "externalDocs": {
+        "description": "Para más información",
+        "url": "https://github.com/bugtamer/WorkerApp2"
+      }
+    },
+    {
       "name": "mensajes",
       "description": "Toda la información sobre los mensajes del chat",
       "externalDocs": {
@@ -46,6 +54,83 @@
     "http"
   ],
   "paths": {
+    "/profesional": {
+      "post": {
+        "tags": [
+          "profesional"
+        ],
+        "summary": "añadir profesional",
+        "description": "añadir profesional",
+        "operationId": "addProfesional",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "profesional",
+            "in": "body",
+            "description": "el profesional que será añadido",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Profesional"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Añadido exitosamente"
+          },
+          "400": {
+            "description": "Petición errónea"
+          },
+          "403": {
+            "description": "No está autorizado"
+          }
+        }
+      }
+    },
+    "/profesional/servicios": {
+      "get": {
+        "tags": [
+          "profesional"
+        ],
+        "summary": "lista de servicios que contienen el término de búsqueda",
+        "description": "lista de servicios ofrecidos por los profesionales que contienen el término de búsqueda",
+        "operationId": "getProfesionesProfesional",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "terminoBusqueda",
+            "in": "query",
+            "description": "término de búsqueda",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Término de búsqueda no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+    },
     "/profesional/{id}": {
       "get": {
         "tags": [
@@ -159,12 +244,189 @@
         }
       }
     },
-    "/profesional/geoservice": {
+    "/profesional/{id}/experiencia": {
       "get": {
         "tags": [
           "profesional"
         ],
-        "summary": "Encontrar un profesional por geolocalizacion (latitud y longitud) y servicios ofrecidos",
+        "summary": "experiencia del profesional",
+        "description": "obtener la experiencia del profesional por ID",
+        "operationId": "getExperenciaProfesionalById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID requerido para recuperar la experiencia del profesional",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "403": {
+            "description": "No estas autorizado"
+          },
+          "404": {
+            "description": "Profesional no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+    },
+    "/profesional/{id}/educacion": {
+      "get": {
+        "tags": [
+          "profesional"
+        ],
+        "summary": "educacion del profesional",
+        "description": "obtener la educacion del profesional por ID",
+        "operationId": "getEducacionProfesionalById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID requerido para recuperar la educacion del profesional",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "403": {
+            "description": "No estas autorizado"
+          },
+          "404": {
+            "description": "Profesional no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+    },
+    "/profesional/{id}/valoraciones": {
+      "get": {
+        "tags": [
+          "profesional"
+        ],
+        "summary": "valoraciones del profesional",
+        "description": "obtener las valoraciones del profesional por ID",
+        "operationId": "getValoracionesProfesionalById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID requerido para recuperar las valoraciones del profesional",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Valoracion"
+              }
+            }
+          },
+          "403": {
+            "description": "No estas autorizado"
+          },
+          "404": {
+            "description": "Profesional no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+    },
+    "/profesional/{id}/valoraciones/media": {
+      "get": {
+        "tags": [
+          "profesional"
+        ],
+        "summary": "valoración media del profesional",
+        "description": "obtener la valoración media del profesional por ID",
+        "operationId": "getValoracionMediaProfesionalById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID requerido para recuperar la media de las valoraciones del profesional",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          "403": {
+            "description": "No estas autorizado"
+          },
+          "404": {
+            "description": "Profesional no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+    },
+    "/geolocalizacion/servicios": {
+      "get": {
+        "tags": [
+          "geolocalizacion"
+        ],
+        "summary": "'Encontrar un profesional por geolocalizacion y servicios ofrecidos'",
         "description": "devuelve una lista profesionales",
         "operationId": "getManitasById",
         "produces": [
@@ -212,6 +474,121 @@
           },
           "404": {
             "description": "Profesional no encontrado"
+          }
+        }
+      }
+    },
+    "/geolocalizacion/usuario/{id}": {
+      "get": {
+        "tags": [
+          "geolocalizacion"
+        ],
+        "summary": "'Encontrar la ubicación de un usuario por ID'",
+        "description": "devuelve su unicación",
+        "operationId": "getUbicacionUsuarioById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id del usuario del que se quiere obtener su ubicacion",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa",
+            "schema": {
+              "$ref": "#/definitions/Ubicacion"
+            }
+          },
+          "400": {
+            "description": "ID suministrado incorrecto"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      }
+    },
+    "/geolocalizacion/profesional/{id}": {
+      "get": {
+        "tags": [
+          "geolocalizacion"
+        ],
+        "summary": "'Encontrar la ubicación de un profesional por ID'",
+        "description": "devuelve su unicación",
+        "operationId": "getUbicacionProfesionalById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id del profesional del que se quiere obtener su ubicacion",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa",
+            "schema": {
+              "$ref": "#/definitions/Ubicacion"
+            }
+          },
+          "400": {
+            "description": "ID suministrado incorrecto"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      }
+    },
+    "/geolocalizacion/distancia": {
+      "get": {
+        "tags": [
+          "geolocalizacion"
+        ],
+        "summary": "'Encontrar la distancia entre un usuario y un profesional'",
+        "description": "devuelve la distancia en km",
+        "operationId": "getDistancia",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ubicacionUsuario",
+            "in": "header",
+            "description": "ubicacion del usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ubicacionProfesional",
+            "in": "header",
+            "description": "ubicacion del profesional",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa",
+            "schema": {
+              "type": "number"
+            }
+          },
+          "400": {
+            "description": "ID suministrado incorrecto"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
           }
         }
       }
