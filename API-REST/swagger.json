@@ -17,8 +17,24 @@
   "basePath": "/v2",
   "tags": [
     {
+      "name": "usuario",
+      "description": "Toda la información sobre nuestros usuarios, quienes buscan profesionales",
+      "externalDocs": {
+        "description": "Para más información",
+        "url": "https://github.com/bugtamer/WorkerApp2"
+      }
+    },
+    {
       "name": "profesional",
-      "description": "Toda la información sobre nuestros profesionales",
+      "description": "Toda la información sobre nuestros profesionales y los servicios que ofrecen",
+      "externalDocs": {
+        "description": "Para más información",
+        "url": "https://github.com/bugtamer/WorkerApp2"
+      }
+    },
+    {
+      "name": "mensajes",
+      "description": "Toda la información sobre los mensajes del chat",
       "externalDocs": {
         "description": "Para más información",
         "url": "https://github.com/bugtamer/WorkerApp2"
@@ -199,6 +215,118 @@
           }
         }
       }
+    },
+    "/mensajes/{mensajeId}": {
+      "delete": {
+        "tags": [
+          "mensajes"
+        ],
+        "summary": "Eliminar un mensaje por ID del mensaje",
+        "description": "borra un mensaje identificado por ID",
+        "operationId": "removeMensaje",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "mensajeId",
+            "in": "path",
+            "description": "Es el id del mensaje que va ser borrado",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa"
+          },
+          "400": {
+            "description": "ID suministrado incorrecto"
+          },
+          "404": {
+            "description": "Mensaje no encontrado"
+          }
+        }
+      }
+    },
+    "/mensajes": {
+      "get": {
+        "tags": [
+          "mensajes"
+        ],
+        "summary": "Obtener los mensajes de una conversacion entre un usuario y un profesional",
+        "description": "Obtener los mensajes de una conversacion",
+        "operationId": "getConversacion",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "query",
+            "description": "Es el id del usuario que interviene en la conversación",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "profesionalId",
+            "in": "query",
+            "description": "Es el id del profesional que interviene en la conversación",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Mensaje"
+              }
+            }
+          },
+          "400": {
+            "description": "IDs suministrados incorrectos"
+          },
+          "404": {
+            "description": "Conversación no encontrada"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mensajes"
+        ],
+        "summary": "Añadir un nuevo mensaje",
+        "description": "añadir un mensaje",
+        "operationId": "addMensaje",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "mensaje",
+            "in": "body",
+            "description": "Es el id del mensaje que va ser borrado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Mensaje"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operación existosa"
+          },
+          "400": {
+            "description": "ID suministrado incorrecto"
+          },
+          "404": {
+            "description": "Mensaje no encontrado"
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -243,7 +371,7 @@
         "ubicacion": {
           "$ref": "#/definitions/Ubicacion"
         },
-        "valoracionesHechas": {
+        "valoraciones": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Valoracion"
