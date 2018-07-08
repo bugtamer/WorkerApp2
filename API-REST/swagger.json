@@ -274,6 +274,20 @@
             "description": "Es el id del profesional que interviene en la conversación",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "recuperar mensajes de la conversación, de más reciente a más antiguo, a partir del mensaje indicado en from (incluido)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "indica el número máximo de mensajes a recuperar de la conversación, de más reciente a más antiguo",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
