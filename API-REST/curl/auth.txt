@@ -1,0 +1,10 @@
+
+# password: 123456
+
+curl -H "Content-Type: application/json" -H "email: manolo@workerapp.com" -H "password: 123456" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate
+
+
+
+# password: @Ab12345
+
+curl -H "Content-Type: application/json" -H "email: manolo@workerapp.com" -H "password: @Ab12345" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate

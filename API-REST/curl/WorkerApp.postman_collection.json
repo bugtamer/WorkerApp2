@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "bc1619e4-dd7f-4ff3-8cfe-a6b7489a46f4",
+		"name": "WorkerApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"test"
+					]
+				},
+				"description": "Para verificar que Jersey está funcionando"
+			},
+			"response": []
+		},
+		{
+			"name": "/authenticate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "email",
+						"value": "manolo@workerapp.com"
+					},
+					{
+						"key": "password",
+						"value": "@Ab12345",
+						"description": "123456 ó @Ab12345"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"authenticate"
+					]
+				},
+				"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/usuario/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/listausuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/usuarios/listausuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"usuarios",
+						"listausuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/profesional/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/profesional/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"profesional",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pofesional/geoservice?",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/profesional/geoservice?servicio=co&distancia=13.3&latitud=41.3&longitud=2.3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"profesional",
+						"geoservice"
+					],
+					"query": [
+						{
+							"key": "servicio",
+							"value": "co"
+						},
+						{
+							"key": "distancia",
+							"value": "13.3"
+						},
+						{
+							"key": "latitud",
+							"value": "41.3"
+						},
+						{
+							"key": "longitud",
+							"value": "2.3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/mensajes/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/mensajes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"mensajes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
