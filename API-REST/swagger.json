@@ -17,7 +17,7 @@
   "basePath": "/v2",
   "tags": [
     {
-      "name": "profesionales",
+      "name": "profesional",
       "description": "Toda la información sobre nuestros profesionales",
       "externalDocs": {
         "description": "Para más información",
@@ -113,7 +113,7 @@
       },
       "delete": {
         "tags": [
-          "store"
+          "profesional"
         ],
         "summary": "Delete purchase order by ID",
         "description": "",
@@ -146,7 +146,7 @@
     "/profesional/geoservice": {
       "get": {
         "tags": [
-          "profesionales"
+          "profesional"
         ],
         "summary": "Encontrar un profesional por geolocalizacion (latitud y longitud) y servicios ofrecidos",
         "description": "devuelve una lista profesionales",
