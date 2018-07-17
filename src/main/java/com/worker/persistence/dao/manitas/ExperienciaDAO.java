@@ -91,10 +91,11 @@ public class ExperienciaDAO extends DAO {
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setInt   (1, id);
 		stmt.setString(2, experiencia);
-		stmt.executeUpdate();
+		int rows = stmt.executeUpdate();
 		stmt.close();
 		conn.close();
-		return true;
+		boolean isDeleted = (rows > 0);
+		return isDeleted;
 	}
 
 }

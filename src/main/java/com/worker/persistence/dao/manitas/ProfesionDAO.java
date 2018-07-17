@@ -40,7 +40,7 @@ public class ProfesionDAO extends DAO {
 	// SERVICES
 	
 	public String read(int id) throws SQLException {
-		String profesion = "";
+		String profesion = null;
 		String query = "SELECT * FROM manitas WHERE fk_usu = ?";
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement(query);
@@ -111,10 +111,11 @@ public class ProfesionDAO extends DAO {
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setInt(1, id);
-		stmt.executeUpdate();
+		int rows = stmt.executeUpdate();
 		stmt.close();
 		conn.close();
-		return true;
+		boolean isDeleted = (rows > 0);
+		return isDeleted;
 	}
 
 }

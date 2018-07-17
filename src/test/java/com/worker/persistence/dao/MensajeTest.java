@@ -13,6 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.worker.util.Timestamp;
+
 public class MensajeTest {
 	
 	private static MensajeDAO menDao;
@@ -66,16 +68,18 @@ public class MensajeTest {
 	
 	@Test
 	public void createAndReadTest() throws SQLException {
-		men_id = menDao.create(texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id);
+		men_id = menDao.create(texto, urlImagen, emisor_usu_id, receptor_usu_id);
 		mensaje = menDao.read(men_id);
-		assertTrue( isFound(men_id, texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id, mensaje) );
+		System.out.println("--->\n\n\n");
+		assertTrue( esComponentesIgualAlMensaje(men_id, texto, urlImagen, emisor_usu_id, receptor_usu_id, mensaje) );
+		System.out.println("\n\n\n<---");
 	}
 	
 	
 	
 	@Test
 	public void createAndDeleteTest() throws SQLException {
-		men_id = menDao.create(texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id);
+		men_id = menDao.create(texto, urlImagen, emisor_usu_id, receptor_usu_id);
 		boolean isDeleted = menDao.delete(men_id);
 		assertTrue(isDeleted);
 		mensaje = menDao.read(men_id);
@@ -86,33 +90,50 @@ public class MensajeTest {
 	
 	@Test
 	public void createAndUpdateTest() throws SQLException {
-		men_id = menDao.create(texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id);
+		men_id = menDao.create(texto, urlImagen, emisor_usu_id, receptor_usu_id);
 		timestamp = new Date(timestamp.getTime() + 100_111);
 		texto = "texto " + timestamp.getTime();
 		urlImagen = "/urlImagen/" + timestamp.getTime();
 		emisor_usu_id = MANITAS_ID;
 		receptor_usu_id = USUARIO_ID;
-		menDao.update(men_id, texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id);
+		menDao.update(men_id, texto, urlImagen, emisor_usu_id, receptor_usu_id);
 		mensaje = menDao.read(men_id);
-		assertTrue( isFound(men_id, texto, timestamp, urlImagen, emisor_usu_id, receptor_usu_id, mensaje) );
+		assertTrue( esComponentesIgualAlMensaje(men_id, texto, urlImagen, emisor_usu_id, receptor_usu_id, mensaje) );
 	}
 	
 	
 	
-	private boolean isFound(int men_id, String texto, Date timestamp, String urlImagen, int emisor_usu_id, int receptor_usu_id, Map<String, Object> source) {
-		boolean isFound = false;
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+	private boolean esComponentesIgualAlMensaje(int men_id, String texto, String urlImagen, int emisor_usu_id, int receptor_usu_id, Map<String, Object> source) {
+		boolean esEquivalente = false;
 		if ((Integer) source.get("men_id") == men_id) {
-			boolean textoCorrecto = ((String) source.get("texto")).equals(texto);
-			boolean timestampCorrecto = true;//(sdf.format((Date) source.get("timestamp"))).equals(sdf.format(timestamp)); // FIXME Date: SQL vs Util
-			boolean urlImagenCorrecto = ((String) source.get("urlImagen")).equals(urlImagen);
-			boolean emisorCorrecto= ((Integer) source.get("emisor_usu_id")) == emisor_usu_id;
-			boolean receptorCorrecto = ((Integer) source.get("receptor_usu_id")) == receptor_usu_id;
-			if (textoCorrecto && timestampCorrecto && urlImagenCorrecto && emisorCorrecto && receptorCorrecto) {
-				isFound = true;
+			// atributos obligatorios (no nullable)
+			int emisorSrc = (Integer) source.get("emisor_usu_id");
+			int receptorSrc = (Integer) source.get("receptor_usu_id");
+			boolean emisorCorrecto = (emisorSrc == emisor_usu_id);
+			boolean receptorCorrecto = (receptorSrc == receptor_usu_id);
+			
+			// atributos opcionales (nullable)
+			String textoSrc = (String) source.get("texto");
+			String urlImagenSrc = (String) source.get("urlImagen");
+			boolean textoCorrecto;
+			boolean urlImagenCorrecto;
+			if (texto == null) {
+				textoCorrecto = (textoSrc == null);
+			} else {
+				textoCorrecto = texto.equals(textoSrc);
+			}
+			if (urlImagen == null) {
+				urlImagenCorrecto = (urlImagenSrc == null);
+			} else {
+				urlImagenCorrecto = urlImagen.equals(urlImagenSrc);
+			}
+			
+			if (textoCorrecto && urlImagenCorrecto && emisorCorrecto && receptorCorrecto) {
+				esEquivalente = true;
 			}
 		}
-		return isFound;
+		System.out.println(String.format("return=%b, mid=%d, txt=%s, t=%s, img=%s, eid=%d, rid=%d, msg=%s", esEquivalente, men_id, texto, Timestamp.format(timestamp), urlImagen, emisor_usu_id, receptor_usu_id, source));
+		return esEquivalente;
 	}
 	
 }

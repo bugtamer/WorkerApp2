@@ -98,11 +98,10 @@ public class ProfesionTest {
 	
 	@Test
 	public void createAndDeleteTest() throws SQLException {
-		boolean isDeleted = false;
 		proDao.create(usuarioBaseId, profesion);
-		isDeleted = proDao.delete(usuarioBaseId);
+		boolean isDeleted = proDao.delete(usuarioBaseId);
 		assertTrue(isDeleted);
-		assertEquals("", proDao.read(usuarioBaseId) );
+		assertTrue(proDao.read(usuarioBaseId) == null);
 	}
 	
 	

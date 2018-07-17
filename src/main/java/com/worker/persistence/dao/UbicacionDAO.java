@@ -35,13 +35,14 @@ public class UbicacionDAO extends DAO {
 	// SERVICES
 	
 	public Ubicacion read(int id) throws SQLException {
-		Ubicacion ubicacion = new Ubicacion();
+		Ubicacion ubicacion = null;
 		String query = "SELECT * FROM ubicacion WHERE ubi_id = ?";
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setInt(1, id);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
+			ubicacion = new Ubicacion();
 			ubicacion.setId( rs.getInt("ubi_id") );
 			ubicacion.setLatitud( rs.getDouble("latitud") );
 			ubicacion.setLongitud( rs.getDouble("longitud") );
@@ -90,10 +91,11 @@ public class UbicacionDAO extends DAO {
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setInt(1, id);
-		stmt.executeUpdate();
+		int rows = stmt.executeUpdate();
 		stmt.close();
 		conn.close();
-		return true;
+		boolean isDeleted = (rows > 0);
+		return isDeleted;
 	}
 
 }

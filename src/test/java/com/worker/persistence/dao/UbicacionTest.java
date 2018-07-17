@@ -63,9 +63,8 @@ public class UbicacionTest {
 		id = ubiDao.create(LAT, LON);
 		boolean isDeleted = ubiDao.delete(id);
 		assertTrue(isDeleted);
-		sut = ubiDao.read(id); // nunca retorna null
-		assertEquals(0, sut.getLatitud(), 0);
-		assertEquals(0, sut.getLongitud(), 0);
+		sut = ubiDao.read(id);
+		assertTrue(sut == null);
 	}
 	
 	
