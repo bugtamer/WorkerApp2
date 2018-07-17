@@ -23,60 +23,60 @@ import com.worker.util.LoginHelper;
 @WebServlet("/getMensajes")
 public class MensajeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String json = "[]";
 		boolean hayUsuarioLogueado = (LoginHelper.getUsuarioEnSesion(request) != null);
 		if (hayUsuarioLogueado) {
 			String usuarioId = request.getParameter("uid");
 			String manitasId = request.getParameter("manitasId");
-			
+
 			List<Mensaje> conversacion = getConversacion(usuarioId, manitasId);
 			json = parseJson(usuarioId, conversacion);
 		}
-		
+
 		response.setContentType( "application/json" );
 		PrintWriter out = response.getWriter();
 		out.print( json );
 		out.flush();
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// DETALLES DE IMPLEMENTACION DE MAS BAJO NIVEL
-	
+
 	private List<Mensaje> getConversacion(String usuarioId, String manitasId) {
-		Usuario usuario = UsuarioEM.getInstance().getUsuarioById(usuarioId);
+		Usuario usuario = UsuarioEM.getInstance().getUsuarioById(Integer.parseInt(usuarioId));
 		Manitas manitas = ManitasEM.getInstance().getManitasById(manitasId);
 		return MensajeEM.getInstance().getConversacionEntre(usuario, manitas);
 	}
-	
-	
-	
+
+
+
 	private String parseJson(String usuarioId, List<Mensaje> conversacion) {
 		System.out.println("MensajeSerlet conversacion.size() = " + conversacion.size());
 		System.out.println("MensajeSerlet usuarioId = " + usuarioId);
 		int uid = Integer.parseInt(usuarioId);
-		
+
 		StringBuilder json = new StringBuilder();
 		json.append("[");
 		for (int i = 0;   i < conversacion.size();   i++) {
 			SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
-			
+
 			Mensaje m = conversacion.get(i);
 			String autor = (uid == m.getEmisor().getId()) ? "self" : "other";
 			String nombre = m.getEmisor().getNombre();
 			String mensaje = m.getTexto(); // puede ser null
 			String imagen = m.getImagen(); // puede ser null
 			String hora = sdf.format( m.getTimestamp() );
-			
+
 			System.out.println("MensajeSerlet emisorId = " + m.getEmisor().getId());
-			
+
 			json.append("{");
 			json.append( keyVaule("autor", autor) ).append(','); // CSS class: self / other
 			json.append( keyVaule("nombre", nombre) ).append(',');
@@ -84,7 +84,7 @@ public class MensajeServlet extends HttpServlet {
 			json.append( keyVaule("imagen", imagen) ).append(',');
 			json.append( keyVaule("hora", hora) ); // formato: hh:mm
 			json.append("}");
-			
+
 			int proximaPosicion = i + 1;
 			if (proximaPosicion < conversacion.size()) {
 				json.append(',');
@@ -94,9 +94,9 @@ public class MensajeServlet extends HttpServlet {
 		System.out.println("MensajeSerlet JSON = " + json.toString());
 		return json.toString();
 	}
-	
-	
-	
+
+
+
 	private StringBuilder keyVaule(String key, String value) {
 		StringBuilder entry = new StringBuilder();
 		entry.append('"').append(key).append('"');
@@ -108,5 +108,5 @@ public class MensajeServlet extends HttpServlet {
 		}
 		return entry;
 	}
-	
+
 }

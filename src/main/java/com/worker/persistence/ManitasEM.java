@@ -95,8 +95,8 @@ public class ManitasEM extends EntityManager{
 		return listaManitas;
 	}
 
-	
-	
+
+
 	// 3-Obtener manitas por ID
 	public Manitas getManitasById(String id) {
 		System.out.println(String.format("ManitasEM.getManitasById(%s)", id));
@@ -112,7 +112,7 @@ public class ManitasEM extends EntityManager{
 			query.setParameter("id", manitasId);
 			profesion = (String) query.getSingleResult();
 			tx.commit();
-			Usuario usuarioBase = UsuarioEM.getInstance().getUsuarioById(id);
+			Usuario usuarioBase = UsuarioEM.getInstance().getUsuarioById(manitasId);
 			if ((usuarioBase != null) && (profesion != null)) {
 				manitas = new Manitas(usuarioBase, profesion);
 				List<Valoracion> listaValoraciones = ValoracionEM.getInstance().getValorecionesDelManitas(id);
@@ -134,9 +134,9 @@ public class ManitasEM extends EntityManager{
 		System.out.println(String.format("ManitasEM.getManitasById(%s) = %s", id, manitas));
 		return manitas;
 	}
-	
-	
-	
+
+
+
 	public boolean save(Manitas emp) {
 		Session session =factory.openSession();
 		Transaction trans = session.beginTransaction();
@@ -144,7 +144,7 @@ public class ManitasEM extends EntityManager{
 		trans.commit();
 		session.close();
 		return true;
-		
+
 	}
 	public Manitas getProfesionalByID(int id) {
 		Session session = factory.openSession();
@@ -154,6 +154,6 @@ public class ManitasEM extends EntityManager{
 		session.close();
 		return man;
 	}
-	
+
 
 }

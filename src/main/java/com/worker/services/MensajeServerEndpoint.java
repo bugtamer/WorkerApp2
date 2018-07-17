@@ -25,37 +25,37 @@ import com.worker.persistence.UsuarioEM;
  */
 @ServerEndpoint("/mensaje")
 public class MensajeServerEndpoint {
-	
-	
+
+
 	@OnOpen
 	public void onOpen(Session session) throws IOException {
 		System.out.println("onOpen()");
 		//session.getBasicRemote().sendText("Connected!");
 	}
-	
-	
+
+
 	@OnMessage
 	public void onMessage(String message) {
 		Mensaje nuevoMensaje = parseMensaje(message);
 		MensajeEM.getInstance().addMensaje(nuevoMensaje);
 	}
-	
-	
+
+
 	@OnClose
 	public void onClose(Session session, CloseReason reason) {
 		System.out.println("onClose()");
 	}
-	
-	
+
+
 	@OnError
 	public void onError(Session session, Throwable throwable) {
 		System.out.println("onError()");
 	}
-	
-	
-	
-	// DETALLES DE IMPLEMENTACION DE MÁS BAJO NIVEL
-	
+
+
+
+	// DETALLES DE IMPLEMENTACION DE MÃ�S BAJO NIVEL
+
 	private Mensaje parseMensaje(String mensajeChatJSON) {
 		System.out.println("onMessage()=" + mensajeChatJSON);
 		UsuarioEM usuarioEM = UsuarioEM.getInstance();
@@ -68,7 +68,7 @@ public class MensajeServerEndpoint {
 		Pattern p = Pattern.compile(".+\\\"usuarioId\\\":\\\"(?<usuarioId>\\d+)\\\".+\\\"manitasId\\\":\\\"(?<manitasId>\\d+)\\\".+\\\"mensaje\\\":\\\"(?<mensaje>.+)\\\",.+");
 		Matcher m = p.matcher(mensajeChatJSON);
 		if (m.find()) {
-			emisor   = usuarioEM.getUsuarioById(m.group("usuarioId"));
+			emisor   = usuarioEM.getUsuarioById( Integer.parseInt(m.group("usuarioId")) );
 			receptor = manitasEM.getManitasById(m.group("manitasId"));
 			texto    = m.group("mensaje");
 			System.out.println("emisor="   + emisor);
@@ -84,5 +84,5 @@ public class MensajeServerEndpoint {
 //		}
 		return mensajeRecibido;
 	}
-	
+
 }
