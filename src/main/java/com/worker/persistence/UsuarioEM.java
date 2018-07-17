@@ -84,11 +84,11 @@ public class UsuarioEM extends EntityManager {
 
 
 
-	public Usuario getUsuarioById(String id) {
+	public Usuario getUsuarioById(int id) {
 		Usuario usuario = null;
 		Session session = null;
 		try {
-			int usuarioId = Integer.parseInt( id );
+			int usuarioId = id ;
 			session = factory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createQuery("FROM Usuario WHERE id = :id", Usuario.class);
@@ -105,5 +105,42 @@ public class UsuarioEM extends EntityManager {
 		}
 		return usuario;
 	}
+	
+	
+
+	
+	public boolean deleteUsuario(int id) {
+		boolean result = false;
+		Session session = null;
+
+		session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		Usuario uDelete = new Usuario();
+		uDelete= session.load(Usuario.class, id);
+		uDelete.setId(id);
+
+		session.delete(uDelete);
+		tx.commit();
+		session.close();
+		System.out.println("Usuario eliminado" + result);
+
+		return result;
+
+	}
+	
+	public Usuario add(){
+		Usuario usuario = null;
+		
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		
+		session.update(usuario);
+		System.out.println("entra usuarioEM"+usuario);
+		t.commit();
+		session.close();
+	
+		return usuario;
+}
+
 
 }
