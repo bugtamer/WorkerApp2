@@ -58,6 +58,14 @@ public class ValoracionTest {
 	
 	
 	@Test
+	public void createAndReadTest() throws SQLException {
+		valId = valDao.create(comentario, puntuacion, AUTOR, RECEPTOR);
+		assertTrue( sonEquivalentes(valId, comentario, puntuacion, AUTOR, RECEPTOR, valDao.read(valId)) );
+	}
+	
+	
+	
+	@Test
 	public void createAndReadRecibidasTest() throws SQLException {
 		valId = valDao.create(comentario, puntuacion, AUTOR, RECEPTOR);
 		assertTrue( isFound(valId, valDao.readRecibidas(RECEPTOR)) );
@@ -82,7 +90,7 @@ public class ValoracionTest {
 		String comentario2 = "UPDATED " + comentario;
 		int puntuacion2 = 1 + rnd.nextInt(5);
 		valDao.update(valId, comentario2, puntuacion2);
-		assertTrue( estaActualizado(valId, comentario2, puntuacion2, AUTOR, RECEPTOR, valDao.readRecibidas(RECEPTOR)) ); // motivo readRecibidas(): no hay metodo para recuperar por ID
+		assertTrue( sonEquivalentes(valId, comentario2, puntuacion2, AUTOR, RECEPTOR, valDao.read(valId)) );
 	}
 	
 	
@@ -108,10 +116,12 @@ public class ValoracionTest {
 	
 	
 	
+	// DETALLES DE IMPLEMENTACION DE MAS BAJO NIVEL
+	
 	private boolean isFound(int val_id, List<Map<String, Object>> source) {
 		boolean isFound = false;
 		for (Map<String, Object> candidate : source) {
-			if (((Integer) candidate.get("val_id")) == val_id) {
+			if (((Integer) candidate.get(ValoracionDAO.VALORACION_ID)) == val_id) {
 				isFound = true;
 				break;
 			}
@@ -121,21 +131,24 @@ public class ValoracionTest {
 	
 	
 	
-	private boolean estaActualizado(int val_id, String comentario, int puntuacion, int autor_id, int receptor_id, List<Map<String, Object>> source) {
-		boolean isFound = false;
-		for (Map<String, Object> candidate : source) {
-			if (((Integer) candidate.get("val_id")) == val_id) {
-				boolean comentarioCorrecto = ((String) candidate.get("comentario")).equals(comentario);
-				boolean puntuacionCorrecta = ((Integer) candidate.get("puntuacion")) == puntuacion;
-				boolean autorCorrecto = ((Integer) candidate.get("autor_usu_id")) == autor_id;
-				boolean receptorCorrecto = ((Integer) candidate.get("receptor_fk_usu")) == receptor_id;
-				if (comentarioCorrecto && puntuacionCorrecta && autorCorrecto && receptorCorrecto) {
-					isFound = true;
-					break;
-				}
+	private boolean sonEquivalentes(int val_id, String comentario, int puntuacion, int autor_id, int receptor_id, Map<String, Object> source) {
+		boolean areEquals = false;
+		int val_idSrc = (Integer) source.get(ValoracionDAO.VALORACION_ID);
+		String comentarioSrc = (String) source.get(ValoracionDAO.COMENTARIO);
+		int puntuacionSrc = (Integer) source.get(ValoracionDAO.PUNTUACION);
+		int autor_idSrc = (Integer) source.get(ValoracionDAO.AUTOR_ID);
+		int receptor_idSrc = (Integer) source.get(ValoracionDAO.RECEPTOR_ID);
+		if (val_idSrc == val_id) {
+			boolean comentarioCorrecto = comentarioSrc.equals(comentario);
+			boolean puntuacionCorrecta = (puntuacionSrc == puntuacion);
+			boolean autorCorrecto = (autor_idSrc == autor_id);
+			boolean receptorCorrecto = (receptor_idSrc == receptor_id);
+			if (comentarioCorrecto && puntuacionCorrecta && autorCorrecto && receptorCorrecto) {
+				areEquals = true;
 			}
 		}
-		return isFound;
+		System.out.println(String.format("sonEquivalentes() >>> val=%d, co=%s, punt=%s, aut=%d, recp=%d == src=%s", val_id, comentario, puntuacion, autor_id, receptor_id, source));
+		return areEquals;
 	}
 	
 }

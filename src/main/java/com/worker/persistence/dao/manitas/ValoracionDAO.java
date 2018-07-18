@@ -21,6 +21,13 @@ public class ValoracionDAO extends DAO {
 
 	// ATTRIBUTES
 
+	public static final String VALORACION_ID = "val_id";
+	public static final String COMENTARIO = "comentario";
+	public static final String PUNTUACION = "puntuacion";
+	public static final String TIMESTAMP = "timestamp";
+	public static final String AUTOR_ID = "autor_usu_id";
+	public static final String RECEPTOR_ID = "receptor_fk_usu";
+	
 	private static ValoracionDAO singletonManitasValDAO;
 
 
@@ -40,6 +47,23 @@ public class ValoracionDAO extends DAO {
 
 	// SERVICES
 	
+	public Map<String, Object> read(int valId) throws SQLException {
+		Map<String, Object> valoracion = new HashMap<>();
+		String query = "SELECT * FROM valoracion WHERE val_id = ?";
+		Connection conn = DriverManager.getConnection(URL);
+		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setInt(1, valId);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			valoracion = parseToData(rs);
+		}
+		stmt.close();
+		conn.close();
+		return valoracion;
+	}
+	
+	
+	
 	public List<Map<String, Object>> readHechas(int id) throws SQLException {
 		List<Map<String, Object>> valoraciones = new ArrayList<>();
 		String query = "SELECT * FROM valoracion WHERE autor_usu_id = ?";
@@ -48,14 +72,7 @@ public class ValoracionDAO extends DAO {
 		stmt.setInt(1, id);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-			Map<String, Object> valoracion = new HashMap<String, Object>();
-			valoracion.put("val_id", rs.getInt("val_id"));
-			valoracion.put("comentario", rs.getString("comentario"));
-			valoracion.put("puntuacion", rs.getInt("puntuacion"));
-			valoracion.put("timestamp", Timestamp.trimDateFromDB(rs.getString("timestamp")));
-			valoracion.put("autor_usu_id", rs.getInt("autor_usu_id"));
-			valoracion.put("receptor_fk_usu", rs.getInt("receptor_fk_usu"));
-			valoraciones.add(valoracion);
+			valoraciones.add( parseToData(rs) );
 		}
 		stmt.close();
 		conn.close();
@@ -64,22 +81,15 @@ public class ValoracionDAO extends DAO {
 	
 	
 	
-	public List<Map<String, Object>> readRecibidas(int id) throws SQLException {
+	public List<Map<String, Object>> readRecibidas(int receptorId) throws SQLException {
 		List<Map<String, Object>> valoraciones = new ArrayList<>();
 		String query = "SELECT * FROM valoracion WHERE receptor_fk_usu = ?";
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement(query);
-		stmt.setInt(1, id);
+		stmt.setInt(1, receptorId);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-			Map<String, Object> valoracion = new HashMap<String, Object>();
-			valoracion.put("val_id", rs.getInt("val_id"));
-			valoracion.put("comentario", rs.getString("comentario"));
-			valoracion.put("puntuacion", rs.getInt("puntuacion"));
-			valoracion.put("timestamp", Timestamp.trimDateFromDB(rs.getString("timestamp")));
-			valoracion.put("autor_usu_id", rs.getInt("autor_usu_id"));
-			valoracion.put("receptor_fk_usu", rs.getInt("receptor_fk_usu"));
-			valoraciones.add(valoracion);
+			valoraciones.add( parseToData(rs) );
 		}
 		stmt.close();
 		conn.close();
@@ -151,6 +161,21 @@ public class ValoracionDAO extends DAO {
 		conn.close();
 		boolean isDeleted = (rows > 0);
 		return isDeleted;
+	}
+	
+	
+	
+	// DETALLES DE IMPLEMENTACION DE MAS BAJO NIVEL
+	
+	private Map<String, Object> parseToData(ResultSet rs) throws SQLException {
+		Map<String, Object> valoracion = new HashMap<String, Object>();
+		valoracion.put(VALORACION_ID, rs.getInt("val_id"));
+		valoracion.put(COMENTARIO, rs.getString("comentario"));
+		valoracion.put(PUNTUACION, rs.getInt("puntuacion"));
+		valoracion.put(TIMESTAMP, Timestamp.trimDateFromDB(rs.getString("timestamp")));
+		valoracion.put(AUTOR_ID, rs.getInt("autor_usu_id"));
+		valoracion.put(RECEPTOR_ID, rs.getInt("receptor_fk_usu"));
+		return valoracion;
 	}
 	
 }

@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "5bb121ec-3dad-4566-a5e2-c16eec6475cb",
+		"_postman_id": "b3b48450-f66c-44bc-9dbf-ae190ac2145b",
 		"name": "WorkerApp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "/authenticate (todo OK)",
-			"description": "",
+			"description": null,
 			"item": [
 				{
-					"name": "/authenticate",
+					"name": "202 /authenticate",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -44,21 +44,27 @@
 						"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "/ubicacion (todo OK)",
-			"description": "",
-			"item": [
+				},
 				{
-					"name": "202 /ubicacion/2",
+					"name": "403 /authenticate (credenciales incorrectas)",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "email",
+								"value": "xxx"
+							},
+							{
+								"key": "password",
+								"value": "xxx"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/1",
+							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,6 +73,101 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"authenticate"
+							]
+						},
+						"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
+					},
+					"response": []
+				},
+				{
+					"name": "412 /authenticate (sin password)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "email",
+								"value": "xxx"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"authenticate"
+							]
+						},
+						"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
+					},
+					"response": []
+				},
+				{
+					"name": "412 /authenticate (sin email)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "password",
+								"value": "xxx"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"authenticate"
+							]
+						},
+						"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/ubicacion (todo OK)",
+			"description": null,
+			"item": [
+				{
+					"name": "202 /ubicacion/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"v2",
 								"ubicacion",
 								"1"
 							]
@@ -79,9 +180,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/0",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -90,6 +194,7 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion",
 								"0"
 							]
@@ -111,9 +216,12 @@
 								"value": "13"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -122,6 +230,7 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion"
 							]
 						}
@@ -129,7 +238,7 @@
 					"response": []
 				},
 				{
-					"name": "202 /ubicacion/{id}",
+					"name": "202 /ubicacion/{ID}",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -142,9 +251,12 @@
 								"value": "78"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/96",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/291",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -153,8 +265,9 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion",
-								"96"
+								"291"
 							]
 						}
 					},
@@ -174,9 +287,12 @@
 								"value": "78"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/0",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -185,6 +301,7 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion",
 								"0"
 							]
@@ -193,13 +310,16 @@
 					"response": []
 				},
 				{
-					"name": "202 /ubicacion/{id}",
+					"name": "202 /ubicacion/{ID}",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/96",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/291",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -208,8 +328,9 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion",
-								"96"
+								"291"
 							]
 						}
 					},
@@ -220,9 +341,12 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/ubicacion/0",
+							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -231,6 +355,7 @@
 							"path": [
 								"WorkerApp2",
 								"api",
+								"v2",
 								"ubicacion",
 								"0"
 							]
@@ -241,11 +366,11 @@
 			]
 		},
 		{
-			"name": "/usuario (2 fallan)",
-			"description": "",
+			"name": "/usuario (3 falla + 4 sin probar)",
+			"description": null,
 			"item": [
 				{
-					"name": "/usuarios/listausuarios (falla)",
+					"name": "202 /usuarios/listausuarios (ok)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -271,7 +396,7 @@
 					"response": []
 				},
 				{
-					"name": "/usuario/{id} (falla)",
+					"name": "202 /usuario/1 (falla)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -280,7 +405,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuario/1",
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -289,29 +414,209 @@
 							"path": [
 								"WorkerApp2",
 								"api",
-								"usuario",
+								"usuarios",
 								"1"
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "404 /usuario/0 (sin probar)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "202 /usuario/1 (sin probar)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404 /usuario/0 (falla)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "202 /usuario (sin probar)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "202 /usuario/{id} (sin probar)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404 /usuario/0 (falla: error 500)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"usuarios",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a468ac7-eff2-430c-990d-535059c228d8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "996eae9b-1e0d-4054-925d-9b5518521f8b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
 		{
 			"name": "/profesional",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/{id}/profesion (2 fallan)",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "202 /profesional/2/profesion",
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/3/profesion",
 									"protocol": "http",
@@ -335,7 +640,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
 									"protocol": "http",
@@ -359,7 +667,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/profesion?s=XXXXXXX",
 									"protocol": "http",
@@ -388,7 +699,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/profesion?s=co",
 									"protocol": "http",
@@ -422,7 +736,10 @@
 										"value": "Profesion BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
 									"protocol": "http",
@@ -451,7 +768,10 @@
 										"value": "Profesion BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
 									"protocol": "http",
@@ -480,7 +800,10 @@
 										"value": "Profesion NUEVA"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/108/profesion",
 									"protocol": "http",
@@ -509,7 +832,10 @@
 										"value": "Profesion NUEVA"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
 									"protocol": "http",
@@ -533,7 +859,10 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
 									"protocol": "http",
@@ -557,7 +886,10 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
 									"protocol": "http",
@@ -581,7 +913,7 @@
 				},
 				{
 					"name": "/{id}/educacion (todo OK)",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "202 /profesional/2/educacion",
@@ -593,7 +925,10 @@
 										"value": "NUEVA Educación"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/2/educacion",
 									"protocol": "http",
@@ -626,7 +961,10 @@
 										"value": "NUEVA Educación BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/2/educacion",
 									"protocol": "http",
@@ -659,7 +997,10 @@
 										"value": "Educación NUEVA"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/0/educacion",
 									"protocol": "http",
@@ -683,7 +1024,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/2/educacion",
 									"protocol": "http",
@@ -707,7 +1051,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/0/educacion",
 									"protocol": "http",
@@ -736,7 +1083,10 @@
 										"value": "NUEVA Educación"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/2/educacion",
 									"protocol": "http",
@@ -765,7 +1115,10 @@
 										"value": "NUEVA Educación"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proedu/4/educacion",
 									"protocol": "http",
@@ -789,7 +1142,7 @@
 				},
 				{
 					"name": "/{id}/experiencia (todo OK)",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "202 /profesional/2/experiencia",
@@ -801,7 +1154,10 @@
 										"value": "NUEVA Experiencia"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/2/experiencia",
 									"protocol": "http",
@@ -825,7 +1181,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/2/experiencia",
 									"protocol": "http",
@@ -849,7 +1208,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/0/experiencia",
 									"protocol": "http",
@@ -882,7 +1244,10 @@
 										"value": "NUEVA Experiencia BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/2/experiencia",
 									"protocol": "http",
@@ -915,7 +1280,10 @@
 										"value": "NUEVA Experiencia BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/0/experiencia",
 									"protocol": "http",
@@ -944,7 +1312,10 @@
 										"value": "NUEVA Experiencia BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/2/experiencia",
 									"protocol": "http",
@@ -973,7 +1344,10 @@
 										"value": "NUEVA Experiencia BORRAME"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proexp/0/experiencia",
 									"protocol": "http",
@@ -996,15 +1370,18 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "/{id}/valoracion (3 fallos)",
-					"description": "",
+					"name": "/{id}/valoracion (todo OK)",
+					"description": null,
 					"item": [
 						{
 							"name": "202 /profesional/2/valoracion/media",
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proval/2/valoracion/media",
 									"protocol": "http",
@@ -1020,16 +1397,20 @@
 										"valoracion",
 										"media"
 									]
-								}
+								},
+								"description": "Devolvera 0 (cero), si no encuentra el profesional."
 							},
 							"response": []
 						},
 						{
-							"name": "404 /profesional/0/valoracion/media (fail)",
+							"name": "202 /profesional/0/valoracion/media",
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion/media",
 									"protocol": "http",
@@ -1045,7 +1426,8 @@
 										"valoracion",
 										"media"
 									]
-								}
+								},
+								"description": "Devolvera 0 (cero), si no encuentra el profesional."
 							},
 							"response": []
 						},
@@ -1054,7 +1436,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proval/2/valoracion",
 									"protocol": "http",
@@ -1078,137 +1463,10 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"proval",
-										"0",
-										"valoracion"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "202 /profesional/{ID}/valoracion",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/proval/16/valoracion",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"proval",
-										"16",
-										"valoracion"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "404 /profesional/0/valoracion",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"proval",
-										"0",
-										"valoracion"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "202 /profesional/{ID}/valoracion (fails)",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "val_id",
-										"value": "11"
-									},
-									{
-										"key": "comentario",
-										"value": "NUEVO comentario BORRAME"
-									},
-									{
-										"key": "puntuacion",
-										"value": "3"
-									},
-									{
-										"key": "autor_id",
-										"value": "1"
-									}
-								],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"proval",
-										"0",
-										"valoracion"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "404 /profesional/0/valoracion (fails)",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "val_id",
-										"value": "11"
-									},
-									{
-										"key": "comentario",
-										"value": "NUEVO comentario BORRAME"
-									},
-									{
-										"key": "puntuacion",
-										"value": "3"
-									},
-									{
-										"key": "autor_id",
-										"value": "1"
-									}
-								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
 									"protocol": "http",
@@ -1245,7 +1503,10 @@
 										"value": "1"
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost:8080/WorkerApp2/api/proval/2/valoracion",
 									"protocol": "http",
@@ -1263,13 +1524,147 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "202 /profesional/{ID}/valoracion",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "val_id",
+										"value": "180"
+									},
+									{
+										"key": "comentario",
+										"value": "NUEVO comentario BORRAME"
+									},
+									{
+										"key": "puntuacion",
+										"value": "3"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/proval/2/valoracion",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"proval",
+										"2",
+										"valoracion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 /profesional/0/valoracion",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "val_id",
+										"value": "11"
+									},
+									{
+										"key": "comentario",
+										"value": "NUEVO comentario BORRAME"
+									},
+									{
+										"key": "puntuacion",
+										"value": "3"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"proval",
+										"0",
+										"valoracion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "202 /profesional/{ID}/valoracion",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/proval/180/valoracion",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"proval",
+										"180",
+										"valoracion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 /profesional/0/valoracion",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/proval/0/valoracion",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"proval",
+										"0",
+										"valoracion"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
 				},
 				{
 					"name": "/{id} (todo OK)",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "202 /profesional/2",
@@ -1418,7 +1813,7 @@
 		},
 		{
 			"name": "/mensajes (faltan: GET, POST)",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/mensajes/{id} (SIN PROBAR)",
