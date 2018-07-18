@@ -4,17 +4,16 @@ import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonManagedReference;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -23,35 +22,38 @@ import org.hibernate.annotations.LazyCollectionOption;
 @DiscriminatorValue("Manitas")
 @PrimaryKeyJoinColumn(name="fk_usu") // id heredado de Usuario, pero mapeado como indica la anotación
 public class Manitas extends Usuario {
-	
+
 	@Column(nullable = false)
 	private String profesion;
 	//@LazyCollection(LazyCollectionOption.FALSE)
 	//@ElementCollection(fetch=FetchType.EAGER)
-	
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "experiencia",   joinColumns = @JoinColumn(name="exp_id"))
 	@Column(nullable=false)
 	private List<String> experiencia;
-	
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "educacion",   joinColumns = @JoinColumn(name="edu_id"))
 	@Column(nullable=false)
 	private List<String> educacion;
-	
+
 	@OneToMany(mappedBy = "receptor", fetch=FetchType.EAGER)
 	@JsonManagedReference
 	private List<Valoracion> valoraciones;
 
 
 
-	public Manitas() { }
-	
-	
+	public Manitas() {
+		this.educacion = new ArrayList<>();
+	}
+
+
 	public Manitas(Usuario usuario, String profesion) {
 		super(usuario.getNombre(), usuario.getApellidos(), usuario.getEmail(), usuario.getPassword());
+		this.educacion = new ArrayList<>();
 		setId( usuario.getId() );
 		setUbicacion( usuario.getUbicacion() );
 		setAvatar( usuario.getAvatar() );
@@ -68,8 +70,8 @@ public class Manitas extends Usuario {
 	public String getProfesion() {
 		return profesion;
 	}
-	
-	
+
+
 
 
 	public void setProfesion(String profesion) {
@@ -108,7 +110,7 @@ public class Manitas extends Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setExperiencia(List<String> experiencia) {
 		this.experiencia = experiencia;
 	}
@@ -120,7 +122,7 @@ public class Manitas extends Usuario {
 	public void setValoracion(List<Valoracion> valoraciones) {
 		this.valoraciones = valoraciones;
 	}
-	
+
 	public boolean addExperiencia(String experiencia) {
 		return this.experiencia.add(experiencia);
 	}
@@ -155,5 +157,5 @@ public class Manitas extends Usuario {
 
 
 
-	
+
 }
