@@ -102,7 +102,21 @@ public class AuthService extends JSONService {
 		} catch (JoseException e) {
 			e.printStackTrace();
 		}
+		
 
-		return Response.status(200).entity(jwt).build();
+		return Response.status(200).entity( parseToJSON(jwt) ).build();
 	}
+	
+	
+	
+	private String parseToJSON(String rawToken) {
+		StringBuilder token = new StringBuilder();
+		token.append('{');
+		token.append('"').append("token").append('"');
+		token.append(':');
+		token.append('"').append(rawToken).append('"');
+		token.append('}');
+		return token.toString();
+	}
+	
 }

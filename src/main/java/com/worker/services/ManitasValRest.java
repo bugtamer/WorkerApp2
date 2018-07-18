@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.worker.persistence.dao.DAO;
 import com.worker.persistence.dao.manitas.ValoracionDAO;
@@ -23,7 +24,17 @@ public class ManitasValRest {
 	@GET
 	@Path("/{id}/valoracion")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getValoracionManitas(@PathParam("id") int manitasId) {
+	public Response getValoracionManitas(
+			@PathParam("id") int manitasId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		List<Map<String, Object>> valoraciones;
 		try {
@@ -45,7 +56,17 @@ public class ManitasValRest {
 	@GET
 	@Path("/{id}/valoracion/media")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getValoracionMediaManitas(@PathParam("id") int manitasId) {
+	public Response getValoracionMediaManitas(
+			@PathParam("id") int manitasId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		int avg = -1;
 		try {
@@ -66,7 +87,17 @@ public class ManitasValRest {
 	
 	@DELETE
 	@Path("/{id}/valoracion")
-	public Response deleteValoracionManitas(@PathParam("id") int valId) {
+	public Response deleteValoracionManitas(
+			@PathParam("id") int valId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			boolean isDeleted = ValoracionDAO.getInstance().delete(valId);
@@ -91,8 +122,16 @@ public class ManitasValRest {
 			@HeaderParam("comentario") String comentario,
 			@HeaderParam("puntuacion") int puntuacion,
 			@HeaderParam("autor_id") int autor_usu_id,
-			@PathParam("id") int receptor_fk_usu) {
+			@PathParam("id") int receptor_fk_usu,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int newId = ValoracionDAO.getInstance().create(comentario, puntuacion, autor_usu_id, receptor_fk_usu);
@@ -112,8 +151,16 @@ public class ManitasValRest {
 			@HeaderParam("val_id") int val_id,
 			@HeaderParam("comentario") String comentario,
 			@HeaderParam("puntuacion") int puntuacion,
-			@PathParam("id") int receptor_fk_usu) {
+			@PathParam("id") int receptor_fk_usu,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			Object receptorIdObj = ValoracionDAO.getInstance().read(val_id).get(ValoracionDAO.RECEPTOR_ID);

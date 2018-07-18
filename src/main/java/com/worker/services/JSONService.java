@@ -15,6 +15,8 @@ import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.lang.JoseException;
 
+import com.worker.persistence.dao.DAO;
+
 @Path("/json")
 public class JSONService {
 	private static Logger logger = Logger.getLogger("JSONService");
@@ -41,7 +43,7 @@ public class JSONService {
 
 	/* AUX */
 	protected int getUsuarioIdFromToken(String token) {
-		int usuarioId = -1;
+		int usuarioId = DAO.NO_ID;
 
 		if (token == null)
 			return usuarioId;

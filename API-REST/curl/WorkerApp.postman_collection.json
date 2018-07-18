@@ -10,7 +10,34 @@
 			"description": null,
 			"item": [
 				{
-					"name": "202 /authenticate",
+					"name": "202 /authenticate (GENERA token resto request)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "623fab3f-3062-474c-9b3c-1fb5ef32926c",
+								"type": "text/javascript",
+								"exec": [
+									"const echoPostRequest = {",
+									"  url: 'http://localhost:8080/WorkerApp2/api/authenticate',",
+									"  method: 'GET',",
+									"  accept: 'application/json',",
+									"  header: ['email:manolo@workerapp.com', 'password:123456']",
+									"};",
+									"",
+									"pm.sendRequest(echoPostRequest, function (err, res) {",
+									"    if (err) {",
+									"        console.log('authenticate ERROR:', err);",
+									"    } else {",
+									"        let token = JSON.parse( res.text() );",
+									"        pm.environment.set(\"token\", token.token);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -20,7 +47,56 @@
 							},
 							{
 								"key": "password",
-								"value": "@Ab12345",
+								"value": "123456",
+								"description": "123456 ó @Ab12345"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"WorkerApp2",
+								"api",
+								"authenticate"
+							]
+						},
+						"description": "\n# password: 123456\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: 123456\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n\n\n\n# password: @Ab12345\n\ncurl -H \"Content-Type: application/json\" -H \"email: manolo@workerapp.com\" -H \"password: @Ab12345\" -v -X GET http://localhost:8080/WorkerApp2/api/authenticate\n"
+					},
+					"response": []
+				},
+				{
+					"name": "202 /authenticate (ELIMINA token resto request)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c420ba08-a5f4-4ba9-8824-5ed265acda82",
+								"type": "text/javascript",
+								"exec": [
+									"pm.environment.set(\"token\", '');",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "email",
+								"value": "manolo@workerapp.com"
+							},
+							{
+								"key": "password",
+								"value": "123456",
 								"description": "123456 ó @Ab12345"
 							}
 						],
@@ -152,7 +228,12 @@
 					"name": "202 /ubicacion/2",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -179,7 +260,12 @@
 					"name": "404 /ubicacion/0",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -207,6 +293,10 @@
 					"request": {
 						"method": "POST",
 						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							},
 							{
 								"key": "latitud",
 								"value": "12"
@@ -243,6 +333,10 @@
 						"method": "PUT",
 						"header": [
 							{
+								"key": "token",
+								"value": "{{token}}"
+							},
+							{
 								"key": "latitud",
 								"value": "56"
 							},
@@ -279,6 +373,10 @@
 						"method": "PUT",
 						"header": [
 							{
+								"key": "token",
+								"value": "{{token}}"
+							},
+							{
 								"key": "latitud",
 								"value": "56"
 							},
@@ -313,7 +411,12 @@
 					"name": "202 /ubicacion/{ID}",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -340,7 +443,12 @@
 					"name": "404 /ubicacion/0",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -373,7 +481,12 @@
 					"name": "202 /usuarios/listausuarios (ok)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -399,7 +512,12 @@
 					"name": "202 /usuario/1 (falla)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -425,7 +543,12 @@
 					"name": "404 /usuario/0 (sin probar)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -451,7 +574,12 @@
 					"name": "202 /usuario/1 (sin probar)",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -477,7 +605,12 @@
 					"name": "404 /usuario/0 (falla)",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -503,7 +636,12 @@
 					"name": "202 /usuario (sin probar)",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -528,7 +666,12 @@
 					"name": "202 /usuario/{id} (sin probar)",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -554,7 +697,12 @@
 					"name": "404 /usuario/0 (falla: error 500)",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -612,7 +760,12 @@
 							"name": "202 /profesional/2/profesion",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -639,7 +792,12 @@
 							"name": "404 /profesional/0/profesion",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -666,7 +824,12 @@
 							"name": "202 /profesional/profesion?s=co",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -698,7 +861,12 @@
 							"name": "404 /profesional/profesion?s=XXXXXXX",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -732,6 +900,10 @@
 								"method": "PUT",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "profesion",
 										"value": "Profesion BORRAME"
 									}
@@ -763,6 +935,10 @@
 							"request": {
 								"method": "PUT",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "profesion",
 										"value": "Profesion BORRAME"
@@ -796,6 +972,10 @@
 								"method": "POST",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "profesion",
 										"value": "Profesion NUEVA"
 									}
@@ -828,6 +1008,10 @@
 								"method": "POST",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "profesion",
 										"value": "Profesion NUEVA"
 									}
@@ -858,7 +1042,12 @@
 							"name": "202 /profesional/{id}/profesion",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -885,7 +1074,12 @@
 							"name": "404 /profesional/0/profesion",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -912,7 +1106,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "/{id}/educacion (todo OK)",
+					"name": "/{id}/educacion (todo OK con token)",
 					"description": null,
 					"item": [
 						{
@@ -920,6 +1114,10 @@
 							"request": {
 								"method": "POST",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "educacion",
 										"value": "NUEVA Educación"
@@ -952,6 +1150,10 @@
 							"request": {
 								"method": "PUT",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "old_educacion",
 										"value": "NUEVA Educación"
@@ -989,6 +1191,10 @@
 								"method": "PUT",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "old_educacion",
 										"value": "Educación 1"
 									},
@@ -1021,9 +1227,29 @@
 						},
 						{
 							"name": "202 /profesional/2/educacion",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c7d5eea3-d3aa-4b8a-bd81-e0f4aa514392",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1050,7 +1276,12 @@
 							"name": "404 /profesional/0/educacion",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1079,8 +1310,12 @@
 								"method": "DELETE",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "educacion",
-										"value": "NUEVA Educación"
+										"value": "NUEVA Educación BORRAME"
 									}
 								],
 								"body": {
@@ -1111,6 +1346,10 @@
 								"method": "DELETE",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "educacion",
 										"value": "NUEVA Educación"
 									}
@@ -1138,6 +1377,28 @@
 							"response": []
 						}
 					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "44567640-68c9-41aa-b281-1b8b63bc7efe",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2855f8d1-73e4-4472-b84b-8d7fbb2bd202",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
 					"_postman_isSubFolder": true
 				},
 				{
@@ -1149,6 +1410,10 @@
 							"request": {
 								"method": "POST",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "experiencia",
 										"value": "NUEVA Experiencia"
@@ -1180,7 +1445,12 @@
 							"name": "202 /profesional/2/experiencia",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1207,7 +1477,12 @@
 							"name": "404 /profesional/0/experiencia",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1235,6 +1510,10 @@
 							"request": {
 								"method": "PUT",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "old_experiencia",
 										"value": "NUEVA Experiencia"
@@ -1267,10 +1546,14 @@
 							"response": []
 						},
 						{
-							"name": "404 /profesional/0/experiencia Copy",
+							"name": "404 /profesional/0/experiencia",
 							"request": {
 								"method": "PUT",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "old_experiencia",
 										"value": "NUEVA Experiencia"
@@ -1307,6 +1590,10 @@
 							"request": {
 								"method": "DELETE",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "experiencia",
 										"value": "NUEVA Experiencia BORRAME"
@@ -1339,6 +1626,10 @@
 							"request": {
 								"method": "DELETE",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "experiencia",
 										"value": "NUEVA Experiencia BORRAME"
@@ -1377,7 +1668,12 @@
 							"name": "202 /profesional/2/valoracion/media",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1406,7 +1702,12 @@
 							"name": "202 /profesional/0/valoracion/media",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1435,7 +1736,12 @@
 							"name": "202 /profesional/2/valoracion",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1462,7 +1768,12 @@
 							"name": "404 /profesional/0/valoracion",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1490,6 +1801,10 @@
 							"request": {
 								"method": "POST",
 								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									},
 									{
 										"key": "comentario",
 										"value": "NUEVO comentario"
@@ -1531,6 +1846,10 @@
 								"method": "PUT",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "val_id",
 										"value": "180"
 									},
@@ -1571,6 +1890,10 @@
 								"method": "PUT",
 								"header": [
 									{
+										"key": "token",
+										"value": "{{token}}"
+									},
+									{
 										"key": "val_id",
 										"value": "11"
 									},
@@ -1609,7 +1932,12 @@
 							"name": "202 /profesional/{ID}/valoracion",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1636,7 +1964,12 @@
 							"name": "404 /profesional/0/valoracion",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1670,7 +2003,12 @@
 							"name": "202 /profesional/2",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1696,7 +2034,12 @@
 							"name": "404 /profesional/0",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -1819,7 +2162,12 @@
 					"name": "/mensajes/{id} (SIN PROBAR)",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -1844,7 +2192,7 @@
 			]
 		},
 		{
-			"name": "/test",
+			"name": "202 /test",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -1868,6 +2216,55 @@
 				"description": "Para verificar que Jersey está funcionando"
 			},
 			"response": []
+		},
+		{
+			"name": "202 /test/token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/WorkerApp2/api/test/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"WorkerApp2",
+						"api",
+						"test",
+						"token"
+					]
+				},
+				"description": "Para verificar que Jersey está funcionando"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5f681096-1553-48c4-b7ad-6456e693a3e9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fa8e9e49-d3ba-43dd-b1f6-93e6bec88cec",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

@@ -15,7 +15,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.worker.persistence.dao.DAO;
 import com.worker.persistence.dao.manitas.ProfesionDAO;
 
 @Path("/propro") // FIXME mover los metodos a la clase con @Path("/Profesional")
@@ -24,7 +26,17 @@ public class ManitasProRest {
 	@GET
 	@Path("/{id}/profesion")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfesionManitas(@PathParam("id") int manitasId) {
+	public Response getProfesionManitas(
+			@PathParam("id") int manitasId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		String profesion = null;
 		try {
@@ -46,8 +58,17 @@ public class ManitasProRest {
 	@GET
 	@Path("/profesion")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfesionesManitasTerminoBusqueda(@QueryParam("s") String terminoBusqueda) {
+	public Response getProfesionesManitasTerminoBusqueda(
+			@QueryParam("s") String terminoBusqueda,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		List<Map<String, Object>> coincidenciasEncontradas = new ArrayList<>();
 		try {
@@ -68,7 +89,17 @@ public class ManitasProRest {
 	
 	@DELETE
 	@Path("/{id}/profesion")
-	public Response deleteProfesionManitas(@PathParam("id") int manitasId) {
+	public Response deleteProfesionManitas(
+			@PathParam("id") int manitasId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			boolean isDeleted = ProfesionDAO.getInstance().delete(manitasId);
@@ -91,8 +122,16 @@ public class ManitasProRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addProfesionManitas(
 			@PathParam("id") int usuarioBaseId,
-			@HeaderParam("profesion") String profesion) {
+			@HeaderParam("profesion") String profesion,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int newId = ProfesionDAO.getInstance().create(usuarioBaseId, profesion);
@@ -110,8 +149,16 @@ public class ManitasProRest {
 	@Path("/{id}/profesion")
 	public Response updateProfesionManitas(
 			@PathParam("id") int usuarioBaseId,
-			@HeaderParam("profesion") String profesion) {
+			@HeaderParam("profesion") String profesion,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int rows = ProfesionDAO.getInstance().update(usuarioBaseId, profesion);

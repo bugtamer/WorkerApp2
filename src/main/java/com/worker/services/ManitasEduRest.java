@@ -13,7 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.worker.persistence.dao.DAO;
 import com.worker.persistence.dao.manitas.EducacionDAO;
 
 @Path("/proedu") // FIXME mover los metodos a la clase con @Path("/Profesional")
@@ -22,7 +24,17 @@ public class ManitasEduRest {
 	@GET
 	@Path("/{id}/educacion")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getEducacionManitas(@PathParam("id") int manitasId) {
+	public Response getEducacionManitas(
+			@PathParam("id") int manitasId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		List<String> educacion = new ArrayList<>();
 		try {
@@ -45,8 +57,16 @@ public class ManitasEduRest {
 	@Path("/{id}/educacion")
 	public Response deleteEducacionManitas(
 			@PathParam("id") int manitasId,
-			@HeaderParam("educacion") String educacion) {
-		
+			@HeaderParam("educacion") String educacion,
+			@HeaderParam("token") String token) {
+				
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			boolean isDeleted = EducacionDAO.getInstance().delete(manitasId, educacion);
@@ -69,8 +89,16 @@ public class ManitasEduRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addEducacionManitas(
 			@PathParam("id") int manitasId,
-			@HeaderParam("educacion") String educacion) {
+			@HeaderParam("educacion") String educacion,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int newId = EducacionDAO.getInstance().create(manitasId, educacion);
@@ -89,8 +117,16 @@ public class ManitasEduRest {
 	public Response updateEducacionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("old_educacion") String oldEducacion,
-			@HeaderParam("new_educacion") String newEducacion) {
+			@HeaderParam("new_educacion") String newEducacion,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int rows = EducacionDAO.getInstance().update(manitasId, oldEducacion, newEducacion);

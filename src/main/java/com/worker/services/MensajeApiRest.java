@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.worker.persistence.MensajeEM;
 import com.worker.persistence.dao.DAO;
@@ -28,8 +29,16 @@ public class MensajeApiRest extends JSONService {
 			@QueryParam(value = "usuarioId") int usuId,
 			@QueryParam(value = "manitasId") int manId,
 			@QueryParam("from") int from,
-			@QueryParam("limit") int limit) {
+			@QueryParam("limit") int limit,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 
 		//boolean isDeleted = MensajeEM.getInstance().removeMensaje(id);
@@ -48,7 +57,16 @@ public class MensajeApiRest extends JSONService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response removeMensaje(
-			@PathParam(value = "mensajeId") int id) {
+			@PathParam(value = "mensajeId") int id,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 
 		boolean isDeleted = MensajeEM.getInstance().removeMensaje(id);
@@ -70,8 +88,16 @@ public class MensajeApiRest extends JSONService {
 	public Response addMensaje(
 			@HeaderParam(value = "emisorId") int emisor_usu_id,
 			@HeaderParam(value = "receptorId") int receptor_usu_id,
-			@HeaderParam(value = "texto") String texto) {
+			@HeaderParam(value = "texto") String texto,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		int newID = DAO.NO_ID;
 		try {

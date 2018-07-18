@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,8 +15,8 @@ import javax.ws.rs.core.Response.Status;
 
 import com.worker.models.Manitas;
 import com.worker.models.Ubicacion;
-import com.worker.models.Usuario;
 import com.worker.persistence.ManitasEM;
+import com.worker.persistence.dao.DAO;
 
 @Path("/profesional")
 public class ManitasByServicioGeolocalizadoApiRest {
@@ -24,8 +25,10 @@ public class ManitasByServicioGeolocalizadoApiRest {
 	@Path("/geoservice")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getManitasPorServicioYUbicaion(@QueryParam(value = "servicio") String terminoBusqueda,
-			@QueryParam(value = "distancia") double distancia, @QueryParam(value = "latitud") double latitud,
+	public Response getManitasPorServicioYUbicaion(
+			@QueryParam(value = "servicio") String terminoBusqueda,
+			@QueryParam(value = "distancia") double distancia,
+			@QueryParam(value = "latitud") double latitud,
 			@QueryParam(value = "longitud") double longitud) {
 
 		// FIXME quitar hardcoded: no recupera los doubles
@@ -66,7 +69,17 @@ public class ManitasByServicioGeolocalizadoApiRest {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfessional(@PathParam("id") int idp) {
+	public Response getProfessional(
+			@PathParam("id") int idp,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		Manitas unManitas = null;
 		String errorMsg = null;

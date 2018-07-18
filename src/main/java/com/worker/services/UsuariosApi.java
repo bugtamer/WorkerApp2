@@ -1,25 +1,22 @@
 package com.worker.services;
 
 import java.util.List;
-import java.util.logging.Level;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 //import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+import javax.ws.rs.HeaderParam;
 //import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.worker.models.Usuario;
 import com.worker.persistence.UsuarioEM;
-
-import javax.ws.rs.core.Response.Status;
+import com.worker.persistence.dao.DAO;
 
 
 
@@ -31,8 +28,14 @@ public class UsuariosApi {
 	@Path("/listausuarios")
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public Response getList() {
-
+	public Response getList(@HeaderParam("token") String token) {
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		List<Usuario> listaUsuarios = UsuarioEM.getInstance().getList();
 		Response response = null;
 		String errorMsg = null;
@@ -54,8 +57,17 @@ public class UsuariosApi {
 	@Path("{idusuario}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public Response getUsuario(@PathParam(value = "idusuario") int id) {
-
+	public Response getUsuario(
+			@PathParam(value = "idusuario") int id,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Usuario unUsuario = null;
 
 		try {
@@ -80,8 +92,17 @@ public class UsuariosApi {
 		@Path("/{idusuario}")
 		@Produces(MediaType.APPLICATION_JSON)
 		@DELETE
-		public Response deleteUsuario(@PathParam(value = "idusuario") int id) {
-
+		public Response deleteUsuario(
+				@PathParam(value = "idusuario") int id,
+				@HeaderParam("token") String token) {
+			
+			// ¿AUTORIZADO?
+			AuthService auth = new AuthService();
+			int userTokenId = auth.getUsuarioIdFromToken(token);
+			if(userTokenId == DAO.NO_ID) {
+				return Response.status(Status.FORBIDDEN).build();
+			}
+			// PROCEDE:
 			boolean unUsuario = false;
 			try {
 				unUsuario = UsuarioEM.getInstance().deleteUsuario(id);

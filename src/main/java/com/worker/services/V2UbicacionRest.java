@@ -10,8 +10,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.worker.models.Ubicacion;
+import com.worker.persistence.dao.DAO;
 import com.worker.persistence.dao.UbicacionDAO;
 
 @Path("/v2/ubicacion")
@@ -20,7 +22,17 @@ public class V2UbicacionRest {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUbicacionManitas(@PathParam("id") int ubiId) {
+	public Response getUbicacionManitas(
+			@PathParam("id") int ubiId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		Ubicacion ubicacion = null;
 		try {
@@ -41,7 +53,17 @@ public class V2UbicacionRest {
 	
 	@DELETE
 	@Path("/{id}")
-	public Response deleteUbicacionManitas(@PathParam("id") int ubiId) {
+	public Response deleteUbicacionManitas(
+			@PathParam("id") int ubiId,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			boolean isDeleted = UbicacionDAO.getInstance().delete(ubiId);
@@ -64,8 +86,16 @@ public class V2UbicacionRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUbicacionManitas(
 			@HeaderParam("latitud") double latitud,
-			@HeaderParam("longitud") double longitud) {
+			@HeaderParam("longitud") double longitud,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int newId = UbicacionDAO.getInstance().create(latitud, longitud);
@@ -84,8 +114,16 @@ public class V2UbicacionRest {
 	public Response updateUbicacionManitas(
 			@PathParam("id") int ubiId,
 			@HeaderParam("latitud") double latitud,
-			@HeaderParam("longitud") double longitud) {
+			@HeaderParam("longitud") double longitud,
+			@HeaderParam("token") String token) {
 		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response response = null;
 		try {
 			int rows = UbicacionDAO.getInstance().update(ubiId, latitud, longitud);

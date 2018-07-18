@@ -7,6 +7,7 @@ package com.worker.services;
 //import javax.ws.rs.Consumes;
 //import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 //import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -14,23 +15,39 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 //import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.Status;
 
 //import org.apache.catalina.manager.StatusManagerServlet;
 
 import com.worker.models.Manitas;
 import com.worker.persistence.ManitasEM;
+import com.worker.persistence.dao.DAO;
 
 @Path("/profesionales")
 public class ProfService {
 	//private static Logger logger = Logger.getLogger("Profesionales");
+	
 	public static Manitas unManitas;
+	
 	static {
 		//unManitas = ManitasEM.getInstance().getManitasById(id);
 	}
+	
+	
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public Response getProfessional(@PathParam("id") int idp) {
+	public Response getProfessional(
+			@PathParam("id") int idp,
+			@HeaderParam("token") String token) {
+		
+		// ¿AUTORIZADO?
+		AuthService auth = new AuthService();
+		int userTokenId = auth.getUsuarioIdFromToken(token);
+		if(userTokenId == DAO.NO_ID) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		// PROCEDE:
 		Response mResponse=null;
 		Manitas unManitas = null;
 		unManitas = ManitasEM.getInstance().getProfesionalByID(idp);
