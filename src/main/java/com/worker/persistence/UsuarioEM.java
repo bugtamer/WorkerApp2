@@ -128,19 +128,27 @@ public class UsuarioEM extends EntityManager {
 
 	}
 	
-	public Usuario add(){
-		Usuario usuario = null;
-		
+	public boolean updateUsuario(Usuario usuarioAActualizar, int id) throws Exception{
+		boolean isOk = false;
+
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
+		Usuario userDB = session.load(Usuario.class, id);
 		
-		session.update(usuario);
-		System.out.println("entra usuarioEM"+usuario);
+		userDB.setApellidos(usuarioAActualizar.getApellidos());
+		userDB.setEmail(usuarioAActualizar.getEmail());
+		userDB.setNombre(usuarioAActualizar.getNombre());
+		userDB.setPassword(usuarioAActualizar.getPassword());
+		
+		session.update(userDB);
+
 		t.commit();
 		session.close();
-	
-		return usuario;
-}
+		
+		isOk = true;
+
+		return isOk;
+	}
 
 
 }

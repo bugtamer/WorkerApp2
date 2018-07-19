@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.worker.models.Usuario;
+
 
 
 public class UsuarioDAO extends DAO {
@@ -89,6 +91,24 @@ public class UsuarioDAO extends DAO {
 	}
 	
 	
+//	public int update2(Usuario usuario) throws SQLException {
+//		int rowCount = 0;
+//		String query = "UPDATE usuario SET apellidos=?, url_avatar=?, email=?, nombre=?, fk_ubi=? WHERE usu_id = ?";
+//		Connection conn = DriverManager.getConnection(URL);
+//		PreparedStatement stmt = conn.prepareStatement(query);
+//		stmt.setString(usuario.getNombre(nom));
+//		stmt.setString(2, url_avatar);
+//		stmt.setString(3, email);
+//		stmt.setString(4, nombre);
+//		stmt.setInt   (5, fk_ubi);
+//		stmt.setInt   (6, usu_id);
+//		rowCount = stmt.executeUpdate();
+//		stmt.close();
+//		conn.close();
+//		return rowCount;
+//	}
+	
+	
 	
 	public int create(String nombre, String apellidos, String email, String password, String url_avatar, int fk_ubi) throws SQLException {
 		int index = DAO.NO_ID;
@@ -119,6 +139,12 @@ public class UsuarioDAO extends DAO {
 		stmt.close();
 		conn.close();
 		return true;
+	}
+
+
+	public int update(Usuario unUsuario) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
