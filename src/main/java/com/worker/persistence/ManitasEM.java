@@ -173,6 +173,8 @@ public class ManitasEM extends EntityManager{
 		Transaction tx = ses.beginTransaction();
 		if(man.getId()==id) {
 			ses.delete(man);
+			tx.commit();
+			ses.close();
 			return true;
 		}else {
 			return false;
