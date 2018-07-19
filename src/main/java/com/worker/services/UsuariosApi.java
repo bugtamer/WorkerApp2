@@ -2,10 +2,12 @@ package com.worker.services;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 //import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.PUT;
 //import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,8 +19,6 @@ import javax.ws.rs.core.Response.Status;
 import com.worker.models.Usuario;
 import com.worker.persistence.UsuarioEM;
 import com.worker.persistence.dao.DAO;
-
-
 
 
 
@@ -52,7 +52,7 @@ public class UsuariosApi {
 	}
 	
 	
-	// recuperar un usuario por su id
+	// RECUPERAR UN USUARIO POR SU ID
 	
 	@Path("{idusuario}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -62,11 +62,11 @@ public class UsuariosApi {
 			@HeaderParam("token") String token) {
 		
 		// ¿AUTORIZADO?
-		AuthService auth = new AuthService();
-		int userTokenId = auth.getUsuarioIdFromToken(token);
-		if(userTokenId == DAO.NO_ID) {
-			return Response.status(Status.FORBIDDEN).build();
-		}
+//		AuthService auth = new AuthService();
+//		int userTokenId = auth.getUsuarioIdFromToken(token);
+//		if(userTokenId == DAO.NO_ID) {
+//			return Response.status(Status.FORBIDDEN).build();
+//		}
 		// PROCEDE:
 		Usuario unUsuario = null;
 
@@ -87,7 +87,7 @@ public class UsuariosApi {
 	
 	
 	
-	// elimino un usuario
+	// ELIMINAR USUARIO
 
 		@Path("/{idusuario}")
 		@Produces(MediaType.APPLICATION_JSON)
@@ -97,11 +97,11 @@ public class UsuariosApi {
 				@HeaderParam("token") String token) {
 			
 			// ¿AUTORIZADO?
-			AuthService auth = new AuthService();
-			int userTokenId = auth.getUsuarioIdFromToken(token);
-			if(userTokenId == DAO.NO_ID) {
-				return Response.status(Status.FORBIDDEN).build();
-			}
+//			AuthService auth = new AuthService();
+//			int userTokenId = auth.getUsuarioIdFromToken(token);
+//			if(userTokenId == DAO.NO_ID) {
+//				return Response.status(Status.FORBIDDEN).build();
+//			}
 			// PROCEDE:
 			boolean unUsuario = false;
 			try {
@@ -118,34 +118,42 @@ public class UsuariosApi {
 
 		}
 		
-		
-		//actualizo usuario
-		
-//		@Path("/{idusuario}")
-//		@Consumes(MediaType.APPLICATION_JSON)
-//		@Produces(MediaType.APPLICATION_JSON)
-//		@PUT
-//		public Response actualizarUsuario(@PathParam(value = "idusuario") int id, Usuario usuarioActualizar) {
-//	
-//				UsuarioEM usuario = null;
-//				usuario = UsuarioEM.getInstance();
-//				
-//	
-//				if (usuarioActualizar.getId() == id) {
-//					try {
-//						System.out.println("booleano:  "+usuario);
-//						
-//					} catch (Exception e) {
-//					e.printStackTrace();
-//					
-//				}
-//				return Response.status(202).entity(usuario).build();
-//			} else {
-//				return Response.status(Status.FORBIDDEN.getStatusCode()).entity("Error de 404").build();
-//				}
-//			
-//	
-//		}
+		//ATUALIZAR USUARIO
+			
+		@Path("/{idusuario}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		@PUT
+		public Response actualizarUsuario(
+				@PathParam(value = "idusuario") int idu, Usuario usuarioUpdate, 
+				@HeaderParam("token") String token){
+			
+//			 ¿AUTORIZADO?
+//			AuthService auth = new AuthService();
+//			int userTokenId = auth.getUsuarioIdFromToken(token);
+//			if(userTokenId == DAO.NO_ID) {
+//				return Response.status(Status.FORBIDDEN).build();
+//			}
+//			 PROCEDE:
+			
+			boolean isOk = false;
+			if (usuarioUpdate.getId() == idu) {
+				try {
+					isOk = UsuarioEM.getInstance().updateUsuario(usuarioUpdate, idu);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return Response.status(202).entity(isOk).build();
+			} else {
+				return Response.status(Status.FORBIDDEN.getStatusCode()).entity("Error").build();
+			}
 
 
-}
+		}
+		
+		
+	
+		}
+
+
+
