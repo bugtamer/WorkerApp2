@@ -165,6 +165,21 @@ public class ValoracionDAO extends DAO {
 	
 	
 	
+	public boolean deleteAll(int id) throws SQLException {
+		String query = "DELETE FROM valoracion WHERE receptor_fk_usu = ?";
+		Connection conn = DriverManager.getConnection(URL);
+		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setInt(1, id);
+		System.out.println("delete query=" + stmt.toString());
+		int rows = stmt.executeUpdate();
+		stmt.close();
+		conn.close();
+		boolean isDeleted = (rows > 0);
+		return isDeleted;
+	}
+	
+	
+	
 	// DETALLES DE IMPLEMENTACION DE MAS BAJO NIVEL
 	
 	private Map<String, Object> parseToData(ResultSet rs) throws SQLException {

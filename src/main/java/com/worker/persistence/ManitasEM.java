@@ -154,6 +154,29 @@ public class ManitasEM extends EntityManager{
 		session.close();
 		return man;
 	}
-
+	
+	
+	
+	public boolean actualizar(Manitas man) {
+		Session ses = factory.openSession();
+		Transaction tx = ses.beginTransaction();
+		ses.update(man);
+		tx.commit();
+		ses.close();
+		return true;
+	}
+	
+	
+	
+	public boolean deleteProfesionalById(Manitas man, int id) {
+		Session ses = factory.openSession();
+		Transaction tx = ses.beginTransaction();
+		if(man.getId()==id) {
+			ses.delete(man);
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

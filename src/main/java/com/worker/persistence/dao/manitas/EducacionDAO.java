@@ -97,5 +97,19 @@ public class EducacionDAO extends DAO {
 		boolean isDeleted = (rows > 0);
 		return isDeleted;
 	}
+	
+	
+	
+	public boolean deleteAll(int id) throws SQLException {
+		String query = "DELETE FROM educacion WHERE edu_id = ?";
+		Connection conn = DriverManager.getConnection(URL);
+		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setInt   (1, id);
+		int rows = stmt.executeUpdate();
+		stmt.close();
+		conn.close();
+		boolean isDeleted = (rows > 0);
+		return isDeleted;
+	}
 
 }
