@@ -56,14 +56,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"authenticate"
 							]
@@ -105,14 +103,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"authenticate"
 							]
@@ -140,14 +136,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"authenticate"
 							]
@@ -171,14 +165,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"authenticate"
 							]
@@ -202,14 +194,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/authenticate",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/authenticate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"authenticate"
 							]
@@ -225,6 +215,90 @@
 			"description": null,
 			"item": [
 				{
+					"name": "202 /ubicacion/geoservice?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/geoservice?servicio=co&distancia=13.3&latitud=41.3&longitud=2.3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{contextRoot}}",
+								"api",
+								"ubicacion",
+								"geoservice"
+							],
+							"query": [
+								{
+									"key": "servicio",
+									"value": "co"
+								},
+								{
+									"key": "distancia",
+									"value": "13.3"
+								},
+								{
+									"key": "latitud",
+									"value": "41.3"
+								},
+								{
+									"key": "longitud",
+									"value": "2.3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404 /ubicacion/geoservice?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/geoservice?servicio=XXXXXXXXXXXXXXXXX&distancia=13.3&latitud=41.3&longitud=2.3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{contextRoot}}",
+								"api",
+								"ubicacion",
+								"geoservice"
+							],
+							"query": [
+								{
+									"key": "servicio",
+									"value": "XXXXXXXXXXXXXXXXX"
+								},
+								{
+									"key": "distancia",
+									"value": "13.3"
+								},
+								{
+									"key": "latitud",
+									"value": "41.3"
+								},
+								{
+									"key": "longitud",
+									"value": "2.3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "202 /ubicacion/2",
 					"request": {
 						"method": "GET",
@@ -239,16 +313,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/1",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion",
 								"1"
 							]
@@ -271,16 +342,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/0",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/0",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion",
 								"0"
 							]
@@ -311,16 +379,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion"
 							]
 						}
@@ -350,16 +415,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/291",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/291",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion",
 								"291"
 							]
@@ -390,16 +452,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/0",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/0",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion",
 								"0"
 							]
@@ -422,16 +481,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/v2/ubicacion/291",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/ubicacion/291",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
-								"v2",
 								"ubicacion",
 								"291"
 							]
@@ -492,14 +548,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/listausuarios",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/listausuarios",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"listausuarios"
@@ -523,14 +577,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/1",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"1"
@@ -554,14 +606,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/0",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"0"
@@ -585,14 +635,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/1",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"1"
@@ -616,14 +664,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/0",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"0"
@@ -647,14 +693,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios"
 							]
@@ -677,14 +721,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/10",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/10",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"10"
@@ -708,14 +750,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/usuarios/0",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/usuarios/0",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"usuarios",
 								"0"
@@ -771,16 +811,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/3/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/3/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"3",
 										"profesion"
 									]
@@ -803,16 +841,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"0",
 										"profesion"
 									]
@@ -835,22 +871,20 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/profesion?s=XXXXXXX",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/profesion?s=co",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"profesion"
 									],
 									"query": [
 										{
 											"key": "s",
-											"value": "XXXXXXX"
+											"value": "co"
 										}
 									]
 								}
@@ -872,22 +906,20 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/profesion?s=co",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/profesion?s=XXXXXXX",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"profesion"
 									],
 									"query": [
 										{
 											"key": "s",
-											"value": "co"
+											"value": "XXXXXXX"
 										}
 									]
 								}
@@ -913,17 +945,15 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/2/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
-										"107",
+										"profesional",
+										"2",
 										"profesion"
 									]
 								}
@@ -949,16 +979,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/107/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"107",
 										"profesion"
 									]
@@ -985,16 +1013,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/108/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/108/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"108",
 										"profesion"
 									]
@@ -1021,16 +1047,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"0",
 										"profesion"
 									]
@@ -1053,16 +1077,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/107/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/107/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"107",
 										"profesion"
 									]
@@ -1085,16 +1107,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/propro/0/profesion",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0/profesion",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"propro",
+										"profesional",
 										"0",
 										"profesion"
 									]
@@ -2014,14 +2034,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/profesional/2",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/2",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
 										"profesional",
 										"2"
@@ -2031,7 +2049,7 @@
 							"response": []
 						},
 						{
-							"name": "404 /profesional/0",
+							"name": "404 /profesional/0 (falla)",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -2045,105 +2063,15 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/profesional/0",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
 										"profesional",
 										"0"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "202 /pofesional/geoservice?",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/profesional/geoservice?servicio=co&distancia=13.3&latitud=41.3&longitud=2.3",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"profesional",
-										"geoservice"
-									],
-									"query": [
-										{
-											"key": "servicio",
-											"value": "co"
-										},
-										{
-											"key": "distancia",
-											"value": "13.3"
-										},
-										{
-											"key": "latitud",
-											"value": "41.3"
-										},
-										{
-											"key": "longitud",
-											"value": "2.3"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "404 /pofesional/geoservice?",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/profesional/geoservice?servicio=XXXXXXXXXXXXXXXXX&distancia=13.3&latitud=41.3&longitud=2.3",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"WorkerApp2",
-										"api",
-										"profesional",
-										"geoservice"
-									],
-									"query": [
-										{
-											"key": "servicio",
-											"value": "XXXXXXXXXXXXXXXXX"
-										},
-										{
-											"key": "distancia",
-											"value": "13.3"
-										},
-										{
-											"key": "latitud",
-											"value": "41.3"
-										},
-										{
-											"key": "longitud",
-											"value": "2.3"
-										}
 									]
 								}
 							},
@@ -2168,16 +2096,14 @@
 									"raw": "{\"id\":12,\"profesion\":\"Coach personal\",\"experiencia\":null,\"valoraciones\":null,\"educacion\":null,\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":293,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/prof",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"prof"
+										"profesional"
 									]
 								}
 							},
@@ -2202,16 +2128,14 @@
 									"raw": "{\"id\":3,\"profesion\":\"YYY Coach personal\",\"experiencia\":[\"Experiencia 1\"],\"valoraciones\":null,\"educacion\":[\"Educación 1\"],\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":3,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/prof/3",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/3",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"prof",
+										"profesional",
 										"3"
 									]
 								}
@@ -2237,16 +2161,14 @@
 									"raw": "{\"id\":0,\"profesion\":\"Coach personal\",\"experiencia\":[\"Experiencia 1\"],\"valoraciones\":null,\"educacion\":[\"Educación 1\"],\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":0,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
 								},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/prof/0",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"prof",
+										"profesional",
 										"0"
 									]
 								}
@@ -2265,16 +2187,14 @@
 								],
 								"body": {},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/prof/20",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/20",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"prof",
+										"profesional",
 										"20"
 									]
 								}
@@ -2293,16 +2213,14 @@
 								],
 								"body": {},
 								"url": {
-									"raw": "http://localhost:8080/WorkerApp2/api/prof/0",
-									"protocol": "http",
+									"raw": "{{host}}/{{contextRoot}}/api/profesional/0",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "8080",
 									"path": [
-										"WorkerApp2",
+										"{{contextRoot}}",
 										"api",
-										"prof",
+										"profesional",
 										"0"
 									]
 								}
@@ -2333,14 +2251,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/WorkerApp2/api/mensajes/1",
-							"protocol": "http",
+							"raw": "{{host}}/{{contextRoot}}/api/mensajes/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"WorkerApp2",
+								"{{contextRoot}}",
 								"api",
 								"mensajes",
 								"1"
@@ -2361,14 +2277,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/WorkerApp2/api/test",
-					"protocol": "http",
+					"raw": "{{host}}/{{contextRoot}}/api/test",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"WorkerApp2",
+						"{{contextRoot}}",
 						"api",
 						"test"
 					]
@@ -2387,14 +2301,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/WorkerApp2/api/test/token",
-					"protocol": "http",
+					"raw": "{{host}}/{{contextRoot}}/api/test/token",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"WorkerApp2",
+						"{{contextRoot}}",
 						"api",
 						"test",
 						"token"

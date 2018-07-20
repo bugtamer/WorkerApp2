@@ -2,6 +2,7 @@ package com.worker.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Query;
 
@@ -56,7 +57,7 @@ public class ManitasEM extends EntityManager{
 		sqlQuery.append("FROM manitas m").append(space);
 		sqlQuery.append("LEFT JOIN ubicacion u ON (m.fk_usu = u.ubi_id)").append(space);
 		sqlQuery.append("WHERE (m.profesion LIKE '%").append(terminoBusqueda).append("%')").append(space);
-		sqlQuery.append(String.format("AND calcDistanciaEnKm(%f, %f, u.latitud, u.longitud) < %f",
+		sqlQuery.append(String.format(Locale.ENGLISH, "AND calcDistanciaEnKm(%f, %f, u.latitud, u.longitud) < %f",
 				ubicacion.getLatitud(), ubicacion.getLongitud(), distancia));
 		System.out.println("SQL=" + sqlQuery.toString());
 
