@@ -478,7 +478,7 @@
 			"description": null,
 			"item": [
 				{
-					"name": "202 /usuarios/listausuarios (ok)",
+					"name": "202 /usuarios/listausuarios (falla)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1996,7 +1996,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "/{id} (todo OK)",
+					"name": "/{id} (1)",
 					"description": null,
 					"item": [
 						{
@@ -2144,6 +2144,166 @@
 											"key": "longitud",
 											"value": "2.3"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "202 /profesional",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":12,\"profesion\":\"Coach personal\",\"experiencia\":null,\"valoraciones\":null,\"educacion\":null,\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":293,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/prof",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"prof"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "202 /profesional/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":3,\"profesion\":\"YYY Coach personal\",\"experiencia\":[\"Experiencia 1\"],\"valoraciones\":null,\"educacion\":[\"Educación 1\"],\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":3,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/prof/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"prof",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 /profesional/0 (falla pq nunca return false)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\":0,\"profesion\":\"Coach personal\",\"experiencia\":[\"Experiencia 1\"],\"valoraciones\":null,\"educacion\":[\"Educación 1\"],\"password\":\"123456\",\"email\":\"lorem@workerapp.com\",\"apellidos\":\"ipsum dolor\",\"avatar\":\"./imgs/Manolo-entrenador-personal.jpg\",\"nombre\":\"Lorem\",\"ubicacion\":{\"id\":0,\"longitud\":2.1836185455322266,\"latitud\":41.392199663301255}}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/prof/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"prof",
+										"0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "202 /profesional/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/prof/20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"prof",
+										"20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 /profesional/0",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/WorkerApp2/api/prof/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"WorkerApp2",
+										"api",
+										"prof",
+										"0"
 									]
 								}
 							},
