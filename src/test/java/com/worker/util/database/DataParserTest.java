@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.worker.models.Mensaje;
@@ -12,6 +13,7 @@ import com.worker.models.Usuario;
 public class DataParserTest {
 
 	@Test
+	@Ignore
 	public void test() throws Exception {
 		String json = JsonRetriever.getDataFrom(DataSource.usuarios);
 		List<Usuario> uList = JsonParser.jsonToUsuarios(json);
@@ -21,7 +23,8 @@ public class DataParserTest {
 		fail("DataParserTest Not yet implemented");
 	}
 
-//	@Test
+	@Test
+	@Ignore
 	public void test3() throws Exception {
 		String json = JsonRetriever.getDataFrom(DataSource.chatMessages);
 		List<Mensaje> mList = JsonParser.jsonToMensajes(json);

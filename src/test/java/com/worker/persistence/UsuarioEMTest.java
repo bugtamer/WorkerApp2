@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -22,6 +23,7 @@ public class UsuarioEMTest extends com.worker.persistence.ContextMocking {
 		setUpContext();
 	}
 	@Test
+	@Ignore
 	public void testIdUsuario() {
 		//logger.log(Level.INFO);//Entrando a test
 
