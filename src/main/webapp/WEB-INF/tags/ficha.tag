@@ -27,7 +27,7 @@
     <ul class="collapsible">
       <li>
         <div class="collapsible-header">
-          <i class="material-icons">history</i>Valoraciones</div>
+          <i class="material-icons">star</i>Valoraciones</div>
         <div class="collapsible-body">
         <c:forEach items="${manitas.valoraciones}" var="val">
           <span>${val.comentario}</span><br>
@@ -47,7 +47,7 @@
 
       <li>
         <div class="collapsible-header">
-          <i class="material-icons">school</i>EducaciÃ³n</div>
+          <i class="material-icons">school</i>Educación</div>
         <div class="collapsible-body">
         <c:forEach items="${manitas.educacion}" var="edu">
           <span>${edu}</span><br>
