@@ -33,6 +33,8 @@ public class FichaServlet extends HttpServlet {
 		} else {
 			Manitas manitas   = getManitas(request, response);
 			String  distancia = getUbicacionFormateada(usuario.getUbicacion(), manitas.getUbicacion());
+			request.setAttribute("manitasUbicacion", manitas.getUbicacion());
+			request.setAttribute("usuarioUbicacion", usuario.getUbicacion());
 			request.setAttribute("manitas",   manitas);
 			request.setAttribute("distancia", distancia);
 			request.getRequestDispatcher("ficha.jsp").forward(request, response);

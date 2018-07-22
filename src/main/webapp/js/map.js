@@ -19,8 +19,8 @@
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: (1*document.getElementById('manitasLatitud').value),//position.coords.latitude,
+              lng: (1*document.getElementById('manitasLongitud').value)//position.coords.longitude
             };
 
             infoWindow.setPosition(pos);

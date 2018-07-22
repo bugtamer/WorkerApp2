@@ -8,9 +8,14 @@
         <div class="card-stacked">
           <div class="card-content">
             <a href="#modal1" class="secondary-content location modal-trigger">
-              <h5>${distancia}Km
+              <h5>${distancia} Km
                 <i class="material-icons">location_on</i>
               </h5>
+              <wa:distancia ubicacion2="${usuarioUbicacion}" ubicacion1="${manitasUbicacion}" /> <!-- UbicacionHelper: geolocalizacion -->
+            <!--
+              -->
+              <input type="hidden" id="manitasLatitud" value="${manitasUbicacion.latitud}">
+              <input type="hidden" id="manitasLongitud" value="${manitasUbicacion.longitud}">
             </a>
             <h4>${manitas.nombre} ${manitas.apellidos}</h4>
             <p>${manitas.profesion}</p>
