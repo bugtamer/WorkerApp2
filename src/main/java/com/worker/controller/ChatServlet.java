@@ -33,6 +33,7 @@ public class ChatServlet extends HttpServlet {
 		} else {
 			Manitas manitas = getManitas(request);
 			request.setAttribute("usuarioId", usuario.getId());
+			request.setAttribute("nombreUsuario", usuario.getNombre());
 			request.setAttribute("manitasId", manitas.getId());
 			request.getRequestDispatcher("chat.jsp").forward(request, response);
 		}

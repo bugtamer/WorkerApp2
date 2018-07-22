@@ -92,6 +92,12 @@ function enviar(socket, event) {
 
 
 
+function getSessionNombre() {
+	return document.getElementById('usuarioNombre').value; // antes se obtenia de session.js
+}
+
+
+
 // evento lanzado por WebSocket cuando recibe un mensaje de su interlocutor
 function recibir(event) {
     console.log("recibir", event);
