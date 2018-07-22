@@ -29,18 +29,22 @@
           <li>
             <a href="./registro">Registro</a>
           </li>
+          <!--
            <li>
             <a href="./registro_manitas">Registro Profesional</a>
           </li>
+          -->
           <li>
             <a href="./ticket">Último Ticket</a>
           </li>
+          <!--
           <li>
             <a href="#">Histórico Tickets</a>
           </li>
           <li>
             <a href="#">Mis Favoritos</a>
           </li>
+          -->
         </ul>
 
         <ul id="nav-mobile" class="sidenav" aria-label="Menú Mobile">
@@ -53,18 +57,22 @@
           <li>
             <a href="./registro">Registro</a>
           </li>
+          <!--
            <li>
             <a href="./registro_manitas">Registro Profesional</a>
           </li>
+          -->
           <li>
             <a href="./ticket">Último Ticket</a>
           </li>
+          <!--
           <li>
             <a href="#">Histórico Tickets</a>
           </li>
           <li>
             <a href="#">Mis Favoritos</a>
           </li>
+          -->
         </ul>
 
         <a href="#" data-target="nav-mobile" class="sidenav-trigger">
