@@ -1,3 +1,5 @@
+var chatName = 'chat';
+
 // muestra un mensaje en la interfaz
 function mostrar(mensaje) {
     let listItem = '';
@@ -41,7 +43,7 @@ function almacenar(mensaje) {
     let chat = localStorage.getItem('chat');
     chat = chat ? JSON.parse(chat) : [];
     chat.push(mensaje);
-    localStorage.setItem('chat', JSON.stringify(chat));
+    localStorage.setItem(chatName, JSON.stringify(chat));
 }
 
 
@@ -110,6 +112,24 @@ function recibir(event) {
 
 
 
+// https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js#
+function getUrlParameter(sParam) {
+    let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+
+
 // función anónima autoinvocada para iniciar el chat (si es posible)
 (function(){
     if (typeof(WebSocket) === undefined) {
@@ -133,16 +153,20 @@ function recibir(event) {
                 enviar(chatSocket, event);
             }, false);
         };
+        
+        let uid = getUrlParameter('uid');
+        let manitasId = getUrlParameter('manitasId');
+        chatName = `chat-u${uid}p${manitasId}`;
 
         // carga / inicializacion conversaciones chat o
-        let chat = localStorage.getItem('chat');
+        let chat = localStorage.getItem(chatName);
         if (chat) {
             chat = JSON.parse(chat);
             for (let i = 0;   i < chat.length;   i++) {
                 mostrar( chat[i] );
             }
         } else { // carga la conversación desde la BBDD
-            $.ajax(`./getMensajes?uid=${1}&manitasId=${7}`).done(function(respuestaServidor){
+            $.ajax(`./getMensajes?uid=${uid}&manitasId=${manitasId}`).done(function(respuestaServidor){
                 for (let i = 0;   i < respuestaServidor.length;   i++) {
                     mostrar   ( respuestaServidor[i] );
                     almacenar ( respuestaServidor[i] );
