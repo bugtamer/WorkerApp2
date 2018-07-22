@@ -84,7 +84,7 @@
                             <a href="#!">Transferencia</a>
                         </li>
                     </ul>
-                    <a class="btn dropdown-trigger orange darken-4" href="#!" data-target="dropdown2">Método de Pago
+                    <a class="btn dropdown-trigger orange darken-4" href="#!" data-target="dropdown2">M&eacute;todo de Pago
                         <i class="material-icons right">arrow_drop_down</i>
                     </a>
                 </div>
