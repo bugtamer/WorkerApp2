@@ -1,7 +1,7 @@
     <!-- TICKET: inicio -->
 
     <section>
-        <!-- fila 1: datos de identificación de ticket -->
+        <!-- fila 1: datos de identificaciÃ³n de ticket -->
         <div class="col s12 m7">
             <div class="card horizontal">
                 <div class="card-image">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <h4>Fina Martínez</h4>
+                        <h4>Fina Mart&iacute;nez</h4>
                         <p>Entrenador Personal</p>
                         <div class="secondary-content">
                             <h6 id="ticket"></h6>
@@ -54,17 +54,17 @@
             </div>
             <div class="col s3 col-derecha">
                 <p>
-                    <span id="subtotal"></span> €
+                    <span id="subtotal"></span> euros
                     <br>
-                    <span id="subtotalIVA"></span> €
+                    <span id="subtotalIVA"></span> euros
                     <br>
-                    <span id="total"></span> €</p>
+                    <span id="total"></span> euros</p>
             </div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- fila 4: método de pago -->
+        <!-- fila 4: mÃ©todo de pago -->
 
         <div class="row">
             <div class="col s12">

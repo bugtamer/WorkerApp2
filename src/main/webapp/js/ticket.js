@@ -1,7 +1,7 @@
 (function(){
     $.ajax('http://www.mocky.io/v2/5ae0f2f03200006d00510da2')
     .done(function(respuestaServidor){
-        document.getElementById('ticket').innerText = `Ticket nº (${respuestaServidor.ticketNum})`;
+        document.getElementById('ticket').innerText = `Ticket num. (${respuestaServidor.ticketNum})`;
         document.getElementById('fecha').innerText = respuestaServidor.fecha;
         document.getElementById('vencimiento').innerText = respuestaServidor.vencimiento;
         
@@ -9,7 +9,7 @@
         let htmlConceptos = '<table>';
         for (let i = 0; i < respuestaServidor.conceptos.length; i++) {
             let item = respuestaServidor.conceptos[i];
-            htmlConceptos += `<tr><td>${item.cantidad}</td><td>${item.descripcion}</td><td>${item.precio} €</td></tr>`;
+            htmlConceptos += `<tr><td>${item.cantidad}</td><td>${item.descripcion}</td><td style="text-align: right;">${item.precio} euros</td></tr>`;
             let cantidad = item.cantidad;
             let precio   = parseFloat(item.precio);
             subtotal += cantidad * precio;
