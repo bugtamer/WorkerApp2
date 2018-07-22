@@ -48,12 +48,16 @@ public class Manitas extends Usuario {
 
 	public Manitas() {
 		this.educacion = new ArrayList<>();
+		this.experiencia = new ArrayList<>();
+		this.valoraciones = new ArrayList<>();
 	}
 
 
 	public Manitas(Usuario usuario, String profesion) {
 		super(usuario.getNombre(), usuario.getApellidos(), usuario.getEmail(), usuario.getPassword());
 		this.educacion = new ArrayList<>();
+		this.experiencia = new ArrayList<>();
+		this.valoraciones = new ArrayList<>();
 		setId( usuario.getId() );
 		setUbicacion( usuario.getUbicacion() );
 		setAvatar( usuario.getAvatar() );
