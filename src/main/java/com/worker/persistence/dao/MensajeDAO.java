@@ -96,6 +96,32 @@ public class MensajeDAO extends DAO {
 	
 	
 	
+	public List<Map<String, Object>> getListaConversaciones(int id) throws SQLException {
+		List<Map<String, Object>> conversacion = new ArrayList<>();
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT emisor_usu_id, receptor_usu_id, concat(u.nombre, ' ',  u.apellidos) AS emisor ");
+		query.append("FROM mensaje m LEFT JOIN usuario u ON (m.receptor_usu_id = u.usu_id) ");
+		query.append("GROUP BY emisor_usu_id, receptor_usu_id ");
+		query.append("HAVING (emisor_usu_id = "+id+")");
+		Connection conn = DriverManager.getConnection(URL);
+		PreparedStatement stmt = conn.prepareStatement( query.toString() );
+		System.out.println("QUERY >>> " + query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			Map<String, Object> mensaje = new HashMap<>();
+			mensaje.put("emisor_usu_id", rs.getInt("emisor_usu_id") );
+			mensaje.put("receptor_usu_id", rs.getString("receptor_usu_id") );
+			mensaje.put("emisor", rs.getString("emisor") );
+			conversacion.add(mensaje);
+		}
+		stmt.close();
+		conn.close();
+		System.out.println("conversacion >> " + conversacion);
+		return conversacion;
+	}
+
+	
+	
 	public int update(int men_id, String texto, String urlImagen, int emisor_usu_id, int receptor_usu_id) throws SQLException {
 		int rowCount = 0;
 		String query = "UPDATE mensaje SET texto=?, timestamp=?, urlImagen=?, emisor_usu_id=?, receptor_usu_id=? WHERE men_id = ?";

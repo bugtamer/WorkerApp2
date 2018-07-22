@@ -29,6 +29,9 @@
           <li>
             <a href="./registro">Registro</a>
           </li>
+          <li>
+            <a href="./conversaciones">Chats</a>
+          </li>
           <!--
            <li>
             <a href="./registro_manitas">Registro Profesional</a>
@@ -56,6 +59,9 @@
           </li>
           <li>
             <a href="./registro">Registro</a>
+          </li>
+          <li>
+            <a href="./conversaciones">Chats</a>
           </li>
           <!--
            <li>
