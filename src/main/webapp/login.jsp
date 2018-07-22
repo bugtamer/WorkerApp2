@@ -56,7 +56,7 @@
             
             <div class="row">
               <div class="col s5">
-                <a href="./registro.jsp">Registrarse</a>
+                <a href="./registro">Registrarse</a>
               </div>
               <div class="col s7">
                 <a href="#">¿Has perdido tu contrase&ntilde;a?</a>
