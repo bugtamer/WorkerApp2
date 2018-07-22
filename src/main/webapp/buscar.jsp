@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="./css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 <link href="./css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-<c:if test="sonResultados"><link href="./css/search_result.css" type="text/css" rel="stylesheet" media="screen,projection" /></c:if>
+<c:if test="${sonResultados}"><link href="./css/search_result.css" type="text/css" rel="stylesheet" media="screen,projection" /></c:if>
 <link href="./css/search.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
@@ -71,7 +71,7 @@
   <script src="./js/materialize.js"></script>
   <script src="./js/init.js"></script>
   <script src="./js/search.js"></script>
-  <c:if test="sonResultados"><script src="./js/search_result.js"></script></c:if>
+  <c:if test="${sonResultados}"><script src="./js/search_result.js"></script></c:if>
   <script src="./js/sugerencias.js"></script>
   <script src="./js/geolocation.js"></script>
 </body>
