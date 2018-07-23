@@ -32,22 +32,22 @@ import com.worker.persistence.dao.manitas.ValoracionDAO;
 
 @Path("/profesional")
 public class ProfesionalRest {
-	
+
 	// MANITAS =================================================================
 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfessional(
-			@PathParam("id") int idp,
-			@HeaderParam("token") String token) {
-		
+			@PathParam("id") int idp/*,
+			@HeaderParam("token") String token*/) {
+
 		// ¿AUTORIZADO?
-		AuthService auth = new AuthService();
+		/*AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
 		if(userTokenId == DAO.NO_ID) {
 			return Response.status(Status.FORBIDDEN).build();
-		}
+		}*/
 		// PROCEDE:
 		Response response = null;
 		Manitas unManitas = null;
@@ -58,7 +58,7 @@ public class ProfesionalRest {
 			unManitas =em.getProfesionalByID(idp);
 			if (unManitas != null) {
 				System.out.println(unManitas);
-				unManitas.setValoracion(null);	
+				unManitas.setValoracion(null);
 				response = Response.status(200).entity(unManitas).build();
 			} else {
 				response = Response.status(404).entity(errorMsg).build();
@@ -73,15 +73,15 @@ public class ProfesionalRest {
 		return response;
 	}
 
-	
-	
+
+
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response actualizarProfesional(@PathParam(value = "id") int idp, Manitas man,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -109,14 +109,14 @@ public class ProfesionalRest {
 		return response;
 	}
 
-	
-	
+
+
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@DELETE
 	public Response deleteProfesional(@PathParam(value = "id") int idp,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -132,16 +132,16 @@ public class ProfesionalRest {
 			boolean eduFueBorrada = EducacionDAO.getInstance().deleteAll(idp);
 			boolean valFueBorrada = ValoracionDAO.getInstance().deleteAll(idp);
 			boolean proFueBorrada = ProfesionDAO.getInstance().delete(idp);
-			
+
 			int ubiId = DAO.NO_ID;
 			Map<String, Object> usuMap = UsuarioDAO.getInstance().read(idp);
 			if (usuMap != null) {
 				ubiId = (usuMap.get("ubi_id") == null) ? DAO.NO_ID : (int) usuMap.get("ubi_id");
 			}
-			
+
 			boolean usuFueBorrada = UsuarioDAO.getInstance().delete(idp);
 			boolean ubiFueBorrada = UbicacionDAO.getInstance().delete(ubiId);
-			
+
 			if (proFueBorrada) {
 				if(expFueBorrada && eduFueBorrada && valFueBorrada &&
 						usuFueBorrada && ubiFueBorrada ) {
@@ -160,15 +160,15 @@ public class ProfesionalRest {
 		return res;
 	}
 
-	
-	
+
+
 	@Path("")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	public Response newProfesional(Manitas man,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -184,21 +184,21 @@ public class ProfesionalRest {
 			int usuID = UsuarioDAO.getInstance().create(man.getNombre(), man.getApellidos(), man.getEmail(),
 					man.getPassword(), man.getAvatar(), ubiID);
 			int profID = ProfesionDAO.getInstance().create(usuID, man.getProfesion());
-			
+
 			List<String> expList = man.getExperiencia();
 			if ((expList != null) && (expList.size() > 0)) {
 				for (String exp : expList) {
 					ExperienciaDAO.getInstance().create(profID, exp);
 				}
 			}
-			
+
 			List<String> eduList = man.getEducacion();
 			if ((eduList != null) && (eduList.size() > 0)) {
 				for (String edu : eduList) {
 					EducacionDAO.getInstance().create(profID, edu);
 				}
 			}
-			
+
 			List<Valoracion> valList = man.getValoraciones();
 			if ((valList != null) && (valList.size() > 0)) {
 				for (Valoracion val : valList) {
@@ -209,7 +209,7 @@ public class ProfesionalRest {
 							profID);
 				}
 			}
-			
+
 			res = Response.status(202).entity(usuID).build();
 		} catch (Exception e) {
 			res = Response.status(500).entity(e.getMessage()).build();
@@ -217,20 +217,20 @@ public class ProfesionalRest {
 		}
 		return res;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// EDUCACION ===============================================================
-	
+
 	@GET
 	@Path("/{id}/educacion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEducacionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -253,16 +253,16 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@DELETE
 	@Path("/{id}/educacion")
 	public Response deleteEducacionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("educacion") String educacion,
 			@HeaderParam("token") String token) {
-				
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -284,9 +284,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@POST
 	@Path("/{id}/educacion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -294,7 +294,7 @@ public class ProfesionalRest {
 			@PathParam("id") int manitasId,
 			@HeaderParam("educacion") String educacion,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -312,9 +312,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@PUT
 	@Path("/{id}/educacion")
 	public Response updateEducacionManitas(
@@ -322,7 +322,7 @@ public class ProfesionalRest {
 			@HeaderParam("old_educacion") String oldEducacion,
 			@HeaderParam("new_educacion") String newEducacion,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -344,20 +344,20 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// EXPERIENCIA  ============================================================
-	
+
 	@GET
 	@Path("/{id}/experiencia")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getExperienciaManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -380,16 +380,16 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@DELETE
 	@Path("/{id}/experiencia")
 	public Response deleteExperienciaManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("experiencia") String experiencia,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -411,9 +411,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@POST
 	@Path("/{id}/experiencia")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -421,7 +421,7 @@ public class ProfesionalRest {
 			@PathParam("id") int manitasId,
 			@HeaderParam("experiencia") String experiencia,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -439,9 +439,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@PUT
 	@Path("/{id}/experiencia")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -450,7 +450,7 @@ public class ProfesionalRest {
 			@HeaderParam("old_experiencia") String oldExperiencia,
 			@HeaderParam("new_experiencia") String newExperiencia,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -472,20 +472,20 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// PROFESION ===============================================================
-	
+
 	@GET
 	@Path("/{id}/profesion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfesionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -508,16 +508,16 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@GET
 	@Path("/profesion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfesionesManitasTerminoBusqueda(
 			@QueryParam("s") String terminoBusqueda,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -540,15 +540,15 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@DELETE
 	@Path("/{id}/profesion")
 	public Response deleteProfesionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -570,9 +570,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@POST
 	@Path("/{id}/profesion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -580,7 +580,7 @@ public class ProfesionalRest {
 			@PathParam("id") int usuarioBaseId,
 			@HeaderParam("profesion") String profesion,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -598,16 +598,16 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@PUT
 	@Path("/{id}/profesion")
 	public Response updateProfesionManitas(
 			@PathParam("id") int usuarioBaseId,
 			@HeaderParam("profesion") String profesion,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -629,20 +629,20 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	// VALORACION ==============================================================
-	
+
 	@GET
 	@Path("/{id}/valoracion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getValoracionManitas(
 			@PathParam("id") int manitasId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -665,22 +665,22 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@GET
 	@Path("/{id}/valoracion/media")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getValoracionMediaManitas(
-			@PathParam("id") int manitasId,
-			@HeaderParam("token") String token) {
-		
+			@PathParam("id") int manitasId/*,
+			@HeaderParam("token") String token*/) {
+
 		// ¿AUTORIZADO?
-		AuthService auth = new AuthService();
+		/*AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
 		if(userTokenId == DAO.NO_ID) {
 			return Response.status(Status.FORBIDDEN).build();
-		}
+		}*/
 		// PROCEDE:
 		Response response = null;
 		int avg = -1;
@@ -697,15 +697,15 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@DELETE
 	@Path("/{id}/valoracion")
 	public Response deleteValoracionManitas(
 			@PathParam("id") int valId,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -727,9 +727,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@POST
 	@Path("/{id}/valoracion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -739,7 +739,7 @@ public class ProfesionalRest {
 			@HeaderParam("autor_id") int autor_usu_id,
 			@PathParam("id") int receptor_fk_usu,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -757,9 +757,9 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
-	
-	
+
+
+
 	@PUT
 	@Path("/{id}/valoracion")
 	public Response updateValoracionManitas(
@@ -768,7 +768,7 @@ public class ProfesionalRest {
 			@HeaderParam("puntuacion") int puntuacion,
 			@PathParam("id") int receptor_fk_usu,
 			@HeaderParam("token") String token) {
-		
+
 		// ¿AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
@@ -796,5 +796,5 @@ public class ProfesionalRest {
 		}
 		return response;
 	}
-	
+
 }
