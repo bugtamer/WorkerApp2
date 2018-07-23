@@ -67,15 +67,11 @@ public class MensajeDAO extends DAO {
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT * ");
 		query.append("FROM mensaje ");
-		query.append("WHERE ((emisor_usu_id = ?) AND (receptor_usu_id = ?))");
-		query.append("   OR ((emisor_usu_id = ?) AND (receptor_usu_id = ?))");
-		query.append("   LIMIT ? OFFSET ?");
+		query.append("WHERE ((emisor_usu_id = "+emisorId+") AND (receptor_usu_id = "+receptorId+"))");
+		query.append("   OR ((emisor_usu_id = "+emisorId+") AND (receptor_usu_id = "+receptorId+"))");
+		query.append("   LIMIT "+limit+" OFFSET "+from+"");
 		Connection conn = DriverManager.getConnection(URL);
 		PreparedStatement stmt = conn.prepareStatement( query.toString() );
-		stmt.setInt(1, emisorId);
-		stmt.setInt(2, receptorId);
-		stmt.setInt(3, from);
-		stmt.setInt(4, limit);
 		System.out.println("QUERY >>> " + query);
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {

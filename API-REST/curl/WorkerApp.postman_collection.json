@@ -2233,11 +2233,95 @@
 			]
 		},
 		{
-			"name": "/mensajes (faltan: GET, POST)",
+			"name": "/mensajes (1 fallo)",
 			"description": null,
 			"item": [
 				{
-					"name": "/mensajes/{id} (SIN PROBAR)",
+					"name": "/mensajes (falla)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "usuarioId",
+								"value": "1"
+							},
+							{
+								"key": "manitasId",
+								"value": "7"
+							},
+							{
+								"key": "from",
+								"value": "1"
+							},
+							{
+								"key": "limit",
+								"value": "10"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{contextRoot}}/api/mensajes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{contextRoot}}",
+								"api",
+								"mensajes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/mensajes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}"
+							},
+							{
+								"key": "emisorId",
+								"value": "1"
+							},
+							{
+								"key": "receptorId",
+								"value": "7"
+							},
+							{
+								"key": "texto",
+								"value": "Hello World!"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{contextRoot}}/api/mensajes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{contextRoot}}",
+								"api",
+								"mensajes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/mensajes/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -2251,7 +2335,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{host}}/{{contextRoot}}/api/mensajes/1",
+							"raw": "{{host}}/{{contextRoot}}/api/mensajes/26",
 							"host": [
 								"{{host}}"
 							],
@@ -2259,7 +2343,7 @@
 								"{{contextRoot}}",
 								"api",
 								"mensajes",
-								"1"
+								"26"
 							]
 						}
 					},

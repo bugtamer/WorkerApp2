@@ -1,5 +1,8 @@
 package com.worker.services;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,7 +35,7 @@ public class MensajeApiRest extends JSONService {
 			@QueryParam("limit") int limit,
 			@HeaderParam("token") String token) {
 		
-		// ¿AUTORIZADO?
+		// ï¿½AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
 		if(userTokenId == DAO.NO_ID) {
@@ -40,14 +43,18 @@ public class MensajeApiRest extends JSONService {
 		}
 		// PROCEDE:
 		Response response = null;
-
-		//boolean isDeleted = MensajeEM.getInstance().removeMensaje(id);
-//		if (isDeleted) {
-//			response = Response.status(202).entity("\"msg\":\"Se borrÃ³ correctamente\"").build();
-//		} else {
-//			response = Response.status(500).entity("\"msg\":\"Error: no se pudo borrar\"").build();
-//		}
-
+		try {
+//			List<Mensaje> conversacion = MensajeEM.getInstance().getConversacionEntre(usuId, manId);
+			List<Map<String, Object>> conversacion = MensajeDAO.getInstance().getConversacion(usuId, manId, from, limit);
+			if (conversacion.size() > 0) {
+				response = Response.status(202).entity(conversacion).build();
+			} else {
+				response = Response.status(404).entity("No existe la conversaciÃ³n solicitada").build();
+			}
+		} catch (Exception e) {
+			response = Response.status(500).entity(e.getMessage()).build();
+			e.printStackTrace();
+		}
 		return response;
 	}
 
@@ -60,7 +67,7 @@ public class MensajeApiRest extends JSONService {
 			@PathParam(value = "mensajeId") int id,
 			@HeaderParam("token") String token) {
 		
-		// ¿AUTORIZADO?
+		// ï¿½AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
 		if(userTokenId == DAO.NO_ID) {
@@ -91,7 +98,7 @@ public class MensajeApiRest extends JSONService {
 			@HeaderParam(value = "texto") String texto,
 			@HeaderParam("token") String token) {
 		
-		// ¿AUTORIZADO?
+		// ï¿½AUTORIZADO?
 		AuthService auth = new AuthService();
 		int userTokenId = auth.getUsuarioIdFromToken(token);
 		if(userTokenId == DAO.NO_ID) {
@@ -105,7 +112,7 @@ public class MensajeApiRest extends JSONService {
 			newID = MensajeDAO.getInstance().create(texto, urlImagen, emisor_usu_id, receptor_usu_id);
 			response = Response.status(202).entity(String.format("{\"id\":%d}", newID)).build();
 		} catch (Exception e) {
-			response = Response.status(500).entity("¨{\"msg\":\"Error en el servidor\"}").build();
+			response = Response.status(500).entity("ï¿½{\"msg\":\"Error en el servidor\"}").build();
 			e.printStackTrace();
 		}
 		return response;
