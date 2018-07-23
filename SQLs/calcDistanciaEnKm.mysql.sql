@@ -4,16 +4,27 @@ DELIMITER $$
 DROP FUNCTION IF EXISTS calcDistanciaEnKm$$
 
 CREATE FUNCTION calcDistanciaEnKm (lat1 DOUBLE, lon1 DOUBLE, lat2 DOUBLE, lon2 DOUBLE) RETURNS DOUBLE
-NO SQL DETERMINISTIC
-
+    NO SQL
+    DETERMINISTIC
 BEGIN
-	RETURN 6372.795477598 * ACOS(
-		SIN( RADIANS(lat1) ) *
-		SIN( RADIANS(lat2) ) +
-		COS( RADIANS(lat1) ) *
-		COS( RADIANS(lat2) ) *
-		COS( RADIANS(lat1) - RADIANS(lat2) )
-	);
+
+	DECLARE radLat1 double DEFAULT lat1 * PI()/180;
+	DECLARE radLat2 double DEFAULT lat2 * PI()/180;
+	DECLARE theta double DEFAULT lon1 - lon2;
+	DECLARE radTheta double DEFAULT theta * PI()/180;
+	DECLARE dist double DEFAULT SIN(radLat1) * SIN(radLat2) + COS(radLat1) * COS(radLat2) * COS(radTheta);
+    
+	IF dist > 1 THEN
+		SET dist = 1;
+	END IF;
+    
+	SET dist = ACOS(dist);
+	SET dist = dist * 180/PI();
+	SET dist = dist * 60 * 1.1515;
+	SET dist = dist * 1.609344;
+    
+	RETURN dist;
+    
 END$$
 DELIMITER ;
 
