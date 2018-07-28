@@ -4,7 +4,7 @@ Permite encontrar profesionales cercanos a ti por geolocalización y pornerse en
 
 Es la evolución de [Worker-APP](https://github.com/bugtamer/Worker-APP)
 
-Demo no apta para producción (proyecto para formación)
+Demo no apta para producción. Proyecto para formación. DESCONTINUADO.
 
 ## Frontend
 
@@ -23,19 +23,32 @@ Demo no apta para producción (proyecto para formación)
 + JSP
 + JAX-RS (Jersey): API REST para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient)
 + JWT (jose4j): tokens para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient)
-+ Apache Tomcat
++ [Apache Tomcat 9.0.8](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.8/)
 
 ## Persistence
 
 + Hibernate
 + Entity Manager
 + DAO
-+ MySQL
++ MySQL 5.7
 
 ## Testing
 
 + jUnit
 + Mockito
++ [curl](https://ss64.com/bash/curl.html) (API REST)
++ [Postman v6.1.4](https://www.getpostman.com/)
+
+## SW adicional
+
++ Oracle JDK 8 / OpenJDK 8
++ [Eclipse Java EE IDE for Web Developers Version: Oxygen.3a Release (4.7.3a)](https://www.eclipse.org/downloads/packages/release/oxygen/3a)
++ Visual Studio Code
++ Notepad++
++ MySQL Workbench 6.3 CE
++ Google Chrome / Chromium 70 (64 bits)
++ Mozilla Firefox 61
++ GitKraken
 
 ## Cambio de desarrollo a testing
 
