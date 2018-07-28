@@ -85,7 +85,12 @@ Demo no apta para producción. Proyecto para formación. DESCONTINUADO.
 
 ![sketches](./doc/sketches.png)
 
-## Otros proyectos de la formación
+## Historias de usuario
+
++ Historias de usuario implementadas:
+![Historias de usuario](./doc/historias_de_usuario.png)
+
+## Proyectos del resto de equipos en la formación
 
 + [Mindty](https://github.com/dguarch/Mindty)
 + [SoundClub](https://github.com/IsaacMCorpas/SoundClub)
