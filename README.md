@@ -21,8 +21,8 @@ Demo no apta para producción. Proyecto para formación. DESCONTINUADO.
 
 + Servlet
 + JSP
-+ JAX-RS (Jersey): API REST para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient)
-+ JWT (jose4j): tokens para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient)
++ JAX-RS (Jersey): API REST para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient) (Angular 6 SPA)
++ JWT (jose4j): tokens para [WorkerAppClient](https://github.com/bugtamer/WorkerAppClient) (Angular 6 SPA)
 + [Apache Tomcat 9.0.8](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.8/)
 
 ## Persistence
@@ -49,6 +49,9 @@ Demo no apta para producción. Proyecto para formación. DESCONTINUADO.
 + Google Chrome / Chromium 70 (64 bits)
 + Mozilla Firefox 61
 + GitKraken
++ [swagger.io](http://editor.swagger.io/)
++ [www.draw.io](https://www.draw.io/)
++ Microsoft Teams
 
 ## Cambio de desarrollo a testing
 
