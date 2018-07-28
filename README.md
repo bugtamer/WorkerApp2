@@ -2,6 +2,8 @@
 
 Permite encontrar profesionales cercanos a ti por geolocalización y pornerse en contacto con ellos via chat.
 
+Es la evolución de [Worker-APP](https://github.com/bugtamer/Worker-APP)
+
 Demo no apta para producción (proyecto para formación)
 
 ## Frontend
@@ -55,7 +57,9 @@ Demo no apta para producción (proyecto para formación)
 + `PRODUCCION.usuario_de_BBDD.sql`
 + `estructura_BBDD.sql` (ver `calcDistanciaEnKm`, hacia al final, no hace falta tocarla)
 ---
-+ ![Jelastic configuration](./doc/jelastic.conf.png)
++ Ya no está disponible la versión de producción online:
+![Jelastic configuration](./doc/jelastic.conf.png)
+
 
 ## Snapshots
 
