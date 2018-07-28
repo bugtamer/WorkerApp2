@@ -1,0 +1,7 @@
+type = mysql
+url      = jdbc:mysql://10.100.17.55:3306
+database = WorkerApp2
+user     = WorkerApp2
+password = 123456
+dbdriver = com.mysql.jdbc.Driver
+pooldataSource = jdbc/WorkerApp2
